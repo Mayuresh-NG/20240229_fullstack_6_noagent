@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Webpage</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/lpstyle.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="logo.png" alt="Logo" />
+        <div style="left: 80px; top: 20px; position: absolute">
+          <span
+            style="
+              color: #4f80e1;
+              font-size: 28px;
+              font-weight: 700;
+              word-wrap: break-word;
+            "
+            >No</span
+          ><span
+            style="
+              color: #292c44;
+              font-size: 28px;
+              font-weight: 300;
+              word-wrap: break-word;
+            "
+            >Agent</span
+          >
+        </div>
+      </div>
+      <div>
+        <button class="shadow-button">Sign up</button>
+        <button class="shadow-button">Login</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="center-container">
+        <h2>Unlock Homes Without the Middleman.</h2>
+
+        <div class="joined-buttons">
+          <button class="jbutton" onclick="toggleButton(this)">Buy</button>
+          <button class="jbutton" onclick="toggleButton(this)">Rent</button>
+        </div>
+
+        <div class="search-bar">
+          <select class="dropdown">
+            <option value="city1">City 1</option>
+            <option value="city2">City 2</option>
+            <!-- Add more cities as needed -->
+          </select>
+          <input
+            type="text"
+            class="locality-textarea"
+            placeholder="Enter Locality"
+          />
+          <button class="search-button">Search</button>
+        </div>
+
+        <div class="hr-container">
+          <hr />
+          <p class="property-owner-text">Are you a property owner?</p>
+          <hr />
+        </div>
+
+        <button class="post-ad-button">Post your property AD</button>
+      </div>
+    </div>
+    <script>
+      function toggleButton(button) {
+        // Remove 'active' class from all buttons
+        document.querySelectorAll(".jbutton").forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+
+        // Add 'active' class to the clicked button
+        button.classList.add("active");
+      }
+    </script>
+
+    <footer></footer>
+  </body>
+</html>

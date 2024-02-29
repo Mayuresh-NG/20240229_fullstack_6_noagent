@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 40px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo span {
+            color: #4f80e1; /* Blue color for "No" */
+        }
+
+        header .admin {
+            display: flex;
+            align-items: center;
+        }
+
+        .headings {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            padding-left: 80px;
+            padding-right: 80px;
+            margin-bottom: 20px; 
+        }
+
+        .main-box {
+            background-color: #ddd;
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-right: 0; 
+        }
+
+        .column:first-child {
+            flex-basis: 70%;
+        }
+
+        .rectangle {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 0;
+            flex: 1;
+        }
+        .owner-phone-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+        }
+    </style>
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header style="height: 65px;background-color: #C7E6F8">
+        <div class="logo">
+            <img src="logo.png" alt="NoAgent Logo" style="margin-left: 15px; height: 38px;width: 52px;">
+            <div class="heading-text" style="font-size: 28px;display: flex;">
+                <span>No</span><div class="agent" style="color: black;">Agent</div>
+            </div>
+        </div>
+        <div class="admin" style="color: black; font-size: 14px;margin-right: 40px;">
+            <i class="fa-solid fa-user" style="color: black;margin-right: 10px;"></i>
+            Admin
+        </div>
+    </header>
+
+    <nav>
+        
+    </nav>
+
+    <div class="container">
+        <div class="headings">
+            <div style="font-size: xx-large; font-weight: 550;">Properties</div>
+            <div>
+                <button style="width: 147px; height: 32px; background-color: #4f80e1;">Property Type <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px;"></i></button>
+            </div>
+        </div>
+        <div class="main-box">
+            <div class="column">
+                <div class="rectangle">Address</div>
+                <div class="rectangle">Address</div>
+                <div class="rectangle">Address</div>
+                <div class="rectangle">Address</div>
+                <div class="rectangle">Address</div>
+                <div class="rectangle">Address</div>
+            </div>
+            <div class="column">
+                <div class="rectangle" style="justify-content: center;">Price/Rent</div>
+                <div class="rectangle"style="justify-content: center;">Price/Rent</div>
+                <div class="rectangle"style="justify-content: center;">Price/Rent</div>
+                <div class="rectangle"style="justify-content: center;">Price/Rent</div>
+                <div class="rectangle"style="justify-content: center;">Price/Rent</div>
+                <div class="rectangle"style="justify-content: center;">Price/Rent</div>
+            </div>
+            <div class="column">
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+                <div class="rectangle owner-phone-container">
+                    <div>Owner</div>
+                    <div>Phone</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="height: 20px;
+    background-color: #a9dfff;">
+    </footer>
+
+</body>
+</html>
