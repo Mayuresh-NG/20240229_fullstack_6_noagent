@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 40px;
+  height: auto;
+  margin-right: 5px;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo span {
+  color: #4f80e1; /* Blue color for "No" */
+}
+
+header .admin {
+  display: flex;
+  align-items: center;
+}
+
+.headings {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin-bottom: 20px;
+}
+
+.main-box {
+  background-color: #ddd;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0;
+}
+
+.column:first-child {
+  flex-basis: 70%;
+}
+
+.rectangle {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.owner-phone-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+}
+
+.clickable-address {
+  cursor: pointer;
+}
+
+/* Dropdown styles */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  width: 147px;
+  height: 32px;
+  background-color: #4f80e1;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* White background */
+  min-width: 147px; /* Match the width of the button */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc; /* Border color */
+}
+
+.dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  color: black;
+  border: none;
+  border: 1px solid black;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
