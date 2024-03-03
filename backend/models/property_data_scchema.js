@@ -43,6 +43,14 @@ const propSchema = new mongoose.Schema({
   amenities: {
     type: [String],
   },
+  posted_on: {
+    type: Date,
+    default: Date.now,
+  },
+  status: {
+    type: String,
+    default: 'pending',
+  },
 });
 
 const Property = mongoose.model("property_datas", propSchema);

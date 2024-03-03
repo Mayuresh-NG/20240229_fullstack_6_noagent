@@ -1,16 +1,24 @@
+// importing user and property schema
 const User = require("./models/user_data_schema");
 const Property = require("./models/property_data_scchema");
-const { verifyToken } = require("./middleware/auth");
+
+// middleware to verify jwt token and checking admin rights
+const { verifyToken, isAdmin } = require("./middleware/auth");
+
+// basic libraries for jwt,bcrypt and storing secret key
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
+
+// Msecret key used for jwt
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const express = require("express");
 const mongoose = require("mongoose");
 const port = 3000;
 
+// cloud configuration for storing images in cloudinary
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -19,13 +27,16 @@ cloudinary.config({
   api_secret: "JitIrqE0HS5ZOmMg7DYg2QDdfmk",
 });
 
+// initialize app
 const app = express();
 app.use(bodyParser.json());
 
+// connecting  to the database
 mongoose.connect(
   "mongodb+srv://mayureshngorantiwar:4pH5dvC4d7XRUe8O@cluster0.sdnavtq.mongodb.net/NOAGENT"
 );
 
+// API calls not requiring login
 app.post("/signup", async (req, res) => {
   try {
     const userData = req.body;
@@ -109,6 +120,264 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.get("/buy/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.locality; // Extract the address query parameter
+
+    // If no search query is provided, return an error
+    if (!searchQuery) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide an address for the search.",
+      });
+    }
+
+    // Fetch properties based on the address query (including both city and state)
+    const matchingProperties = await Property.find({
+      trade_type: "sell",
+      status: "approved",
+      $or: [
+        { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
+        { state: { $regex: new RegExp(searchQuery, "i") } },
+      ],
+    });
+
+    // If no matching properties are found, return a message
+    if (matchingProperties.length === 0) {
+      return res.status(404).json({
+        success: true,
+        message: "No properties found in the specified area.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Properties matching the search query retrieved successfully!",
+      properties: matchingProperties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+app.get("/rent/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.locality; // Extract the address query parameter
+
+    // If no search query is provided, return an error
+    if (!searchQuery) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide an address for the search.",
+      });
+    }
+
+    // Fetch properties based on the address query (including both city and state)
+    const matchingProperties = await Property.find({
+      trade_type: "rent",
+      status: "approved",
+      $or: [
+        { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
+        { state: { $regex: new RegExp(searchQuery, "i") } },
+      ],
+    });
+
+    // If no matching properties are found, return a message
+    if (matchingProperties.length === 0) {
+      return res.status(404).json({
+        success: true,
+        message: "No properties found in the specified area.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Properties matching the search query retrieved successfully!",
+      properties: matchingProperties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+app.get("/rent/filter", async (req, res) => {
+  try {
+    const { bhkType, furnishing, preferredTenants, maxPrice } = req.query;
+
+    // Build the filter object based on provided parameters
+    const filter = {};
+
+    if (bhkType) {
+      filter.bhk_type = bhkType;
+    }
+
+    if (furnishing) {
+      filter["Furnished.full"] = furnishing === "full";
+      filter["Furnished.semi"] = furnishing === "semi";
+      filter["Furnished.none"] = furnishing === "none";
+    }
+
+    if (preferredTenants) {
+      // Convert preferredTenants to an array of preferred tenant types
+      const preferredTenantsArray = preferredTenants.split(",");
+
+      // Build the filter for preferred tenants
+      const preferredTenantsFilter = {};
+      preferredTenantsArray.forEach((tenantType) => {
+        preferredTenantsFilter[`preferred_tenents.${tenantType}`] = true;
+      });
+
+      // Add the preferred tenants filter to the main filter object
+      filter.$and = [preferredTenantsFilter];
+    }
+
+    if (maxPrice) {
+      filter.rent_price = { $lte: parseInt(maxPrice) };
+    }
+
+    // Fetch properties based on the applied filters
+    const filteredProperties = await Property.find({
+      trade_type: "rent",
+      status: "approved", // Assuming you want only approved properties
+      ...filter,
+    });
+
+    // If no matching properties are found, return a message
+    if (filteredProperties.length === 0) {
+      return res.status(404).json({
+        success: true,
+        message: "No properties found based on the applied filters.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message:
+        "Properties matching the filter criteria retrieved successfully!",
+      properties: filteredProperties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+app.get("/buy/filter", async (req, res) => {
+  try {
+    const { bhkType, furnishing, propertyType, maxPrice } = req.query;
+
+    // Build the filter object based on provided parameters
+    const filter = {};
+
+    if (bhkType) {
+      filter.bhk_type = bhkType;
+    }
+
+    if (furnishing) {
+      filter["Furnished.full"] = furnishing === "full";
+      filter["Furnished.semi"] = furnishing === "semi";
+      filter["Furnished.none"] = furnishing === "none";
+    }
+
+    if (propertyType) {
+      filter.property_type = propertyType;
+    }
+
+    if (maxPrice) {
+      filter.rent_price = { $lte: parseInt(maxPrice) };
+    }
+
+    // Fetch properties based on the applied filters
+    const filteredProperties = await Property.find({
+      trade_type: "sell",
+      status: "approved", // Assuming you want only approved properties
+      ...filter,
+    });
+
+    // If no matching properties are found, return a message
+    if (filteredProperties.length === 0) {
+      return res.status(404).json({
+        success: true,
+        message: "No properties found based on the applied filters.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message:
+        "Properties matching the filter criteria retrieved successfully!",
+      properties: filteredProperties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+app.post("/sort_properties", async (req, res) => {
+  try {
+    const { tradeType, sortOption } = req.query;
+
+    let sortCriteria = {};
+
+    // Define the sort criteria based on the selected option
+    switch (sortOption) {
+      case "newest_first":
+        sortCriteria = { posted_on: -1 }; // Sort by posted_on in descending order
+        break;
+      case "oldest_first":
+        sortCriteria = { posted_on: 1 }; // Sort by posted_on in ascending order
+        break;
+      case "price_low_to_high":
+        sortCriteria = { rent_price: 1, prop_price: 1 }; // Sort by rent_price and prop_price in ascending order
+        break;
+      case "price_high_to_low":
+        sortCriteria = { rent_price: -1, prop_price: -1 }; // Sort by rent_price and prop_price in descending order
+        break;
+      default:
+        return res.status(400).json({
+          success: false,
+          message: "Invalid sort option provided",
+        });
+    }
+
+    const properties = await Property.find({
+      trade_type: tradeType,
+      // status: "approved",
+    }).sort(sortCriteria);
+
+    res.status(200).json({
+      success: true,
+      message: "Properties sorted successfully!",
+      properties: properties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+});
+
+// middleware to handle verified routes
+app.use(verifyToken);
+
+// API calls requiring login
 app.post("/rent_property", verifyToken, async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
@@ -120,7 +389,7 @@ app.post("/rent_property", verifyToken, async (req, res) => {
       state,
       address,
       furnished,
-      preferred_tenants,
+      pref_tenants,
       images,
       availability_date,
     } = req.body;
@@ -151,9 +420,10 @@ app.post("/rent_property", verifyToken, async (req, res) => {
       state,
       Address: address,
       Furnished: furnished,
-      preferred_tenants,
+      preferred_tenents: pref_tenants,
       images: cloudinaryImageUrls,
       availability_date,
+      posted_on: new Date(),
     });
 
     // Save the property to the database
@@ -198,6 +468,7 @@ app.post("/sell_property", verifyToken, async (req, res) => {
       images,
       availability_date,
       deposit,
+      property_type,
       amenities,
     } = req.body;
 
@@ -229,8 +500,10 @@ app.post("/sell_property", verifyToken, async (req, res) => {
       Furnished: furnished,
       images: cloudinaryImageUrls,
       availability_date,
+      property_type,
       deposit,
       amenities,
+      posted_on: new Date(),
     });
 
     // Save the property to the database
@@ -356,92 +629,6 @@ app.get("/my_wishlist", verifyToken, async (req, res) => {
   }
 });
 
-app.get("/buy/search", async (req, res) => {
-  try {
-    const searchQuery = req.query.locality; // Extract the address query parameter
-
-    // If no search query is provided, return an error
-    if (!searchQuery) {
-      return res.status(400).json({
-        success: false,
-        message: "Please provide an address for the search.",
-      });
-    }
-
-    // Fetch properties based on the address query (including both city and state)
-    const matchingProperties = await Property.find({
-      trade_type: "sell",
-      $or: [
-        { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
-        { state: { $regex: new RegExp(searchQuery, "i") } },
-      ],
-    });
-
-    // If no matching properties are found, return a message
-    if (matchingProperties.length === 0) {
-      return res.status(404).json({
-        success: true,
-        message: "No properties found in the specified area.",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "Properties matching the search query retrieved successfully!",
-      properties: matchingProperties,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
-  }
-});
-
-app.get("/rent/search", async (req, res) => {
-  try {
-    const searchQuery = req.query.locality; // Extract the address query parameter
-
-    // If no search query is provided, return an error
-    if (!searchQuery) {
-      return res.status(400).json({
-        success: false,
-        message: "Please provide an address for the search.",
-      });
-    }
-
-    // Fetch properties based on the address query (including both city and state)
-    const matchingProperties = await Property.find({
-      trade_type: "rent",
-      $or: [
-        { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
-        { state: { $regex: new RegExp(searchQuery, "i") } },
-      ],
-    });
-
-    // If no matching properties are found, return a message
-    if (matchingProperties.length === 0) {
-      return res.status(404).json({
-        success: true,
-        message: "No properties found in the specified area.",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "Properties matching the search query retrieved successfully!",
-      properties: matchingProperties,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
-  }
-});
-
 app.delete("/my_wishlist/remove/:propertyId", verifyToken, async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
@@ -473,7 +660,10 @@ app.delete("/my_wishlist/remove/:propertyId", verifyToken, async (req, res) => {
   }
 });
 
-app.patch("/my_properties/modify/:propertyId",verifyToken,async (req, res) => {
+app.patch(
+  "/my_properties/modify/:propertyId",
+  verifyToken,
+  async (req, res) => {
     try {
       const propertyId = req.params.propertyId;
       const userData = req.decoded;
@@ -511,46 +701,82 @@ app.patch("/my_properties/modify/:propertyId",verifyToken,async (req, res) => {
   }
 );
 
-app.delete('/my_properties/remove/:propertyId', verifyToken, async (req, res) => {
+app.delete(
+  "/my_properties/remove/:propertyId",
+  verifyToken,
+  async (req, res) => {
+    try {
+      const propertyId = req.params.propertyId;
+      const userData = req.decoded;
+
+      // Find the property by ID
+      const property = await Property.findById(propertyId);
+
+      // Check if the user is the owner of the property
+      if (property.owner !== userData.username) {
+        return res.status(403).json({
+          success: false,
+          message: "You don't have permission to remove this property",
+        });
+      }
+
+      // Remove the property from the User's my_properties array
+      await User.findOneAndUpdate(
+        { username: userData.username },
+        { $pull: { my_properties: { property_id: propertyId } } }
+      );
+
+      // Remove the property from the Property collection
+      await Property.findByIdAndDelete(propertyId);
+
+      res.status(200).json({
+        success: true,
+        message: "Property removed successfully!",
+        removedPropertyId: propertyId,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+      });
+    }
+  }
+);
+
+app.patch("/approve_property/:propertyId", isAdmin, async (req, res) => {
   try {
     const propertyId = req.params.propertyId;
-    const userData = req.decoded;
 
-    // Find the property by ID
-    const property = await Property.findById(propertyId);
+    // Update the status to "approved"
+    const updatedProperty = await Property.findByIdAndUpdate(
+      propertyId,
+      { status: "approved" },
+      { new: true } // Returns the updated document
+    );
 
-    // Check if the user is the owner of the property
-    if (property.owner !== userData.username) {
-      return res.status(403).json({
+    if (!updatedProperty) {
+      return res.status(404).json({
         success: false,
-        message: "You don't have permission to remove this property",
+        message: "Property not found",
       });
     }
 
-    // Remove the property from the User's my_properties array
-    await User.findOneAndUpdate(
-      { username: userData.username },
-      { $pull: { my_properties: { property_id: propertyId } } }
-    );
-
-    // Remove the property from the Property collection
-    await Property.findByIdAndDelete(propertyId);
-
     res.status(200).json({
       success: true,
-      message: 'Property removed successfully!',
-      removedPropertyId: propertyId,
+      message: "Property approved successfully!",
+      property: updatedProperty,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: 'Internal Server Error',
+      message: "Internal Server Error",
     });
   }
 });
 
-
+// start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
