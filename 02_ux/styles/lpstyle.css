@@ -82,7 +82,7 @@ header h1 {
   font-weight: 300;
   font-size: 40px;
   color: #292c44;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 
 .locality-textarea {
@@ -92,9 +92,9 @@ header h1 {
   font-family: "Karla", sans-serif;
   font-weight: 400;
   font-size: 22px;
-  padding: 10px; 
-  box-sizing: border-box; 
-  line-height: 50px; 
+  padding: 10px;
+  box-sizing: border-box;
+  line-height: 50px;
 }
 
 .search-button {
@@ -108,7 +108,7 @@ header h1 {
   font-size: 22px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  border: 1px black solid; 
+  border: 1px black solid;
 }
 
 hr {
@@ -169,7 +169,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 .center-container {
@@ -191,7 +191,7 @@ p {
   width: 100%;
   height: 90vh;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
@@ -220,26 +220,26 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.popup-content{
+.popup-content {
   display: flex;
   height: 100%;
   overflow: hidden;
 }
 
-.left-section{
+.left-section {
   width: 268px;
   border-right: solid white 0.5px;
-  background-color: #A9DFFF;
+  background-color: #a9dfff;
 }
-.right-section{flex: 1;
-  background-color: #C7E6F8;
+.right-section {
+  flex: 1;
+  background-color: #c7e6f8;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
-
-.left-top{
+.left-top {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -247,7 +247,7 @@ p {
   margin-top: 167px;
 }
 
-.headings{
+.headings {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -268,19 +268,18 @@ p {
   margin-left: -17px;
 }
 
-.Login-heading{
+.Login-heading {
   margin-top: 25px;
-    font-size: 25px;
+  font-size: 25px;
 }
 
-.close-button{
-      margin-left: 362px;
-      padding-top: 0px;
-      font-size: 56px;
-      font-weight: 300;
-      cursor: pointer;
+.close-button {
+  margin-left: 362px;
+  padding-top: 0px;
+  font-size: 56px;
+  font-weight: 300;
+  cursor: pointer;
 }
-
 
 /* Enter phone text style */
 .enter-phone-text {
@@ -304,16 +303,16 @@ p {
   color: white;
   cursor: pointer;
 }
-.already-user{
+.already-user {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 49px;
 }
-.login-button{
+.login-button {
   margin-top: 5px;
   background-color: transparent;
-  color: #1B3F70;
+  color: #1b3f70;
   border: none;
   cursor: pointer;
 }
