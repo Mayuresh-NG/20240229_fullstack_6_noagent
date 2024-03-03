@@ -82,7 +82,7 @@ header h1 {
   font-weight: 300;
   font-size: 40px;
   color: #292c44;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 
 .locality-textarea {
@@ -92,9 +92,9 @@ header h1 {
   font-family: "Karla", sans-serif;
   font-weight: 400;
   font-size: 22px;
-  padding: 10px; 
-  box-sizing: border-box; 
-  line-height: 50px; 
+  padding: 10px;
+  box-sizing: border-box;
+  line-height: 50px;
 }
 
 .search-button {
@@ -108,7 +108,7 @@ header h1 {
   font-size: 22px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  border: 1px black solid; 
+  border: 1px black solid;
 }
 
 hr {
@@ -169,7 +169,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 .center-container {
@@ -191,7 +191,128 @@ p {
   width: 100%;
   height: 90vh;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2; /* Increase the z-index value */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 670px;
+  height: 552px;
+  z-index: 3; /* Increase the z-index value */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.left-section {
+  width: 268px;
+  border-right: solid white 0.5px;
+  background-color: #a9dfff;
+}
+.right-section {
+  flex: 1;
+  background-color: #c7e6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 167px;
+}
+
+.headings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headings p {
+  margin-bottom: -13px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.headings :first-child {
+  margin-left: -36px;
+  margin-top: 44px;
+}
+
+.headings :last-child {
+  margin-left: -17px;
+}
+
+.Login-heading {
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.close-button {
+  margin-left: 362px;
+  padding-top: 0px;
+  font-size: 56px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+/* Enter phone text style */
+.enter-phone-text {
+  font-size: 25px;
+}
+
+/* Input field style */
+.input-container input {
+  width: 357px;
+  height: 37px;
+  background-color: transparent;
+  border: 1px solid black;
+  margin-bottom: 12px;
+}
+
+/* Continue button style */
+.continue-button {
+  width: 357px;
+  height: 37px;
+  background-color: #292c44;
+  color: white;
+  cursor: pointer;
+}
+.already-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 49px;
+}
+.login-button {
+  margin-top: 5px;
+  background-color: transparent;
+  color: #1b3f70;
+  border: none;
+  cursor: pointer;
+}

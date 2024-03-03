@@ -38,8 +38,10 @@
         </div>
       </div>
       <div>
-        <button class="shadow-button">Sign up</button>
-        <button class="shadow-button">Login</button>
+        <button class="shadow-button" onclick="showSignupPopup()">
+          Sign up
+        </button>
+        <button class="shadow-button" onclick="showLoginPopup()">Login</button>
       </div>
     </header>
 
@@ -75,6 +77,89 @@
         <button class="post-ad-button">Post your property AD</button>
       </div>
     </div>
+    <div id="overlay"></div>
+    <!-- Add this overlay element -->
+
+    <div class="container-login">
+      <div id="loginPopup" class="popup">
+        <div class="popup-content">
+          <div class="left-section">
+            <div class="left-top">
+              <img
+                src="login-house.PNG"
+                alt="Home Logo"
+                class="home-logo"
+                style="width: 123px"
+              />
+              <div class="Login-heading">Login</div>
+            </div>
+            <div class="headings">
+              <p><span class="tick">✔</span> Zero Brokerage</p>
+              <p><span class="tick">✔</span> Thousands of listings</p>
+              <p><span class="tick">✔</span> Verified Properties</p>
+            </div>
+          </div>
+          <div class="right-section">
+            <span class="close-button" onclick="closeLoginPopup()">×</span>
+            <p class="enter-phone-text">Enter phone to continue</p>
+            <div class="input-container">
+              <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-container">
+              <input type="password" placeholder="Password" />
+            </div>
+            <button class="continue-button">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-login">
+      <!-- Signup Popup -->
+      <div id="signupPopup" class="popup">
+        <div class="popup-content">
+          <div class="left-section">
+            <div class="left-top">
+              <img
+                src="login-house.PNG"
+                alt="Home Logo"
+                class="home-logo"
+                style="width: 123px"
+              />
+              <div class="Login-heading">Sign Up</div>
+            </div>
+            <div class="headings">
+              <p><span class="tick">✔</span> Zero Brokerage</p>
+              <p><span class="tick">✔</span> Thousands of listings</p>
+              <p><span class="tick">✔</span> Verified Properties</p>
+            </div>
+          </div>
+          <div class="right-section">
+            <span class="close-button" onclick="closeSignupPopup()">×</span>
+            <p class="enter-phone-text">Enter details to sign up</p>
+            <div class="input-container">
+              <input type="text" placeholder="Full Name" />
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="Email" />
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="Phone Number" />
+            </div>
+            <div class="input-container">
+              <input type="password" placeholder="Password" />
+            </div>
+            <button class="continue-button">Continue</button>
+            <div class="already-user">
+              <p style="margin-top: 10px; margin-bottom: 0">Already an user?</p>
+              <button class="login-button" onclick="showLoginPopupFromSignup()">
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
       function toggleButton(button) {
         // Remove 'active' class from all buttons
@@ -84,6 +169,29 @@
 
         // Add 'active' class to the clicked button
         button.classList.add("active");
+      }
+
+      function showLoginPopup() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("loginPopup").style.display = "block";
+      }
+
+      function closeLoginPopup() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("loginPopup").style.display = "none";
+      }
+      function showSignupPopup() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("signupPopup").style.display = "block";
+      }
+
+      function closeSignupPopup() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("signupPopup").style.display = "none";
+      }
+      function showLoginPopupFromSignup() {
+        closeSignupPopup();
+        showLoginPopup();
       }
     </script>
 
