@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 40px;
+  height: auto;
+  margin-right: 5px;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo span {
+  color: #4f80e1; /* Blue color for "No" */
+}
+
+header .admin {
+  display: flex;
+  align-items: center;
+}
+
+.post-property {
+  background-color: #4f80e1;
+  margin-right: 40px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+.headings {
+  padding: 10px;
+  display: flex;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin-bottom: 20px;
+}
+
+.main-box {
+  background-color: #c7e6f8;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1203px;
+  height: 515px;
+  border-radius: 10px;
+}
+
+.column-1,
+.column-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-1 {
+  border-right: solid white 3px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.element {
+  background-color: white;
+  display: flex;
+  width: 405px;
+  height: 211px;
+  border-radius: 10px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.section1 {
+  width: 60%;
+  position: relative;
+}
+
+.section2 {
+  width: 40%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  margin-left: 133px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.text-rows {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 34px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.get-details-button {
+  width: 170px;
+  height: 35px;
+  margin-left: 34px;
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.photo {
+  height: 103px;
+  width: 128px;
+  background-image: url("../room1.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-top: 31px;
+  margin-left: 3px;
+}
+
+.modify,
+.delete {
+  border-radius: 3px;
+  background-color: #292c44;
+  color: #fff;
+  cursor: pointer;
+  width: 70px;
+  height: 25px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  margin-right: 26px;
+}
+
+.heart-symbol {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.like-count {
+  font-size: 16px;
+  font-weight: bold;
+}
