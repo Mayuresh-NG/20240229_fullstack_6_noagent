@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent Your Property</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles/rent-your-property.css" />
+  </head>
+  <body>
+    <header style="height: 65px; background-color: #c7e6f8">
+      <div class="logo">
+        <img
+          src="logo.png"
+          alt="NoAgent Logo"
+          style="margin-left: 15px; height: 38px; width: 52px"
+        />
+        <div class="heading-text" style="font-size: 28px; display: flex">
+          <span>No</span>
+          <div class="agent" style="color: black">Agent</div>
+        </div>
+      </div>
+
+      <div
+        class="admin"
+        style="color: black; font-size: 14px; margin-right: 40px"
+      >
+        <i
+          class="fa-solid fa-user"
+          style="color: black; margin-right: 10px"
+        ></i>
+        vivek
+      </div>
+    </header>
+    <div class="topBar">
+      <h2>Rent your Property</h2>
+
+      <button class="shadow-button">Save and Post</button>
+    </div>
+    <main class="mainBody">
+      <!-- LEFT SIDE -->
+      <div class="propertyForm">
+        <h3>Property Details</h3>
+
+        <select class="dropdown">
+          <option value="type1">Type 1</option>
+          <option value="type2">Type 2</option>
+        </select>
+
+        <input
+          type="text"
+          class="customInputField"
+          id="myInput"
+          placeholder="Built up Area"
+        />
+        <h3>Locality Details</h3>
+        <select class="dropdown">
+          <option value="" disabled selected>Select State</option>
+          <option value="type1">Type 1</option>
+          <option value="type2">Type 2</option>
+        </select>
+
+        <div class="addressBox">
+          <h4>Enter Your Address</h4>
+          <input
+            type="text"
+            id="myInput"
+            class="addressInput"
+            placeholder="Stret Name/House No./ Building Name"
+          />
+          <input
+            type="text"
+            id="myInput"
+            class="addressInput"
+            placeholder="City"
+          />
+          <input
+            type="text"
+            id="myInput"
+            class="addressInput"
+            placeholder="LandMark"
+          />
+          <input
+            type="text"
+            id="myInput"
+            class="addressInput"
+            placeholder="Pincode"
+          />
+        </div>
+      </div>
+
+      <!-- Right SIDE -->
+      <div class="propertyForm">
+        <h3>Rental Details</h3>
+        <div class="furnishingBox">
+          <p>Furnishing</p>
+          <div class="radio-container">
+            <label> <input type="radio" name="checkbox1" /> Full </label>
+            <label> <input type="radio" name="checkbox2" /> Semi </label>
+            <label> <input type="radio" name="checkbox3" /> None </label>
+          </div>
+        </div>
+        <div class="tenants">
+          <p>Preferred Tenants</p>
+          <div class="checkbox-container">
+            <div class="row">
+              <label> <input type="checkbox" name="checkbox1" />Family </label>
+              <label>
+                <input type="checkbox" name="checkbox2" /> Company
+              </label>
+            </div>
+            <div class="row">
+              <label>
+                <input type="checkbox" name="checkbox3" /> Bachelor Male
+              </label>
+              <label>
+                <input type="checkbox" name="checkbox4" /> Bachelor Female
+              </label>
+            </div>
+          </div>
+        </div>
+        <input
+          type="text"
+          class="customInputField"
+          id="myInput"
+          placeholder="Rent Price"
+        />
+
+        <h3>Gallery</h3>
+
+        <div class="gallery">
+          <div class="image-container">
+            <p>+</p>
+          </div>
+          <div class="imageInput">
+            <div class="input-container">
+              <input type="text" class="textInput" placeholder="Input 1">
+            </div>
+            <div class="input-container">
+              <input type="text" class="textInput" placeholder="Input 2">
+            </div>
+         
+          </div>
+        </div>
+        
+
+
+      </div>
+    </main>
+  </body>
+</html>

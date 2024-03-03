@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 40px;
+  height: auto;
+  margin-right: 5px;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo span {
+  color: #4f80e1; /* Blue color for "No" */
+}
+
+header .admin {
+  display: flex;
+  align-items: center;
+}
+
+.headings {
+  padding: 10px;
+  display: flex;
+}
+
+.propertyForm{
+  background-color: #A9DFFF;
+  height: 500px;
+  width: 500px;
+  margin: 50px ;
+  margin-top: 10px;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.mainBody{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.topBar{
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+
+.shadow-button {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #292c44;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px 0.5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  border: 1px black solid;
+  font-size: 14px;
+  font-weight: 300;
+  margin-left: 10px;
+  width: 150px;
+  height: 32px;
+  padding: 5px;
+}
+
+.shadow-button:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+.customInputField{
+  border-radius: 8px;
+  border:none;
+  margin-top: 10px;
+}
+
+.dropdown {
+  height: 30px;
+  width: 300px;
+  border-radius: 5px;
+}
+.customInputField{
+  width: 300px;
+  height: 35px;
+  
+}
+
+.addressBox{
+  margin-top: 10px;
+  padding: 10px;
+  height: 230px;
+  width: 330px;
+  background-color: white;
+}
+
+.addressInput{
+  width: 280px;
+  height: 25px;
+  background-color: rgb(206, 206, 206);
+  margin-bottom: 10px;
+  border: none
+}
+
+.furnishingBox{
+  width: 350px;
+  height: 70px;
+  background-color: white;
+}
+
+.tenants{
+  margin-top: 10px;
+  padding: 10px;
+  height: 120px;
+  width: 330px;
+  background-color: white;
+}
+
+.row{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.gallery {
+  height: 200px;
+  width: 500px; /* Adjusted width to accommodate two inputs and the image input */
+  display: flex;
+  align-items: start;
+}
+
+.imageInput {
+  display: flex;
+  flex-direction: column; /* Display imageInput as column */
+  align-items: center;
+ 
+}
+
+.input-container {
+  margin-top: 10px; /* Add margin between inputs */
+  margin-left: 20px;
+}
+
+.image-container {
+  margin-top: 0px; /* Add margin to separate from inputs */
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.textInput {
+  height: 10px; /* Matches the height of the imageInput */
+  width: 100%; /* Full width */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
