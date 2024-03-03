@@ -83,7 +83,3 @@ This project is a backend implementation of a NoAgent clone, a platform for prop
 ## Contributing
 
 Contributions are welcome! If you have any suggestions or find any issues, feel free to open an issue or create a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
