@@ -1,18 +1,36 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const propSchema = new mongoose.Schema({
-  trade_type: String,
-  owner: String,
-  rent_price: Number,
-  prop_price: Number,
-  bhk_type: String,
+  trade_type: {
+    type: String,
+    required: true,
+    enum: ["rent", "sell"], 
+  },
+  owner: {
+    type: String,
+    required: true,
+  },
+  rent_price: {
+    type: Number,
+    min: [0, "Rent price must be a non-negative value"],
+  },
+  prop_price: {
+    type: Number,
+    min: [0, "Property price must be a non-negative value"],
+  },
+  bhk_type: {
+    type: String,
+    required: true,
+  },
   built_Up_area: String,
   state: String,
   Address: {
     street_name: String,
     city: String,
     Landmark: String,
-    pincode: Number,
+    pincode: {
+      type: Number,
+    },
   },
   Furnished: {
     full: Boolean,
@@ -38,7 +56,10 @@ const propSchema = new mongoose.Schema({
     },
   ],
   Availability_data: Date,
-  deposit: Number,
+  deposit: {
+    type: Number,
+    min: [0, "Deposit must be a non-negative value"],
+  },
   property_type: String,
   amenities: {
     type: [String],
@@ -49,7 +70,8 @@ const propSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'pending',
+    default: "pending",
+    enum: ["pending", "approved"], 
   },
 });
 

@@ -16,7 +16,6 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const express = require("express");
 const mongoose = require("mongoose");
-const port = 3000;
 
 // cloud configuration for storing images in cloudinary
 const cloudinary = require("cloudinary").v2;
@@ -96,7 +95,7 @@ app.post("/login", async (req, res) => {
 
     // If the password is valid, generate a JWT token
     const token = jwt.sign(
-      { userId: user._id, username: user.username },
+      { userId: user._id, username: user.username},
       SECRET_KEY,
       { expiresIn: "23h" }
     );
@@ -207,6 +206,11 @@ app.get("/rent/search", async (req, res) => {
     });
   }
 });
+
+
+
+
+
 
 app.get("/rent/filter", async (req, res) => {
   try {
@@ -559,6 +563,9 @@ app.get("/my_properties", verifyToken, async (req, res) => {
   }
 });
 
+
+
+
 app.post("/add_to_wishlist/:propertyId", verifyToken, async (req, res) => {
   try {
     const userData = req.decoded;
@@ -744,6 +751,10 @@ app.delete(
   }
 );
 
+
+
+
+
 app.patch("/approve_property/:propertyId", isAdmin, async (req, res) => {
   try {
     const propertyId = req.params.propertyId;
@@ -777,6 +788,6 @@ app.patch("/approve_property/:propertyId", isAdmin, async (req, res) => {
 });
 
 // start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
