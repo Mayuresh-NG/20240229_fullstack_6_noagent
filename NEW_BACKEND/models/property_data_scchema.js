@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const propSchema = new mongoose.Schema({
   trade_type: {
     type: String,
@@ -78,6 +77,7 @@ const propSchema = new mongoose.Schema({
     default: 0,
   },
 });
+
 
 const Property = mongoose.model("property_datas", propSchema);
 

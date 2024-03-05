@@ -49,14 +49,6 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  my_wishlist: [
-    {
-      property_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Property",
-      },
-    },
-  ],
 });
 
 const User = mongoose.model("user_datas", userSchema);
