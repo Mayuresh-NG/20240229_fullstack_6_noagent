@@ -1,5 +1,6 @@
 const { verifyToken } = require("../middlewares/auth");
 const Property = require("../models/property_data_scchema");
+const wish = require('../models/wishlist')
 
 const cloudinaryUtils = require("../utils/cloudinary");
 
@@ -202,16 +203,31 @@ const modify_prop =(verifyToken,async (req, res) => {
   }
 });
 
-const remove_my_prop =(verifyToken,async (req, res) => {
+const remove_my_prop = (verifyToken, async (req, res) => {
   try {
     const propertyId = req.query.propertyId;
     const userData = req.decoded;
-    
+
     // Find the property by ID
+    const property = await Property.findById(propertyId);
+
+    // Check if the user is the owner of the property
+    if (property.owner_user_name !== userData.username) {
+      return res.status(403).json({
+        success: false,
+        message: "You don't have permission to remove this property",
+      });
+    }
+
+    // Remove the property from the Property collection
+    await Property.findByIdAndDelete(propertyId);
+
+    // Update wishlists of all users to remove the specified propertyId
+    await wish.updateMany({}, { $pull: { propertyIds: propertyId } });
+
     res.status(200).json({
       success: true,
       message: "Property removed successfully!",
-      removedPropertyId: propertyId,
     });
   } catch (error) {
     console.error(error);
@@ -221,5 +237,6 @@ const remove_my_prop =(verifyToken,async (req, res) => {
     });
   }
 });
+
 
 module.exports = { search, rent_prop, sell_prop, modify_prop, remove_my_prop };

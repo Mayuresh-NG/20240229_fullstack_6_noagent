@@ -9,6 +9,7 @@ const { validateInputs } = require("../validators/user_details_validation");
 // Schema imports
 const User = require("../models/user_data_schema");
 const Property = require("../models/property_data_scchema");
+const wish = require('../models/wishlist')
 
 // middleware imports
 const { verifyToken } = require("../middlewares/auth");
@@ -148,11 +149,21 @@ const addPropertyToWishlist = async (req, res) => {
     const userData = req.decoded;
     const propertyId = req.query.propertyId;
 
-    // Update user's wishlist
-    await User.updateOne(
-      { _id: userData.userId },
-      { $addToSet: { my_wishlist: { property_id: propertyId } } }
-    );
+    // Find the user's wishlist entry or create a new one if it doesn't exist
+    let wishlistEntry = await wish.findOne({ userId: userData.userId });
+
+    if (!wishlistEntry) {
+      wishlistEntry = new wish({
+        userId: userData.userId,
+        propertyIds: [propertyId],
+      });
+    } else {
+      // Add the new propertyId to the existing propertyIds array
+      wishlistEntry.propertyIds.push(propertyId);
+    }
+
+    // Save or update the wishlist entry
+    await wishlistEntry.save();
 
     // Increment property's like count
     await Property.findByIdAndUpdate(propertyId, { $inc: { likes: 1 } });
@@ -175,11 +186,20 @@ const removePropertyFromWishlist = async (req, res) => {
     const userData = req.decoded;
     const propertyId = req.query.propertyId;
 
-    // Update user's wishlist
-    await User.updateOne(
-      { _id: userData.userId },
-      { $pull: { my_wishlist: { property_id: propertyId } } }
+    // Find and update the user's wishlist entry
+    const wishlistEntry = await wish.findOneAndUpdate(
+      { userId: userData.userId },
+      { $pull: { propertyIds: propertyId } },
+      { new: true }
     );
+
+    // If the wishlist entry doesn't exist or propertyId was not present, return success
+    if (!wishlistEntry || wishlistEntry.propertyIds.indexOf(propertyId) === -1) {
+      return res.status(200).json({
+        success: true,
+        message: "Property removed from wishlist successfully!",
+      });
+    }
 
     // Decrement property's like count
     await Property.findByIdAndUpdate(propertyId, { $inc: { likes: -1 } });
@@ -196,6 +216,7 @@ const removePropertyFromWishlist = async (req, res) => {
     });
   }
 };
+
 
 module.exports = {
   signup,
