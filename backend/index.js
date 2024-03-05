@@ -207,11 +207,6 @@ app.get("/rent/search", async (req, res) => {
   }
 });
 
-
-
-
-
-
 app.get("/rent/filter", async (req, res) => {
   try {
     const { bhkType, furnishing, preferredTenants, maxPrice } = req.query;
@@ -563,9 +558,6 @@ app.get("/my_properties", verifyToken, async (req, res) => {
   }
 });
 
-
-
-
 app.post("/add_to_wishlist/:propertyId", verifyToken, async (req, res) => {
   try {
     const userData = req.decoded;
@@ -750,10 +742,6 @@ app.delete(
     }
   }
 );
-
-
-
-
 
 app.patch("/approve_property/:propertyId", isAdmin, async (req, res) => {
   try {

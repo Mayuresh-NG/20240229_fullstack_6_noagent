@@ -8,10 +8,10 @@ const { validateInputs } = require("../validators/user_details_validation");
 
 // Schema imports
 const User = require("../models/user_data_schema");
-const Property = require("../models/property_data_scchema")
+const Property = require("../models/property_data_scchema");
 
 // middleware imports
-const {verifyToken} = require("../middlewares/auth")
+const { verifyToken } = require("../middlewares/auth");
 
 const signup = async (req, res) => {
   try {
@@ -121,14 +121,14 @@ const login = async (req, res) => {
   }
 };
 
-const my_property = (verifyToken,async (req, res) => {
+const my_property =(verifyToken,async (req, res) => {
   try {
     const userData = req.decoded;
-    const owner= userData.userId; 
-    
+    const owner = userData.userId;
+
     // Query properties with the matching owner_id
     const myProperties = await Property.find({ owner });
-    
+
     res.status(200).json({
       success: true,
       message: "My properties retrieved successfully!",
@@ -143,6 +143,64 @@ const my_property = (verifyToken,async (req, res) => {
   }
 });
 
+const addPropertyToWishlist = async (req, res) => {
+  try {
+    const userData = req.decoded;
+    const propertyId = req.query.propertyId;
 
+    // Update user's wishlist
+    await User.updateOne(
+      { _id: userData.userId },
+      { $addToSet: { my_wishlist: { property_id: propertyId } } }
+    );
 
-module.exports = { signup, login,my_property };
+    // Increment property's like count
+    await Property.findByIdAndUpdate(propertyId, { $inc: { likes: 1 } });
+
+    res.status(200).json({
+      success: true,
+      message: "Property added to wishlist successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+const removePropertyFromWishlist = async (req, res) => {
+  try {
+    const userData = req.decoded;
+    const propertyId = req.query.propertyId;
+
+    // Update user's wishlist
+    await User.updateOne(
+      { _id: userData.userId },
+      { $pull: { my_wishlist: { property_id: propertyId } } }
+    );
+
+    // Decrement property's like count
+    await Property.findByIdAndUpdate(propertyId, { $inc: { likes: -1 } });
+
+    res.status(200).json({
+      success: true,
+      message: "Property removed from wishlist successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+module.exports = {
+  signup,
+  login,
+  my_property,
+  addPropertyToWishlist,
+  removePropertyFromWishlist,
+};
