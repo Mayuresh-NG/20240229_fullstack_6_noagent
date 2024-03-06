@@ -127,9 +127,13 @@ body {
     height: 35px;
     margin-left: 34px;
     margin-top: 13px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    background-color: #292c44;
+    color: #fff;
+    cursor: pointer;
   }
   
   .photo {
@@ -138,36 +142,7 @@ body {
     background-image: url("../../../assets/images/room1.jpg");
     background-size: cover;
     background-position: center;
-    margin-top: 31px;
+    margin-top: 20px;
     margin-left: 3px;
-  }
-  
-  .modify,
-  .delete {
-    border-radius: 3px;
-    background-color: #292c44;
-    color: #fff;
-    cursor: pointer;
-    width: 70px;
-    height: 25px;
-    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
-  }
-  
-  .like-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-    margin-right: 26px;
-  }
-  
-  .heart-symbol {
-    font-size: 20px;
-    margin-right: 5px;
-  }
-  
-  .like-count {
-    font-size: 16px;
-    font-weight: bold;
   }
   
