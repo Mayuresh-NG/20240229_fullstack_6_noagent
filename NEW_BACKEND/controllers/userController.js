@@ -8,10 +8,11 @@ const { validateInputs } = require("../validators/user_details_validation");
 
 // Schema imports
 const User = require("../models/user_data_schema");
-const Property = require("../models/property_data_scchema")
+const Property = require("../models/property_data_scchema");
+const wish = require('../models/wishlist')
 
 // middleware imports
-const {verifyToken} = require("../middlewares/auth")
+const { verifyToken } = require("../middlewares/auth");
 
 const signup = async (req, res) => {
   try {
@@ -121,14 +122,14 @@ const login = async (req, res) => {
   }
 };
 
-const my_property = (verifyToken,async (req, res) => {
+const my_property =(verifyToken,async (req, res) => {
   try {
     const userData = req.decoded;
-    const owner= userData.userId; 
-    
+    const owner = userData.userId;
+
     // Query properties with the matching owner_id
     const myProperties = await Property.find({ owner });
-    
+
     res.status(200).json({
       success: true,
       message: "My properties retrieved successfully!",
@@ -143,6 +144,121 @@ const my_property = (verifyToken,async (req, res) => {
   }
 });
 
+const addPropertyToWishlist = async (req, res) => {
+  try {
+    const userData = req.decoded;
+    const propertyId = req.query.propertyId;
 
+    // Find the user's wishlist entry or create a new one if it doesn't exist
+    let wishlistEntry = await wish.findOne({ userId: userData.userId });
 
-module.exports = { signup, login,my_property };
+    if (!wishlistEntry) {
+      wishlistEntry = new wish({
+        userId: userData.userId,
+        propertyIds: [propertyId],
+      });
+    } else {
+      // Add the new propertyId to the existing propertyIds array
+      wishlistEntry.propertyIds.push(propertyId);
+    }
+
+    // Save or update the wishlist entry
+    await wishlistEntry.save();
+
+    // Increment property's like count
+    await Property.findByIdAndUpdate(propertyId, { $inc: { likes: 1 } });
+
+    res.status(200).json({
+      success: true,
+      message: "Property added to wishlist successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+const removePropertyFromWishlist = async (req, res) => {
+  try {
+    const userData = req.decoded;
+    const propertyId = req.query.propertyId;
+
+    // Find and update the user's wishlist entry
+    const wishlistEntry = await wish.findOneAndUpdate(
+      { userId: userData.userId },
+      { $pull: { propertyIds: propertyId } },
+      { new: true }
+    );
+
+    // If the wishlist entry doesn't exist or propertyId was not present, return success
+    if (!wishlistEntry || wishlistEntry.propertyIds.indexOf(propertyId) === -1) {
+      return res.status(200).json({
+        success: true,
+        message: "Property removed from wishlist successfully!",
+      });
+    }
+
+    // Decrement property's like count
+    await Property.findByIdAndUpdate(propertyId, { $inc: { likes: -1 } });
+
+    res.status(200).json({
+      success: true,
+      message: "Property removed from wishlist successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+const get_my_profile = (verifyToken,async (req, res) => {
+  try {
+    const userData = req.decoded;
+
+    // Find the user by ID
+    const user = await User.findById(userData.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Extract user details
+    const userDetails = {
+      username: user.username,
+      full_name: user.full_name,
+      email: user.email,
+      phone_number: user.phone_number,
+      // Add other user details as needed
+    };
+
+    res.status(200).json({
+      success: true,
+      message: 'User profile retrieved successfully!',
+      user: userDetails,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+});
+
+module.exports = {
+  signup,
+  login,
+  my_property,
+  addPropertyToWishlist,
+  removePropertyFromWishlist,
+  get_my_profile
+};
