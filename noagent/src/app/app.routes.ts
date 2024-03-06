@@ -12,6 +12,14 @@ import { PropertyDetailsMainScreenComponent } from './components/property_detail
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
+    {path:'properties',component:MyPropertiesComponent},
+    {path:'wishlist',component:MyWishlistComponent},
+    {path:'propertylist', component:PropertyListComponent},
+    {path:'rentyourproperty', component:RentYourPropertyComponent},
+    {path:'requestlist', component:RequestListComponent},
+    {path:'sellyourproperty', component:SellYourPropertyComponent},
+    {path:'viewproperty', component:ViewPropertiesComponent},
+    {path:'forgotpassword',component:ForgotPasswordComponent},
     {path:'property_details',component:PropertyDetailsMainScreenComponent},
     {path:'',component:HomePageComponent},
     {path:'properties',component:MyPropertiesComponent},
