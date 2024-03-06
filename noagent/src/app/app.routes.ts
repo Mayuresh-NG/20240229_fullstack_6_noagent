@@ -6,6 +6,7 @@ import { PropertyListComponent } from './components/property-list/property-list.
 import { RentYourPropertyComponent } from './components/rent-your-property/rent-your-property.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { SellYourPropertyComponent } from './components/sell-your-property/sell-your-property.component';
+import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path:'propertylist', component:PropertyListComponent},
     {path:'rentyourproperty', component:RentYourPropertyComponent},
     {path:'requestlist', component:RequestListComponent},
-    {path:'sellyourproperty', component:SellYourPropertyComponent}
+    {path:'sellyourproperty', component:SellYourPropertyComponent},
+    {path:'viewproperty', component:ViewPropertiesComponent}
 ];
