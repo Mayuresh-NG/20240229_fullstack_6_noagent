@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@angular/cli": "^17.2.2"
+    "@angular/cli": "^17.2.2",
+    "nodemon": "^3.1.0"
   }
 }

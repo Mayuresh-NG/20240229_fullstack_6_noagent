@@ -1,6 +1,9 @@
 // external imports
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const config = require("../config/config");
+const nodemailer = require("nodemailer");
+const randomstring = require("randomString");
 
 // internal imports
 const SECRET_KEY = process.env.SECRET_KEY;
@@ -13,6 +16,42 @@ const wish = require('../models/wishlist')
 
 // middleware imports
 const { verifyToken } = require("../middlewares/auth");
+
+const sendResetPasswordMail = async(name,email,token)=>{
+    try {
+          const transporter = nodemailer.createTransport({
+            host:'smtp.gmail.com',
+            port:587,
+            secure:false,
+            requireTLS:true,
+            auth:{
+              user:config.emailUser,
+              pass:config.emailPassword
+            }
+          });
+          const mailOptions = {
+            from:config.emailUser,
+            to:email,
+            subject:'For reset password',
+            html:'<p> hi '+name+' please copy the link <a href=="http://localhost:3000/resetpassword?token='+token+'"> reset the password</a>'
+          }
+          transporter.sendMail(mailOptions,function(error,info){
+            if(error)
+            {
+              console.log(error);
+            }
+            else
+            {
+              console.log("Mail Has been sent:-",info.response);
+            }
+
+
+          })
+    }
+    catch{
+      res.status(400).send({success:false,msg:error.message})
+    }
+}
 
 const signup = async (req, res) => {
   try {
@@ -254,10 +293,32 @@ const get_my_profile = (verifyToken,async (req, res) => {
   }
 });
 
+const forget_password = async(req,res)=>
+{
+  try {
+    const email = req.body.email;
+    const  userData = await User.findOne({email:email});
+    if(UserData){
+      const randomString = randomstring.generate();
+      const data = await User.updateOne({email:email},{$set:{token:randomString}})
+      sendResetPasswordMail(userData.name,userData.email,randomString)
+      res.status(200).send({success:true,msg:"Check mail and reset password!"});
+    }
+    else
+    {
+      res.status(200).send({success:true,msg:"Email does not exist"});
+    }
+  }
+  catch{
+    res.status(400).send({success:false,msg:error.message});
+  }
+}
+
 module.exports = {
   signup,
   login,
   my_property,
+  forget_password,
   addPropertyToWishlist,
   removePropertyFromWishlist,
   get_my_profile
