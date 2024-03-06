@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Page Title</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header style="height: 65px; background-color: #c7e6f8">
+      <div class="logo">
+        <img
+          src="../../../assets/images/logo.png"
+          alt="NoAgent Logo"
+          style="margin-left: 15px; height: 38px; width: 52px"
+        />
+        <div class="heading-text" style="font-size: 28px; display: flex">
+          <span>No</span>
+          <div class="agent" style="color: black">Agent</div>
+        </div>
+      </div>
+      <div
+        class="admin"
+        style="color: black; font-size: 14px; margin-right: 40px"
+      >
+        <i
+          class="fa-solid fa-user"
+          style="color: black; margin-right: 10px"
+        ></i>
+        Admin
+      </div>
+    </header>
+
+    <nav></nav>
+
+    <div class="container">
+      <div class="headings">
+        <div style="font-size: xx-large; font-weight: 550">Requests</div>
+        <div class="dropdown-container" onclick="toggleDropdown()">
+          <button class="dropdown-button">
+            Property Type
+            <i
+              class="fa-solid fa-sort-down"
+              style="margin-left: 12px; padding-bottom: 2px"
+            ></i>
+          </button>
+          <div id="dropdownContent" class="dropdown-content">
+            <button onclick="selectPropertyType('Rent')">Rent</button>
+            <button onclick="selectPropertyType('Sell')">Sell</button>
+          </div>
+        </div>
+      </div>
+      <div class="main-box">
+        <div class="column">
+          <a href="#" class="rectangle clickable-address">Address</a>
+          <a href="#" class="rectangle clickable-address">Address</a>
+          <a href="#" class="rectangle clickable-address">Address</a>
+          <a href="#" class="rectangle clickable-address">Address</a>
+          <a href="#" class="rectangle clickable-address">Address</a>
+          <a href="#" class="rectangle clickable-address">Address</a>
+        </div>
+        <div class="column">
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+          <div class="rectangle" style="justify-content: center">
+            Price/Rent
+          </div>
+        </div>
+        <div class="column">
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>Owner</div>
+            <div>Phone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="height: 20px; background-color: #a9dfff"></footer>
+
+    <script>
+      function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
+
+      function selectPropertyType(type) {
+        alert(type); // You can replace this with your desired functionality
+      }
+    </script>
+  </body>
+</html>

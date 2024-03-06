@@ -4,11 +4,13 @@ import { MyPropertiesComponent } from './components/my-properties/my-properties.
 import { MyWishlistComponent } from './components/my-wishlist/my-wishlist.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { RentYourPropertyComponent } from './components/rent-your-property/rent-your-property.component';
+import { RequestListComponent } from './components/request-list/request-list.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
     {path:'properties',component:MyPropertiesComponent},
     {path:'wishlist',component:MyWishlistComponent},
     {path:'propertylist', component:PropertyListComponent},
-    {path:'rentyourproperty', component:RentYourPropertyComponent}
+    {path:'rentyourproperty', component:RentYourPropertyComponent},
+    {path:'requestlist', component:RequestListComponent}
 ];
