@@ -7,6 +7,7 @@ import { RentYourPropertyComponent } from './components/rent-your-property/rent-
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { SellYourPropertyComponent } from './components/sell-your-property/sell-your-property.component';
 import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path:'rentyourproperty', component:RentYourPropertyComponent},
     {path:'requestlist', component:RequestListComponent},
     {path:'sellyourproperty', component:SellYourPropertyComponent},
-    {path:'viewproperty', component:ViewPropertiesComponent}
+    {path:'viewproperty', component:ViewPropertiesComponent},
+    {path:'forgotpassword',component:ForgotPasswordComponent}
 ];
