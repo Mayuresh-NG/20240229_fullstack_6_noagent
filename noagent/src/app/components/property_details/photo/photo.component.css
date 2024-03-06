@@ -1,0 +1,11 @@
+.property-photo {
+    padding-top: 20px;
+    width: 935px; 
+    height: 500px;
+}
+
+.property-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

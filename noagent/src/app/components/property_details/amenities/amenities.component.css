@@ -1,0 +1,76 @@
+.property-amenities {
+    padding-top: 20px;
+    width: 516px;
+}
+
+.outer-box {
+    border: 1px solid #000;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 80%;
+}
+
+.amenity-box-1
+ {
+    width: 50%; /* Each box takes 50% width */
+    height: 50%; /* Each box takes 50% height */
+    border: 1px solid #000;
+    box-sizing: border-box; /* Include border in width and height calculation */
+    border-top-left-radius: 10px;
+}
+.amenity-box-2
+ {
+    width: 50%; /* Each box takes 50% width */
+    height: 50%; /* Each box takes 50% height */
+    border: 1px solid #000;
+    box-sizing: border-box; /* Include border in width and height calculation */
+    border-top-right-radius: 10px;
+}
+.amenity-box-3
+ {
+    width: 50%; /* Each box takes 50% width */
+    height: 50%; /* Each box takes 50% height */
+    border: 1px solid #000;
+    box-sizing: border-box; /* Include border in width and height calculation */
+    border-bottom-left-radius: 10px;
+}
+.amenity-box-4
+ {
+    width: 50%; /* Each box takes 50% width */
+    height: 50%; /* Each box takes 50% height */
+    border: 1px solid #000;
+    box-sizing: border-box; /* Include border in width and height calculation */
+    border-bottom-right-radius: 10px;
+}
+
+.property-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 420px;
+}
+.get-details-button{
+    color: white;
+    width: 195px;
+    height: 38px;
+    border-radius: 7px;
+    background-color: #292C44;
+    cursor: pointer;
+}
+.wishlist-button{
+    background-color: #292C44;
+    color: white;
+    cursor: pointer;
+    width: 195px;
+    height: 38px;
+    border-radius: 7px;
+}

@@ -1,0 +1,7 @@
+.description {
+    height: 350px; /* Same height as map */
+    width: 516px; /* Same width as amenities */
+    /* Add additional styles as needed */
+    border: 1px solid black;
+    margin-top: 20px;
+}
