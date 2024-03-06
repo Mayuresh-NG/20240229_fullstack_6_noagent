@@ -31,6 +31,7 @@ const verifyToken = (req, res, next) => {
 const isAdmin = async (req, res, next) => {
   try {
     const username = req.decoded.username;
+    
     const user = await User.findOne({ username });
 
     if (!user || user.user_type !== 'admin') {

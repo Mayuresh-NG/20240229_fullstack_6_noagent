@@ -1,0 +1,320 @@
+body {
+    font-family: "Josefin Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    overflow: hidden;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #c7e6f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  header img {
+    width: 50px;
+    height: auto;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  .shadow-button {
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #292c44;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px 0.5px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    border: 1px black solid;
+    font-size: 18px;
+    font-weight: 300;
+    margin-left: 10px;
+    width: 80px;
+    height: 32px;
+    padding: 5px;
+
+  }
+  
+  .shadow-button:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .joined-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .jbutton {
+    width: 120px;
+    height: 48px;
+    background-color: #4f80e1;
+    border: 1px black solid;
+    color: #ffffff;
+    padding: 2px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    font-size: 32px;
+    font-weight: 300;
+    font-family: "Josefin Sans", sans-serif;
+  }
+  
+  .jbutton:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .jbutton.active {
+    background-color: #292c44;
+  }
+  
+  .center-container h2 {
+    margin: 0;
+    font-family: "Karla", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #292c44;
+    margin-bottom: 25px;
+  }
+  
+  .locality-textarea {
+    width: 526px;
+    height: 50px;
+    border: 1px black solid;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 50px;
+  }
+  
+  .search-button {
+    width: 170px;
+    height: 50px;
+    background-color: #4f80e1;
+    color: black;
+    cursor: pointer;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px black solid;
+  }
+  
+  hr {
+    margin: 30px 0;
+  }
+  
+  .property-owner-text {
+    margin: 0;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+  }
+  
+  .post-ad-button {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Karla", sans-serif;
+    background-color: #a9dfff;
+    color: black;
+    cursor: pointer;
+    border: 1px black solid;
+    width: 195px;
+    height: 30px;
+  }
+  
+  footer {
+    background-color: #c7e6f8;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 20;
+  }
+  .hr-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  hr {
+    flex: 1;
+    border: 0;
+    height: 1px;
+    background: black;
+    margin: 0 10px;
+    max-width: 114px;
+  }
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin: 20px 0;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  .center-container {
+    text-align: center;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dropdown {
+    height: 50px;
+    width: 154px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px black solid;
+  }
+  .container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Increase the z-index value */
+  }
+  
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 670px;
+    height: 552px;
+    z-index: 3; /* Increase the z-index value */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-content {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .left-section {
+    width: 268px;
+    border-right: solid white 0.5px;
+    background-color: #a9dfff;
+  }
+  .right-section {
+    flex: 1;
+    background-color: #c7e6f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .left-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 167px;
+  }
+  
+  .headings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .headings p {
+    margin-bottom: -13px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .headings :first-child {
+    margin-left: -36px;
+    margin-top: 44px;
+  }
+  
+  .headings :last-child {
+    margin-left: -17px;
+  }
+  
+  .Login-heading {
+    margin-top: 25px;
+    font-size: 25px;
+  }
+  
+  .close-button {
+    margin-left: 362px;
+    padding-top: 0px;
+    font-size: 56px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+  
+  /* Enter phone text style */
+  .enter-phone-text {
+    font-size: 25px;
+  }
+  
+  /* Input field style */
+  .input-container input {
+    width: 357px;
+    height: 37px;
+    background-color: transparent;
+    border: 1px solid black;
+    margin-bottom: 12px;
+  }
+  
+  /* Continue button style */
+  .continue-button {
+    width: 357px;
+    height: 37px;
+    background-color: #292c44;
+    color: white;
+    cursor: pointer;
+  }
+  .already-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 49px;
+  }
+  .login-button {
+    margin-top: 5px;
+    background-color: transparent;
+    color: #1b3f70;
+    border: none;
+    cursor: pointer;
+  }
+  

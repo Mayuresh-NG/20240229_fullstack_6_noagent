@@ -1,9 +1,14 @@
 const { verifyToken } = require("../middlewares/auth");
 const Property = require("../models/property_data_scchema");
+const User = require("../models/user_data_schema")
 const wish = require('../models/wishlist')
 
 const cloudinaryUtils = require("../utils/cloudinary");
 
+/**Searches for properties based on type and locality.
+ * @param {Object} req - The request object containing query parameters.
+ * @param {Object} res - The response object used to return data or messages.
+ */
 const search = async (req, res) => {
   try {
     const type = req.query.type;
@@ -49,8 +54,12 @@ const search = async (req, res) => {
   }
 };
 
-const rent_prop =(verifyToken,
-async (req, res) => {
+/**Posts a new property for rent.
+ * @param {Function} verifyToken - Middleware to verify user token.
+ * @param {Object} req - The request object containing property details.
+ * @param {Object} res - The response object used to return data or messages.
+ */
+const rent_prop =(verifyToken,async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
 
@@ -78,6 +87,7 @@ async (req, res) => {
     const newProperty = new Property({
       trade_type: "rent",
       owner: userData.userId, // Owner is the username of the verified user
+      owner_user_name: userData.username,
       rent_price,
       bhk_type,
       state,
@@ -106,6 +116,11 @@ async (req, res) => {
   }
 });
 
+/**Posts a new property for sale.
+ * @param {Function} verifyToken - Middleware to verify user token.
+ * @param {Object} req - The request object containing property details.
+ * @param {Object} res - The response object used to return data or messages.
+ */
 const sell_prop =(verifyToken,async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
@@ -167,6 +182,11 @@ const sell_prop =(verifyToken,async (req, res) => {
   }
 });
 
+/**Modifies an existing property.
+ * @param {Function} verifyToken - Middleware to verify user token.
+ * @param {Object} req - The request object containing updated property details.
+ * @param {Object} res - The response object used to return data or messages.
+ */
 const modify_prop =(verifyToken,async (req, res) => {
   try {
     const propertyId = req.query.propertyId;
@@ -203,6 +223,11 @@ const modify_prop =(verifyToken,async (req, res) => {
   }
 });
 
+/**Modifies an existing property.
+ * @param {Function} verifyToken - Middleware to verify user token.
+ * @param {Object} req - The request object containing updated property details.
+ * @param {Object} res - The response object used to return data or messages.
+ */
 const remove_my_prop = (verifyToken, async (req, res) => {
   try {
     const propertyId = req.query.propertyId;
@@ -238,5 +263,53 @@ const remove_my_prop = (verifyToken, async (req, res) => {
   }
 });
 
+const get_details = async (req, res) => {
+  try {
+    // Assuming the property ID is passed in the query parameters
+    const propertyId = req.query.propertyId;
 
-module.exports = { search, rent_prop, sell_prop, modify_prop, remove_my_prop };
+    // Find the property by ID
+    const property = await Property.findById(propertyId);
+
+    if (!property) {
+      return res.status(404).json({
+        success: false,
+        message: 'Property not found',
+      });
+    }
+
+    // Extract owner ID from the property data
+    const ownerId = property.owner;
+
+    // Find the owner in the user_data collection
+    const owner = await User.findById(ownerId);
+
+    if (!owner) {
+      return res.status(404).json({
+        success: false,
+        message: 'Owner not found',
+      });
+    }
+
+    // Extract owner details
+    const ownerDetails = {
+      full_name: owner.full_name,
+      phone_number: owner.phone_number,
+      // Add other owner details as needed
+    };
+
+    res.status(200).json({
+      success: true,
+      message: 'Owner details retrieved successfully!',
+      owner: ownerDetails,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+module.exports = { search, rent_prop, sell_prop, modify_prop, remove_my_prop,get_details };
