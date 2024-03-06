@@ -5,6 +5,7 @@ import { MyWishlistComponent } from './components/my-wishlist/my-wishlist.compon
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { RentYourPropertyComponent } from './components/rent-your-property/rent-your-property.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
+import { SellYourPropertyComponent } from './components/sell-your-property/sell-your-property.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path:'wishlist',component:MyWishlistComponent},
     {path:'propertylist', component:PropertyListComponent},
     {path:'rentyourproperty', component:RentYourPropertyComponent},
-    {path:'requestlist', component:RequestListComponent}
+    {path:'requestlist', component:RequestListComponent},
+    {path:'sellyourproperty', component:SellYourPropertyComponent}
 ];
