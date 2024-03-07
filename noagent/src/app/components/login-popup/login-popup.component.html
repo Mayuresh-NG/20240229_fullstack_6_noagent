@@ -1,43 +1,48 @@
 <div id="signupPopup" class="popup">
-  <div class="popup-content">
-    <div class="left-section">
-      <div class="left-top">
-        <img
-          src="../../../assets/homesvg.svg"
-          alt="Home Logo"
-          class="home-logo"
-          style="width: 123px"
-        />
-        <div class="Login-heading">Sign Up</div>
+    <div class="popup-content">
+      <div class="left-section">
+        <div class="left-top">
+          <img
+            src="../../../assets/homesvg.svg"
+            alt="Home Logo"
+            class="home-logo"
+            style="width: 123px"
+          />
+          <div class="Login-heading">Log In</div>
+        </div>
+        <div class="headings">
+          <p><span class="tick">✔</span> Zero Brokerage</p>
+          <p><span class="tick">✔</span> Thousands of listings</p>
+          <p><span class="tick">✔</span> Verified Properties</p>
+        </div>
       </div>
-      <div class="headings">
-        <p><span class="tick">✔</span> Zero Brokerage</p>
-        <p><span class="tick">✔</span> Thousands of listings</p>
-        <p><span class="tick">✔</span> Verified Properties</p>
-      </div>
-    </div>
-    <div class="right-section">
-      <span class="close-button" (click)="closePopup()">×</span>
-      <p class="enter-phone-text">Enter details to sign up</p>
-      <div class="input-container">
-        <input type="text" placeholder="Full Name" />
-      </div>
-      <div class="input-container">
-        <input type="text" placeholder="Email" />
-      </div>
-      <div class="input-container">
-        <input type="text" placeholder="Phone Number" />
-      </div>
-      <div class="input-container">
-        <input type="password" placeholder="Password" />
-      </div>
-      <button class="continue-button">Continue</button>
-      <div class="already-user">
-        <p style="margin-top: 10px; margin-bottom: 0">Already an user?</p>
-        <button class="login-button" onclick="showLoginPopupFromSignup()">
-          Login
-        </button>
+      <div class="right-section">
+        <span class="close-button" (click)="closePopup()">×</span>
+        <p class="enter-phone-text">Enter details to Log In</p>
+        <div class="input-container">
+          <input type="text" placeholder="Username" [(ngModel)]="username" name="username" #usernameInput="ngModel" required />
+          
+          <!-- Error message -->
+          <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="error-message">
+            Username is required
+          </div>
+        </div>
+        <div class="input-container">
+          <input type="password" placeholder="Password" [(ngModel)]="password" name="password" #passwordInput="ngModel" required />
+          <!-- Error message -->
+          <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="error-message">
+            Password is required
+          </div>
+        </div>
+        <button class="continue-button" [disabled]="!usernameInput.valid || !passwordInput.valid" [ngClass]="{'invalid-button': !usernameInput.valid || !passwordInput.valid}" (click)="onContinueClick()">Continue</button>
+
+        <div class="already-user">
+          <p style="margin-top: 10px; margin-bottom: 0">New to NoAgent?</p>
+          <button class="login-button" onclick="movetoSignup()">
+            Signup
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
