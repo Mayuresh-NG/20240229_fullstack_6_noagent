@@ -314,11 +314,32 @@ const forget_password = async(req,res)=>
   }
 }
 
+const reset_password = async(req,res)=>{
+    try {
+      const token = req.query.token;
+      const tokenData = await User.findOne({ token:token });
+      if(tokenData){
+          const password = req.body.password;
+          // const newPass = await securePassword(password):
+          const userdata = await User.findByIdAndUpdate({_id:tokenData._id},{$set:{password:newPass,token:''}},{new:true});
+          res.status(200).send({success:true,msg:"Password reset successfully",data:userdata});
+      }
+      else
+      {
+        res.status(200).send({success:true,msg:"Link Expired!"});
+      }
+
+    } catch (error) {
+      res.status(400).send({success:false,msg:error.message});
+    }
+}
+
 module.exports = {
   signup,
   login,
   my_property,
   forget_password,
+  reset_password,
   addPropertyToWishlist,
   removePropertyFromWishlist,
   get_my_profile

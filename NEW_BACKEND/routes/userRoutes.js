@@ -10,6 +10,7 @@ const { verifyToken} = require("../middlewares/auth");
 router.post('/signup', UserController.signup);
 router.post('/login', UserController.login);
 router.post('/forget_password',UserController.forget_password)
+router.post('/reset_password',UserController.reset_password)
 
 
 // protected routes
