@@ -4,4 +4,31 @@
     /* Add additional styles as needed */
     border: 1px solid black;
     margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.description h2 {
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    margin: 0;
+    color: #292c44; 
+    font-size: 1.5em;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.description h2::after {
+    content: '';
+    display: block;
+    width: 112px; /* Adjust the width as needed */
+    height: 3px; /* Adjust the thickness of the underline */
+    background: #292c44; /* Use the same color as the text */
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the text */
+    left: 0;
+    top: 33px;
 }
