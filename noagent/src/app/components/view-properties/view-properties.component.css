@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header,
+  footer {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header img {
+    width: 40px;
+    height: auto;
+    margin-right: 5px;
+  }
+  
+  header .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  header .logo span {
+    color: #4f80e1; /* Blue color for "No" */
+  }
+  
+  header .admin {
+    display: flex;
+    align-items: center;
+  }
+  
+  .headings {
+    padding: 10px;
+    display: flex;
+  }
+
+  main{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .filterSection{
+    
+    height: 500px;
+    width: 400px;
+    background-color: lightblue;
+  }
+  .propertySection{
+    height: 500px;
+    width: 1000px;
+    background-color: blue;
+  }
+
+
+.customButtons{
+    width: 150px;
+    height: 60px;
+
+}
+.filterHeader{
+    padding-left: 50px;
+    display: flex;
+    /* background-color: blue; */
+    height: 60px;
+}
+
+
+.filterSection {
+    text-align: center;
+}
+
+.filterHeader {
+  margin: 0px;
+    margin-bottom: 20px;
+    
+}
+
+.customButtons {
+    padding: 10px 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: w700;
+}
+
+.contentContainer {
+    overflow: hidden;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+    display: none;
+    transition: transform 0.5s ease;
+    color: black;
+}
+
+.content.active {
+    display: block;
+}
+.customButtons {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #1e90ff; /* Dark blue */
+    border: none;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.customButtons.active {
+    background-color: #add8e6; /* Light blue */
+}
+
+
+.bhkTypes{
+  margin-left: 10px;
+  height: 110px;
+  width: 380px;
+  background-color: red;
+  margin-right: 10px;
+}
+
+.rentRange{
+  margin-left: 10px;
+  height: 60px;
+  width: 380px;
+  background-color: blue;
+  margin-right: 10px;
+}
+
+.furnishing{
+  margin-left: 10px;
+  height: 60px;
+  width: 380px;
+  margin-right: 10px;
+  background-color: green;
+}
+
+.tennants{
+  margin-left: 10px;
+  height: 110px;
+  width: 380px;
+  margin-right: 10px;
+  background-color: orange;
+}
+
+.sortFunction {
+  margin-left: 10px;
+  height: 60px;
+  width: 380px;
+  background-color: white;
+  margin-right: 10px;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items at the top */
+  justify-content: flex-start; /* Display items from left to right */
+}

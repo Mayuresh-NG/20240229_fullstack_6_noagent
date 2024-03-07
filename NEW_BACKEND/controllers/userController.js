@@ -217,6 +217,42 @@ const removePropertyFromWishlist = async (req, res) => {
   }
 };
 
+const get_my_profile = (verifyToken,async (req, res) => {
+  try {
+    const userData = req.decoded;
+
+    // Find the user by ID
+    const user = await User.findById(userData.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Extract user details
+    const userDetails = {
+      username: user.username,
+      full_name: user.full_name,
+      email: user.email,
+      phone_number: user.phone_number,
+      // Add other user details as needed
+    };
+
+    res.status(200).json({
+      success: true,
+      message: 'User profile retrieved successfully!',
+      user: userDetails,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+});
 
 module.exports = {
   signup,
@@ -224,4 +260,5 @@ module.exports = {
   my_property,
   addPropertyToWishlist,
   removePropertyFromWishlist,
+  get_my_profile
 };
