@@ -33,7 +33,7 @@ const sendResetPasswordMail = async(name,email,token)=>{
             from:config.emailUser,
             to:email,
             subject:'For reset password',
-            html:'<p> hi '+name+' please copy the link <a href=="http://localhost:3000/resetpassword?token='+token+'"> reset the password</a>'
+            html:'<p> hi '+name+' please copy the link <a href=="http://localhost:5200/resetpassword?token='+token+'"> reset the password</a>'
           }
           transporter.sendMail(mailOptions,function(error,info){
             if(error)
@@ -298,7 +298,7 @@ const forget_password = async(req,res)=>
   try {
     const email = req.body.email;
     const  userData = await User.findOne({email:email});
-    if(UserData){
+    if(userData){
       const randomString = randomstring.generate();
       const data = await User.updateOne({email:email},{$set:{token:randomString}})
       sendResetPasswordMail(userData.name,userData.email,randomString)
