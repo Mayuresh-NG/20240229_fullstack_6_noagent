@@ -48,6 +48,11 @@
       <button class="continue-button" [disabled]="!usernameInput.valid || !passwordInput.valid"
               [ngClass]="{'invalid-button': !usernameInput.valid || !passwordInput.valid}" (click)="onContinueClick()">Continue</button>
 
+              <div class="forgot-password">
+                <button class="forgot-button" (click)="navigateToForgotPassword()">
+                  Forgot Password?
+                </button>
+              </div>
       <!-- Already a user section -->
       <div class="already-user">
         <p style="margin-top: 10px; margin-bottom: 0">New to NoAgent?</p>
