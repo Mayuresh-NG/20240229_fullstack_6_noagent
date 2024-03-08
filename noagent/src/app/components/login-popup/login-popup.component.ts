@@ -23,9 +23,10 @@ export class LoginPopupComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialog
-  ) // private authService: AuthService
-  // private http: HttpClient
+    public dialog: MatDialog,
+    // private http: HttpClient,
+    private authService: AuthService
+  ) 
   {}
 
   closePopup(): void {
@@ -68,8 +69,8 @@ export class LoginPopupComponent {
   //     // Perform further actions such as redirecting to another page
   //   });
   // }
-  // onSubmit(username: string, password: string): void {
-  //   // Call the login method from the AuthService
-  //   this.authService.login(username, password);
-  // }
+  onSubmit(username: string, password: string): void {
+    // Call the login method from the AuthService
+    this.authService.login(username, password);
+  }
 }
