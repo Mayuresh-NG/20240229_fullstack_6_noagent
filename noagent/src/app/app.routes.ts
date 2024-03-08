@@ -10,6 +10,7 @@ import { SellYourPropertyComponent } from './components/sell-your-property/sell-
 import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PropertyDetailsMainScreenComponent } from './components/property_details/property-details-main-screen/property-details-main-screen.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
@@ -22,5 +23,6 @@ export const routes: Routes = [
     {path:'sellyourproperty', component:SellYourPropertyComponent},
     {path:'viewproperty', component:ViewPropertiesComponent},
     {path:'forgotpassword',component:ForgotPasswordComponent},
+    {path:'resetpassword',component:ResetPasswordComponent},
     {path:'singledetail',component:DetailSingleComponent}
 ];
