@@ -6,8 +6,9 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-
+import { AuthService } from '../../service';
 import { Observable } from 'rxjs';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -23,7 +24,8 @@ export class LoginPopupComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-      // private http: HttpClient
+    // private authService: AuthService
+      // private http: HttpClient 
   ) { }
 
   closePopup(): void {
@@ -58,5 +60,8 @@ export class LoginPopupComponent {
   //     // Perform further actions such as redirecting to another page
   //   });
   // }
-
+  // onSubmit(username: string, password: string): void {
+  //   // Call the login method from the AuthService
+  //   this.authService.login(username, password);
+  // }
 }
