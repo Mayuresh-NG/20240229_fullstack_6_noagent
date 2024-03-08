@@ -17,39 +17,52 @@ const wish = require("../models/wishlist");
 // middleware imports
 const { verifyToken } = require("../middlewares/auth");
 
+
+
+// Function for sending a reset password email
 const sendResetPasswordMail = async (name, email, token) => {
   try {
+    // Creating a transporter for sending emails using Gmail SMTP
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
       requireTLS: true,
       auth: {
-        user: config.emailUser,
-        pass: config.emailPassword,
+        user: config.emailUser,  // Your Gmail username
+        pass: config.emailPassword,  // Your Gmail password
       },
     });
+
+    // Mail options for the reset password email
     const mailOptions = {
-      from: config.emailUser,
-      to: email,
-      subject: "For reset password",
+      from: config.emailUser,  // Sender's email address
+      to: email,  // Recipient's email address
+      subject: "For reset password",  // Email subject
+      // Email body in HTML format
       html: `
-      <p>Hi ${name},</p>
-      <p>Please click the link below to reset your password:</p>
-      <a href="http://localhost:5200/users/reset_password?token=${token}">Reset password</a>
+        <p>Hi ${name},</p>
+        <p>Please click the link below to reset your password:</p>
+        <a href="http://localhost:5200/users/reset_password?token=${token}">Reset password</a>
       `
     };
+
+    // Sending the email
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
+        // Log an error if sending the email fails
         console.log(error);
       } else {
+        // Log a success message if the email is sent successfully
         console.log("Mail Has been sent:-", info.response);
       }
     });
-  } catch {
+  } catch (error) {
+    // Handling errors and sending an error response if an exception occurs
     res.status(400).send({ success: false, msg: error.message });
   }
 };
+
 
 const signup = async (req, res) => {
   try {
@@ -298,54 +311,81 @@ const get_my_profile =
     }
   });
 
+// Function to initiate the password reset process
 const forget_password = async (req, res) => {
   try {
+    // Extracting the email from the request body
     const email = req.body.email;
+    
+    // Finding user data based on the provided email
     const userData = await User.findOne({ email: email }, { username: 1, email: 1 });
+
+    // If user data is found
     if (userData) {
+      // Generating a random string
       const randomString = randomstring.generate();
+      
+      // Updating the user's record with the generated token
       const data = await User.updateOne(
         { email: email },
         { $set: { token: randomString } }
       );
+
+      // Sending the reset password email
       sendResetPasswordMail(userData.username, userData.email, randomString);
-      res
-        .status(200)
-        .send({ success: true, msg: "Check mail and reset password!" });
+
+      // Sending a success response
+      res.status(200).send({ success: true, msg: "Check mail and reset password!" });
     } else {
+      // Sending a success response if email does not exist
       res.status(200).send({ success: true, msg: "Email does not exist" });
     }
-  } catch {
+  } catch (error) {
+    // Handling errors and sending an error response if an exception occurs
     res.status(400).send({ success: false, msg: error.message });
   }
 };
 
+// Function to reset the user's password based on the provided token
 const reset_password = async (req, res) => {
   try {
+    // Extracting the token from the query parameters
     const token = req.query.token;
+    
+    // Finding user data based on the provided token
     const tokenData = await User.findOne({ token: token });
+
+    // If token data is found
     if (tokenData) {
+      // Extracting the new password from the request body
       const password = req.body.password;
+      
+      // Hashing the new password using bcrypt
       const newPass = await bcrypt.hash(password, 10);
+
+      // Updating the user's record with the new password and clearing the token
       const userdata = await User.findByIdAndUpdate(
         { _id: tokenData._id },
         { $set: { password: newPass, token: "" } },
         { new: true }
       );
-      res
-        .status(200)
-        .send({
-          success: true,
-          msg: "Password reset successfully",
-          data: userdata,
-        });
+
+      // Sending a success response with the updated user data
+      res.status(200).send({
+        success: true,
+        msg: "Password reset successfully",
+        data: userdata,
+      });
     } else {
+      // Sending a success response if the link has expired
       res.status(200).send({ success: true, msg: "Link Expired!" });
     }
   } catch (error) {
+    // Handling errors and sending an error response if an exception occurs
     res.status(400).send({ success: false, msg: error.message });
   }
 };
+
 
 module.exports = {
   signup,
