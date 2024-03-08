@@ -7,48 +7,49 @@ import { CommonModule } from '@angular/common';
 
 // Import MatDialog and your PopupComponent
 import { MatDialog } from '@angular/material/dialog';
-import { SignupPopupComponent } from '../signup-popup/signup-popup.component'; 
+import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 
 // Inject MatDialog in your component's constructor
-
-
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NavbarComponent,ReactiveFormsModule,CommonModule,FormsModule,SignupPopupComponent],
+  imports: [
+    NavbarComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    SignupPopupComponent,
+  ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrl: './home-page.component.css',
 })
-
 export class HomePageComponent {
   constructor(public dialog: MatDialog) {}
 
-// Function to open the popup
-openPopup(): void {
-  const dialogRef = this.dialog.open(SignupPopupComponent, {
-    width: '300px', // Adjust the width based on your design
-  });
+  // Function to open the popup
+  openPopup(): void {
+    const dialogRef = this.dialog.open(SignupPopupComponent, {
+      width: '300px', // Adjust the width based on your design
+    });
 
-  // Handle the popup closure
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The popup was closed');
-  });
-}
+    // Handle the popup closure
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The popup was closed');
+    });
+  }
 
+  // Function to open the popup
+  showLoginPopup(): void {
+    const dialogRef = this.dialog.open(LoginPopupComponent, {
+      width: '300px', // Adjust the width based on your design
+    });
 
-// Function to open the popup
-showLoginPopup(): void {
-  const dialogRef = this.dialog.open(LoginPopupComponent, {
-    width: '300px', // Adjust the width based on your design
-  });
-
-  // Handle the popup closure
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The popup was closed');
-  });
-}
-
+    // Handle the popup closure
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The popup was closed');
+    });
+  }
 
   selectedCity: string = ''; // To store the selected city
 
