@@ -1,0 +1,11 @@
+.main-body{
+    margin-top: 20px;
+    padding: 0 40px;
+    min-height: 100vh;
+}
+.photo-amenities{
+    display: flex;
+}
+.row-2{
+    display: flex;
+}

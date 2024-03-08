@@ -1,0 +1,14 @@
+.property-photo {
+    padding-top: 20px;
+    width: 935px; 
+    height: 500px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.property-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}

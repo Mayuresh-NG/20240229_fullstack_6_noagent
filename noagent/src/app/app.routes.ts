@@ -8,9 +8,11 @@ import { RequestListComponent } from './components/request-list/request-list.com
 import { SellYourPropertyComponent } from './components/sell-your-property/sell-your-property.component';
 import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PropertyDetailsMainScreenComponent } from './components/property_details/property-details-main-screen/property-details-main-screen.component';
 
 export const routes: Routes = [
     {path:'',component:HomePageComponent},
+    {path:'propertydetails',component:PropertyDetailsMainScreenComponent},
     {path:'properties',component:MyPropertiesComponent},
     {path:'wishlist',component:MyWishlistComponent},
     {path:'propertylist', component:PropertyListComponent},

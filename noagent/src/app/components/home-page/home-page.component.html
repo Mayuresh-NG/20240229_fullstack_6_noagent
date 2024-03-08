@@ -1,154 +1,58 @@
-<app-navbar></app-navbar>
+<app-navbar>
+  <div buttonsContent>
+    <button class="shadow-button" (click)="openPopup()">Sign up</button>
+    <button class="shadow-button" (click)="showLoginPopup()">Login</button>
+  </div>
+</app-navbar>
+
 <body>
+  <div class="container">
+    <div class="center-container">
+      <h2>Unlock Homes Without the Middleman.</h2>
 
-<div class="container">
-  <div class="center-container">
-    <h2>Unlock Homes Without the Middleman.</h2>
-
-    <div class="joined-buttons">
-      <button class="jbutton" onclick="toggleButton(this)">Buy</button>
-      <button class="jbutton" onclick="toggleButton(this)">Rent</button>
-    </div>
-
-    <div class="search-bar">
-      <select class="dropdown">
-        <option value="city1">City 1</option>
-        <option value="city2">City 2</option>
-        
-      </select>
-      <input
-        type="text"
-        class="locality-textarea"
-        placeholder="Enter Locality"
-      />
-      <button class="search-button">Search</button>
-    </div>
-
-    <div class="hr-container">
-      <hr />
-      <p class="property-owner-text">Are you a property owner?</p>
-      <hr />
-    </div>
-
-    <button class="post-ad-button">Post your property AD</button>
-  </div>
-</div>
-<div id="overlay"></div>
-<!-- Add this overlay element -->
-
-<div class="container-login">
-  <div id="loginPopup" class="popup">
-    <div class="popup-content">
-      <div class="left-section">
-        <div class="left-top">
-          <img
-            src="login-house.PNG"
-            alt="Home Logo"
-            class="home-logo"
-            style="width: 123px"
-          />
-          <div class="Login-heading">Login</div>
-        </div>
-        <div class="headings">
-          <p><span class="tick">✔</span> Zero Brokerage</p>
-          <p><span class="tick">✔</span> Thousands of listings</p>
-          <p><span class="tick">✔</span> Verified Properties</p>
-        </div>
+      <div class="joined-buttons">
+        <button
+          class="jbutton"
+          [class.active]="buyActive"
+          (click)="toggleBuyActive()"
+        >
+          Buy
+        </button>
+        <button
+          class="jbutton"
+          [class.active]="rentActive"
+          (click)="toggleRentActive()"
+        >
+          Rent
+        </button>
       </div>
-      <div class="right-section">
-        <span class="close-button" onclick="closeLoginPopup()">×</span>
-        <p class="enter-phone-text">Enter phone to continue</p>
-        <div class="input-container">
-          <input type="text" placeholder="Username" />
+
+      <div class="search-bar">
+        <!-- app.component.html -->
+        <div class="dropdown">
+          <select id="cityDropdown" [(ngModel)]="selectedCity">
+            <option value="" disabled>Select a city</option>
+            <option *ngFor="let city of cities" [value]="city">
+              {{ city }}
+            </option>
+          </select>
         </div>
-        <div class="input-container">
-          <input type="password" placeholder="Password" />
-        </div>
-        <button class="continue-button">Continue</button>
+
+        <input
+          type="text"
+          class="locality-textarea"
+          placeholder="Enter Locality"
+        />
+        <button class="search-button">Search</button>
       </div>
+
+      <div class="hr-container">
+        <hr />
+        <p class="property-owner-text">Are you a property owner?</p>
+        <hr />
+      </div>
+
+      <button class="post-ad-button">Post your property AD</button>
     </div>
   </div>
-</div>
-
-<div class="container-login">
-  <!-- Signup Popup -->
-  <div id="signupPopup" class="popup">
-    <div class="popup-content">
-      <div class="left-section">
-        <div class="left-top">
-          <img
-            src="login-house.PNG"
-            alt="Home Logo"
-            class="home-logo"
-            style="width: 123px"
-          />
-          <div class="Login-heading">Sign Up</div>
-        </div>
-        <div class="headings">
-          <p><span class="tick">✔</span> Zero Brokerage</p>
-          <p><span class="tick">✔</span> Thousands of listings</p>
-          <p><span class="tick">✔</span> Verified Properties</p>
-        </div>
-      </div>
-      <div class="right-section">
-        <span class="close-button" onclick="closeSignupPopup()">×</span>
-        <p class="enter-phone-text">Enter details to sign up</p>
-        <div class="input-container">
-          <input type="text" placeholder="Full Name" />
-        </div>
-        <div class="input-container">
-          <input type="text" placeholder="Email" />
-        </div>
-        <div class="input-container">
-          <input type="text" placeholder="Phone Number" />
-        </div>
-        <div class="input-container">
-          <input type="password" placeholder="Password" />
-        </div>
-        <button class="continue-button">Continue</button>
-        <div class="already-user">
-          <p style="margin-top: 10px; margin-bottom: 0">Already an user?</p>
-          <button class="login-button" onclick="showLoginPopupFromSignup()">
-            Login
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  function toggleButton(button) {
-    // Remove 'active' class from all buttons
-    document.querySelectorAll(".jbutton").forEach(function (btn) {
-      btn.classList.remove("active");
-    });
-
-    // Add 'active' class to the clicked button
-    button.classList.add("active");
-  }
-
-  function showLoginPopup() {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("loginPopup").style.display = "block";
-  }
-
-  function closeLoginPopup() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("loginPopup").style.display = "none";
-  }
-  function showSignupPopup() {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("signupPopup").style.display = "block";
-  }
-
-  function closeSignupPopup() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("signupPopup").style.display = "none";
-  }
-  function showLoginPopupFromSignup() {
-    closeSignupPopup();
-    showLoginPopup();
-  }
-</script>
-
 </body>
