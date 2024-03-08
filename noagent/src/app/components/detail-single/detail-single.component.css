@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.main-body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgb(234, 240, 243);
+}
+.outer-box {
+  width: 725px;
+  height: 500px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.address-row,
+.details-row {
+  height: 70px;
+  background-color: #292c44; /* Blue color for address */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-bottom: 1px solid black;
+}
+
+.details-row {
+  background-color: #a9dfff;
+  color: black; /* Light blue color for details */
+}
+
+.content-rows {
+  display: flex;
+  flex: 1;
+}
+
+.content-row {
+  flex: 1;
+  padding: 20px;
+}
+
+.content-left {
+  background-color: white; /* Left content color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-container {
+  width: 335px;
+  height: 268px;
+  overflow: hidden;
+}
+
+.photo-container:hover {
+  transform: scale(1.1);
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.content-right {
+  background-color: white; /* Right content color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.amenity-box {
+  width: 298px;
+  height: 161px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.amenity-row {
+  flex: 1;
+  display: flex;
+}
+
+.amenity {
+  flex: 1;
+  border: 1px solid #000; /* Optional border for visualization */
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(215, 214, 214);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.button {
+  width: 80px;
+  margin: 0 5px;
+  padding: 10px;
+  background-color: #292c44; /* Blue color for buttons */
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  border-radius: 7px;
+}
+
+.button:hover {
+  background-color: #3a3e5f; /* Darken the background color on hover */
+  transform: scale(1.1);
+}
