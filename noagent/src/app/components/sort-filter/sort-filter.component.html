@@ -1,0 +1,157 @@
+<div class="main">
+  <div class="sort-filter-layout">
+    <div class="header">
+      <button
+        class="button"
+        [ngClass]="{ active: selectedContent === 1 }"
+        (click)="toggleContent(1)"
+      >
+        Filter
+      </button>
+      <button
+        class="button"
+        [ngClass]="{ active: selectedContent === 2 }"
+        (click)="toggleContent(2)"
+      >
+        Sort
+      </button>
+    </div>
+    <div class="content">
+      <!-- This is Filter Section -->
+      <div *ngIf="selectedContent === 1">
+        <div class="bhkTypes">
+          <p>BHK Types</p>
+          <button
+            class="bhkButton"
+            [class.activeButton]="selectedOptions.includes('1 RK')"
+            (click)="toggleSelection('1 RK')"
+          >
+            1 RK
+          </button>
+          <button
+            class="bhkButton"
+            [class.activeButton]="selectedOptions.includes('1 BHK')"
+            (click)="toggleSelection('1 BHK')"
+          >
+            1 BHK
+          </button>
+          <button
+            class="bhkButton"
+            [class.activeButton]="selectedOptions.includes('2 BHK')"
+            (click)="toggleSelection('2 BHK')"
+          >
+            2 BHK
+          </button>
+          <button
+            class="bhkButton"
+            [class.activeButton]="selectedOptions.includes('3 BHK')"
+            (click)="toggleSelection('3 BHK')"
+          >
+            3 BHK
+          </button>
+          <button
+            class="bhkButton"
+            [class.activeButton]="selectedOptions.includes('4 BHK')"
+            (click)="toggleSelection('4 BHK')"
+          >
+            4 BHK
+          </button>
+        </div>
+
+        <div class="rentRange">
+          <p>
+            Rent Range from Rs.{{ sliderMinValue }} to Rs.{{ sliderMaxValue }}
+          </p>
+          <mat-slider
+            [(ngModel)]="sliderValue"
+            [min]="sliderMinValue"
+            [max]="sliderMaxValue"
+            (input)="onSliderChange()"
+          >
+            <input
+              [value]="sliderMinValue"
+              matSliderStartThumb
+              style="width: 24px; height: 24px; border-radius: 50%"
+            />
+            <input
+              [value]="sliderMaxValue"
+              matSliderEndThumb
+              style="width: 24px; height: 24px; border-radius: 50%"
+            />
+          </mat-slider>
+        </div>
+
+        <div class="furnishing">
+          <h3>Furnishing</h3>
+          <div class="checkbox-container">
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox1"
+                (ngModelChange)="printSelectedValue('Full', checkbox1)"
+              />
+              Full
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox2"
+                (ngModelChange)="printSelectedValue('Semi', checkbox2)"
+              />
+              Semi
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox3"
+                (ngModelChange)="printSelectedValue('None', checkbox3)"
+              />
+              None
+            </label>
+          </div>
+        </div>
+        
+        
+        <div class="tenants">
+          <h3>Prefered Tenants</h3>
+          <div class="checkbox-container">
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox1"
+                (ngModelChange)="printSelectedValue('Full', checkbox1)"
+              />
+              Family
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox2"
+                (ngModelChange)="printSelectedValue('Semi', checkbox2)"
+              />
+              Company
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox3"
+                (ngModelChange)="printSelectedValue('None', checkbox3)"
+              />
+              Bachelor Male
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="checkbox3"
+                (ngModelChange)="printSelectedValue('None', checkbox3)"
+              />
+              Bachelor Female
+            </label>
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="selectedContent === 2">this is text 2</div>
+    </div>
+  </div>
+</div>

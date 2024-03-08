@@ -13,7 +13,7 @@ p {
   background-color: #fff;
   width: 670px;
   height: 552px;
-  z-index: 3; /* Increase the z-index value */
+  z-index: 3; 
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
@@ -83,12 +83,10 @@ p {
   cursor: pointer;
 }
 
-/* Enter phone text style */
 .enter-phone-text {
   font-size: 25px;
 }
 
-/* Input field style */
 .input-container input {
   padding: 4px;
   padding-left: 10px;
@@ -100,25 +98,24 @@ p {
   border-radius: 10px;
 }
 
-/* Continue button style */
 .continue-button {
-    width: 370px;
-    height: 45px;
-    background-color: #292c44;
-    color: white;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    font-size: larger;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added box-shadow for a subtle effect */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transition effect on hover */
-  }
-  
-  .continue-button:hover {
-    background-color: #1d1f33; /* Darker background color on hover */
-    transform: scale(1.05); /* Slightly scale up on hover */
-  }
-  
+  width: 370px;
+  height: 45px;
+  background-color: #292c44;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  font-size: larger;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.continue-button:hover {
+  background-color: #1d1f33; 
+  transform: scale(1.05);
+}
+
 .already-user {
   display: flex;
   flex-direction: column;
@@ -132,9 +129,8 @@ p {
   border: none;
   cursor: pointer;
 }
-/* Add your CSS styles here */
 
-.error-message{
+.error-message {
   color: red;
   margin-left: 60%;
   margin-top: 0px;
