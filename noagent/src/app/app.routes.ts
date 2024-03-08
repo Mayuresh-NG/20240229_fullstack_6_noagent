@@ -1,3 +1,4 @@
+import { DetailSingleComponent } from './components/detail-single/detail-single.component';
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyPropertiesComponent } from './components/my-properties/my-properties.component';
@@ -20,5 +21,6 @@ export const routes: Routes = [
     {path:'requestlist', component:RequestListComponent},
     {path:'sellyourproperty', component:SellYourPropertyComponent},
     {path:'viewproperty', component:ViewPropertiesComponent},
-    {path:'forgotpassword',component:ForgotPasswordComponent}
+    {path:'forgotpassword',component:ForgotPasswordComponent},
+    {path:'singledetail',component:DetailSingleComponent}
 ];
