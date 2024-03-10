@@ -49,6 +49,7 @@ body {
 }
 
 .shadow-button {
+  border-radius: 10px;
   position: relative;
   font-family: "Josefin Sans", sans-serif;
   background-color: #292c44;

@@ -4,14 +4,21 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { SellYourPropertyComponent } from '../sell-your-property/sell-your-property.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RentYourPropertyComponent } from '../rent-your-property/rent-your-property.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-sell-rent-page',
   standalone: true,
-  imports: [CommonModule,RouterLink,SellYourPropertyComponent,NavbarComponent,RouterModule,RentYourPropertyComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    SellYourPropertyComponent,
+    NavbarComponent,
+    RouterModule,
+    RentYourPropertyComponent,
+    ProfileComponent
+  ],
   templateUrl: './sell-rent-page.component.html',
-  styleUrl: './sell-rent-page.component.css'
+  styleUrl: './sell-rent-page.component.css',
 })
-export class SellRentPageComponent {
-
-}
+export class SellRentPageComponent {}
