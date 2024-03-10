@@ -25,18 +25,63 @@
         Property Details
       </h3>
 
-      <select class="dropdown">
-        <option value="" disabled selected>BHK Type</option>
-        <option value="type1">Type 1</option>
-        <option value="type2">Type 2</option>
-      </select>
+      <!-- BHK Type Dropdown -->
+      <div class="input-container">
+        <select
+          class="dropdown"
+          [(ngModel)]="bhkType"
+          name="bhkType"
+          #bhkTypeInput="ngModel"
+          required
+          (blur)="bhkTypeInputFocused = false"
+          (focus)="bhkTypeInputFocused = true"
+        >
+          <option value="" disabled selected>BHK Type</option>
+          <option value="type1">Type 1</option>
+          <option value="type2">Type 2</option>
+        </select>
+        <div
+          *ngIf="
+            !bhkTypeInputFocused &&
+            bhkTypeInput.invalid &&
+            (bhkTypeInput.dirty || bhkTypeInput.touched)
+          "
+          class="error-message"
+        >
+          Please select BHK Type
+        </div>
+      </div>
 
-      <input
-        type="text"
-        class="customInputField"
-        id="myInput"
-        placeholder="Built up Area"
-      />
+      <!-- Built up Area Input -->
+      <div class="input-container">
+        <input
+          type="text"
+          class="customInputField"
+          [(ngModel)]="builtUpArea"
+          name="builtUpArea"
+          #builtUpAreaInput="ngModel"
+          required
+          pattern="[0-9]"
+          (blur)="builtUpAreaInputFocused = false"
+          (focus)="builtUpAreaInputFocused = true"
+          placeholder="Built up Area"
+        />
+        <div
+          *ngIf="
+            !builtUpAreaInputFocused &&
+            builtUpAreaInput.invalid &&
+            (builtUpAreaInput.dirty || builtUpAreaInput.touched)
+          "
+          class="error-message"
+        >
+          <div *ngIf="builtUpAreaInput.errors?.['required']">
+            Area is required
+          </div>
+          <div *ngIf="builtUpAreaInput.errors?.['pattern']">
+            Invalid format (provide number)
+          </div>
+        </div>
+      </div>
       <h3
         style="
           color: #292c44;
@@ -48,43 +93,122 @@
       >
         Locality Details
       </h3>
-      <select class="dropdown">
-        <option value="" disabled selected>Select State</option>
-        <option value="type1">Type 1</option>
-        <option value="type2">Type 2</option>
-      </select>
+      <div class="input-container">
+        <select
+          class="dropdown"
+          [(ngModel)]="state"
+          name="state"
+          #stateInput="ngModel"
+          required
+          (blur)="stateInputFocused = false"
+          (focus)="stateInputFocused = true"
+        >
+          <option value="" disabled selected>Select State</option>
+          <option value="state1">State 1</option>
+          <option value="state2">State 2</option>
+        </select>
+        <div
+          *ngIf="
+            !stateInputFocused &&
+            stateInput.invalid &&
+            (stateInput.dirty || stateInput.touched)
+          "
+          class="error-message"
+        >
+          Please select a State
+        </div>
+      </div>
 
       <div class="addressBox">
         <h4>Enter Your Address</h4>
         <input
           type="text"
-          id="myInput"
           class="addressInput"
-          placeholder="Stret Name/House No./ Building Name"
+          [(ngModel)]="streetName"
+          name="streetName"
+          #streetNameInput="ngModel"
+          required
+          (blur)="streetNameInputFocused = false"
+          (focus)="streetNameInputFocused = true"
+          placeholder="Street Name/House No./Building Name"
         />
+        <div
+          *ngIf="
+            !streetNameInputFocused &&
+            streetNameInput.invalid &&
+            (streetNameInput.dirty || streetNameInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter the value
+        </div>
         <input
           type="text"
-          id="myInput"
           class="addressInput"
+          [(ngModel)]="city"
+          name="city"
+          #cityInput="ngModel"
+          required
+          (blur)="cityInputFocused = false"
+          (focus)="cityInputFocused = true"
           placeholder="City"
         />
+        <div
+          *ngIf="
+            !cityInputFocused &&
+            cityInput.invalid &&
+            (cityInput.dirty || cityInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter City
+        </div>
         <input
           type="text"
-          id="myInput"
           class="addressInput"
-          placeholder="LandMark"
+          [(ngModel)]="landmark"
+          name="landmark"
+          #landmarkInput="ngModel"
+          required
+          (blur)="landmarkInputFocused = false"
+          (focus)="landmarkInputFocused = true"
+          placeholder="Landmark"
         />
+        <div
+          *ngIf="
+            !landmarkInputFocused &&
+            landmarkInput.invalid &&
+            (landmarkInput.dirty || landmarkInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter Landmark
+        </div>
         <input
           type="text"
-          id="myInput"
           class="addressInput"
+          [(ngModel)]="pincode"
+          name="pincode"
+          #pincodeInput="ngModel"
+          required
+          (blur)="pincodeInputFocused = false"
+          (focus)="pincodeInputFocused = true"
           placeholder="Pincode"
         />
+        <div
+          *ngIf="
+            !pincodeInputFocused &&
+            pincodeInput.invalid &&
+            (pincodeInput.dirty || pincodeInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter Pincode
+        </div>
       </div>
     </div>
     <!-- Right SIDE -->
     <div class="propertyForm">
-      
       <h3
         style="
           color: #292c44;
@@ -99,9 +223,9 @@
       <div class="furnishingBox">
         <p>Furnishing</p>
         <div class="radio-container">
-          <label> <input type="radio" name="checkbox1" /> Full </label>
-          <label> <input type="radio" name="checkbox2" /> Semi </label>
-          <label> <input type="radio" name="checkbox3" /> None </label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="full" /> Full</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="semi" /> Semi</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="none" /> None</label>
         </div>
       </div>
 
@@ -125,13 +249,15 @@
         </div>
       </div>
 
-      <input
-        style="padding-left: 10px"
-        type="text"
-        class="customInputField"
-        id="myInput"
-        placeholder="Rent Price"
-      />
+      <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="rentPrice" name="rentPrice"
+                #rentPriceInput="ngModel" required pattern="[0-9]"
+                (blur)="rentPriceInputFocused = false" (focus)="rentPriceInputFocused = true"
+                placeholder="Rent Price" />
+        <div *ngIf="!rentPriceInputFocused && rentPriceInput.invalid && (rentPriceInput.dirty || rentPriceInput.touched)"
+            class="error-message">
+              <div *ngIf="rentPriceInput.errors?.['required']">Price is required</div>
+              <div *ngIf="rentPriceInput.errors?.['pattern']">Invalid rent price</div>
+        </div>
 
       <h3
         style="
@@ -148,21 +274,11 @@
           <p class="plus-sign">+</p>
         </div>
 
-        <div class="text-container">
-          <input
-            style="padding-left: 10px"
-            type="text"
-            class="customInputField"
-            id="myInput"
-            placeholder="Available from"
-          />
-          <input
-            style="padding-left: 10px"
-            type="text"
-            class="customInputField"
-            id="myInput"
-            placeholder="Deposit"
-          />
+        <div class="input-container text-container">
+          <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="availableFrom" name="availableFrom"
+                  #availableFromInput="ngModel" placeholder="Available from" />
+          <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="deposit" name="deposit"
+                  #depositInput="ngModel" placeholder="Deposit" />
         </div>
       </div>
     </div>

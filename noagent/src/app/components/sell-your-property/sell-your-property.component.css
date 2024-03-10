@@ -225,6 +225,10 @@ body {
   margin-right: 5px;
 }
 
+.error-message {
+  color: red;
+}
+
 /* Style for radio button appearance */
 .radio-container input[type="radio"] {
   -webkit-appearance: none;
