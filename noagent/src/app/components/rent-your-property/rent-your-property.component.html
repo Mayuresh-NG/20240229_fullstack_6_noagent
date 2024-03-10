@@ -1,153 +1,286 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rent Your Property</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header style="height: 65px; background-color: #c7e6f8">
-      <div class="logo">
-        <img
-          src="../../../assets/images/logo.png"
-          alt="NoAgent Logo"
-          style="margin-left: 15px; height: 38px; width: 52px"
-        />
-        <div class="heading-text" style="font-size: 28px; display: flex">
-          <span>No</span>
-          <div class="agent" style="color: black">Agent</div>
-        </div>
-      </div>
+<body>
+  <div style="text-align: center; margin-top: 20px">
+    <h2
+      style="
+        color: #292c44;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        word-spacing: 10px;
+        margin-bottom: 5px;
+      "
+    >
+      Rent your Property
+    </h2>
+  </div>
+  <button class="shadow-button">Save and Post</button>
 
-      <div
-        class="admin"
-        style="color: black; font-size: 14px; margin-right: 40px"
+  <main class="mainBody">
+    <!-- LEFT SIDE -->
+    <div class="propertyForm">
+      <h3
+        style="color: #292c44; font-size: 20px; font-weight: 600; padding: auto"
       >
-        <i
-          class="fa-solid fa-user"
-          style="color: black; margin-right: 10px"
-        ></i>
-        vivek
-      </div>
-    </header>
-    <div class="topBar">
-      <h2>Rent your Property</h2>
+        Property Details
+      </h3>
 
-      <button class="shadow-button">Save and Post</button>
-    </div>
-    <main class="mainBody">
-      <!-- LEFT SIDE -->
-      <div class="propertyForm">
-        <h3>Property Details</h3>
-
-        <select class="dropdown">
+      <!-- BHK Type Dropdown -->
+      <div class="input-container">
+        <select
+          class="dropdown"
+          [(ngModel)]="bhkType"
+          name="bhkType"
+          #bhkTypeInput="ngModel"
+          required
+          (blur)="bhkTypeInputFocused = false"
+          (focus)="bhkTypeInputFocused = true"
+        >
+          <option value="" disabled selected>BHK Type</option>
           <option value="type1">Type 1</option>
           <option value="type2">Type 2</option>
         </select>
+        <div
+          *ngIf="
+            !bhkTypeInputFocused &&
+            bhkTypeInput.invalid &&
+            (bhkTypeInput.dirty || bhkTypeInput.touched)
+          "
+          class="error-message"
+        >
+          Please select BHK Type
+        </div>
+      </div>
 
+      <!-- Built up Area Input -->
+      <div class="input-container">
         <input
           type="text"
           class="customInputField"
-          id="myInput"
+          [(ngModel)]="builtUpArea"
+          name="builtUpArea"
+          #builtUpAreaInput="ngModel"
+          required
+          pattern="[0-9]"
+          (blur)="builtUpAreaInputFocused = false"
+          (focus)="builtUpAreaInputFocused = true"
           placeholder="Built up Area"
         />
-        <h3>Locality Details</h3>
-        <select class="dropdown">
+        <div
+          *ngIf="
+            !builtUpAreaInputFocused &&
+            builtUpAreaInput.invalid &&
+            (builtUpAreaInput.dirty || builtUpAreaInput.touched)
+          "
+          class="error-message"
+        >
+          <div *ngIf="builtUpAreaInput.errors?.['required']">
+            Area is required
+          </div>
+          <div *ngIf="builtUpAreaInput.errors?.['pattern']">
+            Invalid format (provide number)
+          </div>
+        </div>
+      </div>
+      <h3
+        style="
+          color: #292c44;
+          font-size: 20px;
+          font-weight: 600;
+          padding-top: 10px;
+          padding-bottom: 0px;
+        "
+      >
+        Locality Details
+      </h3>
+      <div class="input-container">
+        <select
+          class="dropdown"
+          [(ngModel)]="state"
+          name="state"
+          #stateInput="ngModel"
+          required
+          (blur)="stateInputFocused = false"
+          (focus)="stateInputFocused = true"
+        >
           <option value="" disabled selected>Select State</option>
-          <option value="type1">Type 1</option>
-          <option value="type2">Type 2</option>
+          <option value="state1">State 1</option>
+          <option value="state2">State 2</option>
         </select>
-
-        <div class="addressBox">
-          <h4>Enter Your Address</h4>
-          <input
-            type="text"
-            id="myInput"
-            class="addressInput"
-            placeholder="Stret Name/House No./ Building Name"
-          />
-          <input
-            type="text"
-            id="myInput"
-            class="addressInput"
-            placeholder="City"
-          />
-          <input
-            type="text"
-            id="myInput"
-            class="addressInput"
-            placeholder="LandMark"
-          />
-          <input
-            type="text"
-            id="myInput"
-            class="addressInput"
-            placeholder="Pincode"
-          />
+        <div
+          *ngIf="
+            !stateInputFocused &&
+            stateInput.invalid &&
+            (stateInput.dirty || stateInput.touched)
+          "
+          class="error-message"
+        >
+          Please select a State
         </div>
       </div>
 
-      <!-- Right SIDE -->
-      <div class="propertyForm">
-        <h3>Rental Details</h3>
-        <div class="furnishingBox">
-          <p>Furnishing</p>
-          <div class="radio-container">
-            <label> <input type="radio" name="checkbox1" /> Full </label>
-            <label> <input type="radio" name="checkbox2" /> Semi </label>
-            <label> <input type="radio" name="checkbox3" /> None </label>
-          </div>
-        </div>
-        <div class="tenants">
-          <p>Preferred Tenants</p>
-          <div class="checkbox-container">
-            <div class="row">
-              <label> <input type="checkbox" name="checkbox1" />Family </label>
-              <label>
-                <input type="checkbox" name="checkbox2" /> Company
-              </label>
-            </div>
-            <div class="row">
-              <label>
-                <input type="checkbox" name="checkbox3" /> Bachelor Male
-              </label>
-              <label>
-                <input type="checkbox" name="checkbox4" /> Bachelor Female
-              </label>
-            </div>
-          </div>
+      <div class="addressBox">
+        <h4>Enter Your Address</h4>
+        <input
+          type="text"
+          class="addressInput"
+          [(ngModel)]="streetName"
+          name="streetName"
+          #streetNameInput="ngModel"
+          required
+          (blur)="streetNameInputFocused = false"
+          (focus)="streetNameInputFocused = true"
+          placeholder="Street Name/House No./Building Name"
+        />
+        <div
+          *ngIf="
+            !streetNameInputFocused &&
+            streetNameInput.invalid &&
+            (streetNameInput.dirty || streetNameInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter the value
         </div>
         <input
           type="text"
-          class="customInputField"
-          id="myInput"
-          placeholder="Rent Price"
+          class="addressInput"
+          [(ngModel)]="city"
+          name="city"
+          #cityInput="ngModel"
+          required
+          (blur)="cityInputFocused = false"
+          (focus)="cityInputFocused = true"
+          placeholder="City"
         />
+        <div
+          *ngIf="
+            !cityInputFocused &&
+            cityInput.invalid &&
+            (cityInput.dirty || cityInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter City
+        </div>
+        <input
+          type="text"
+          class="addressInput"
+          [(ngModel)]="landmark"
+          name="landmark"
+          #landmarkInput="ngModel"
+          required
+          (blur)="landmarkInputFocused = false"
+          (focus)="landmarkInputFocused = true"
+          placeholder="Landmark"
+        />
+        <div
+          *ngIf="
+            !landmarkInputFocused &&
+            landmarkInput.invalid &&
+            (landmarkInput.dirty || landmarkInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter Landmark
+        </div>
+        <input
+          type="text"
+          class="addressInput"
+          [(ngModel)]="pincode"
+          name="pincode"
+          #pincodeInput="ngModel"
+          required
+          (blur)="pincodeInputFocused = false"
+          (focus)="pincodeInputFocused = true"
+          placeholder="Pincode"
+        />
+        <div
+          *ngIf="
+            !pincodeInputFocused &&
+            pincodeInput.invalid &&
+            (pincodeInput.dirty || pincodeInput.touched)
+          "
+          class="error-message"
+        >
+          Please enter Pincode
+        </div>
+      </div>
+    </div>
+    <!-- Right SIDE -->
+    <div class="propertyForm">
+      <h3
+        style="
+          color: #292c44;
+          font-size: 20px;
+          font-weight: 600;
+          padding-top: 10px;
+          padding-bottom: 0px;
+        "
+      >
+        Rental Details
+      </h3>
+      <div class="furnishingBox">
+        <p>Furnishing</p>
+        <div class="radio-container">
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="full" /> Full</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="semi" /> Semi</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="none" /> None</label>
+        </div>
+      </div>
 
-        <h3>Gallery</h3>
-
-        <div class="gallery">
-          <div class="image-container">
-            <p>+</p>
+      <div class="tenants">
+        <p style="font-size: 18px; color: #333; margin-bottom: 15px">
+          Preferred Tenants
+        </p>
+        <div class="checkbox-container">
+          <div class="row">
+            <label> <input type="checkbox" name="checkbox1" />Family </label>
+            <label> <input type="checkbox" name="checkbox2" /> Company </label>
           </div>
-          <div class="imageInput">
-            <div class="input-container">
-              <input type="text" class="textInput" placeholder="Input 1">
-            </div>
-            <div class="input-container">
-              <input type="text" class="textInput" placeholder="Input 2">
-            </div>
-         
+          <div class="row">
+            <label>
+              <input type="checkbox" name="checkbox3" /> Bachelor Male
+            </label>
+            <label>
+              <input type="checkbox" name="checkbox4" /> Bachelor Female
+            </label>
           </div>
         </div>
-        
-
-
       </div>
-    </main>
-  </body>
-</html>
+
+      <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="rentPrice" name="rentPrice"
+                #rentPriceInput="ngModel" required pattern="[0-9]"
+                (blur)="rentPriceInputFocused = false" (focus)="rentPriceInputFocused = true"
+                placeholder="Rent Price" />
+        <div *ngIf="!rentPriceInputFocused && rentPriceInput.invalid && (rentPriceInput.dirty || rentPriceInput.touched)"
+            class="error-message">
+              <div *ngIf="rentPriceInput.errors?.['required']">Price is required</div>
+              <div *ngIf="rentPriceInput.errors?.['pattern']">Invalid rent price</div>
+        </div>
+
+      <h3
+        style="
+          color: #292c44;
+          font-size: 20px;
+          font-weight: 600;
+          padding-top: 20px;
+        "
+      >
+        Gallery
+      </h3>
+      <div class="container">
+        <div class="image-container">
+          <p class="plus-sign">+</p>
+        </div>
+
+        <div class="input-container text-container">
+          <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="availableFrom" name="availableFrom"
+                  #availableFromInput="ngModel" placeholder="Available from" />
+          <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="deposit" name="deposit"
+                  #depositInput="ngModel" placeholder="Deposit" />
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

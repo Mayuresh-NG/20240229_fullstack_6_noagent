@@ -127,8 +127,21 @@ p {
   align-items: center;
   margin-top: 49px;
 }
+.forgot-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
 
 .login-button {
+  margin-top: 5px;
+  background-color: transparent;
+  color: #1b3f70;
+  border: none;
+  cursor: pointer;
+}
+.forgot-button {
   margin-top: 5px;
   background-color: transparent;
   color: #1b3f70;

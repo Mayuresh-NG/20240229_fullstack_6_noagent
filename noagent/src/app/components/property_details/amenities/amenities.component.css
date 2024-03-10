@@ -2,16 +2,18 @@
     padding-top: 20px;
     width: 516px;
     margin-left: 5px;
+    
 }
 
 .outer-box {
-    border: 1px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    background-color: white;
 }
 
 .inner-box {
@@ -53,7 +55,13 @@
     box-sizing: border-box; /* Include border in width and height calculation */
     border-bottom-right-radius: 10px;
 }
-
+.amenity-box-1:hover,
+.amenity-box-2:hover,
+.amenity-box-3:hover,
+.amenity-box-4:hover {
+    background-color: white;
+    transform: scale(1.1); /* Apply a scale effect on hover */
+}
 .property-buttons {
     display: flex;
     justify-content: space-between;
@@ -67,6 +75,11 @@
     border-radius: 7px;
     background-color: #292C44;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.get-details-button:hover {
+    background-color: #3A3E5F; /* Darken the background color on hover */
+    transform: scale(1.05); /* Add a slight scale effect on hover */
 }
 .wishlist-button{
     background-color: #292C44;
@@ -75,4 +88,9 @@
     width: 195px;
     height: 38px;
     border-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.wishlist-button:hover {
+    background-color: #3A3E5F; /* Darken the background color on hover */
+    transform: scale(1.05); /* Add a slight scale effect on hover */
 }

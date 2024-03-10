@@ -2,11 +2,12 @@
     height: 350px;
     width: 935px;
     margin-top: 20px;
-    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     margin-bottom: 30px;
     position: relative;
     border-radius: 10px;
     margin-right: 5px;
+    background-color: white;
 }
 
 .location-column {
@@ -46,4 +47,8 @@
     border: none;
     cursor: pointer;
     border-radius: 6px;
+}
+.get-directions-button:hover{
+    background-color: #3A3E5F; /* Darken the background color on hover */
+    transform: scale(1.05); 
 }

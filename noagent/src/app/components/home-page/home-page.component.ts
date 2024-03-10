@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { RouterLink } from '@angular/router';
+import { SellRentPageComponent } from '../sell-rent-page/sell-rent-page.component';
 
 // Inject MatDialog in your component's constructor
 @Component({
@@ -20,6 +22,8 @@ import { LoginPopupComponent } from '../login-popup/login-popup.component';
     CommonModule,
     FormsModule,
     SignupPopupComponent,
+    RouterLink,
+    SellRentPageComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
