@@ -43,11 +43,16 @@ export class SortFilterComponent {
     }
 
 
-    checkbox1: boolean = false;
-  checkbox2: boolean = false;
-  checkbox3: boolean = false;
+  full: boolean = false;
+  semi: boolean = false;
+  none: boolean = false;
   checkboxes: string[] = [];
 
+
+  family: boolean = false;
+  company: boolean = false;
+  male: boolean = false;
+  female: boolean = false;
   printSelectedValue(checkboxLabel: string, isChecked: boolean) {
     if (isChecked) {
       this.checkboxes.push(checkboxLabel);
@@ -59,5 +64,9 @@ export class SortFilterComponent {
     }
     console.log(this.checkboxes);
   }
-  
+  activeSort: string = '';
+
+  setActive(sort: string) {
+    this.activeSort = sort;
+  }
 }

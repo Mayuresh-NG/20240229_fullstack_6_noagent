@@ -87,71 +87,104 @@
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox1"
-                (ngModelChange)="printSelectedValue('Full', checkbox1)"
+                [(ngModel)]="full"
+                (ngModelChange)="printSelectedValue('Full', full)"
               />
               Full
             </label>
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox2"
-                (ngModelChange)="printSelectedValue('Semi', checkbox2)"
+                [(ngModel)]="semi"
+                (ngModelChange)="printSelectedValue('Semi', semi)"
               />
               Semi
             </label>
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox3"
-                (ngModelChange)="printSelectedValue('None', checkbox3)"
+                [(ngModel)]="none"
+                (ngModelChange)="printSelectedValue('None', none)"
               />
               None
             </label>
           </div>
         </div>
-        
-        
+
         <div class="tenants">
           <h3>Prefered Tenants</h3>
-          <div class="checkbox-container">
+          <div class="tenants-container">
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox1"
-                (ngModelChange)="printSelectedValue('Full', checkbox1)"
+                [(ngModel)]="family"
+                (ngModelChange)="printSelectedValue('Family', family)"
               />
               Family
             </label>
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox2"
-                (ngModelChange)="printSelectedValue('Semi', checkbox2)"
+                [(ngModel)]="company"
+                (ngModelChange)="printSelectedValue('Semi', company)"
               />
               Company
             </label>
+          </div>
+          <div class="tenants-container">
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox3"
-                (ngModelChange)="printSelectedValue('None', checkbox3)"
+                [(ngModel)]="male"
+                (ngModelChange)="printSelectedValue('None', male)"
               />
               Bachelor Male
             </label>
             <label>
               <input
                 type="checkbox"
-                [(ngModel)]="checkbox3"
-                (ngModelChange)="printSelectedValue('None', checkbox3)"
+                [(ngModel)]="female"
+                (ngModelChange)="printSelectedValue('None', female)"
               />
               Bachelor Female
             </label>
           </div>
         </div>
-
       </div>
-      <div *ngIf="selectedContent === 2">this is text 2</div>
+
+      <!-- This is Sort Section -->
+      <div *ngIf="selectedContent === 2">
+        <div class="sortings">
+          <button
+            class="sortingBtn"
+            (click)="setActive('newest')"
+            [class.activeButton]="activeSort === 'newest'"
+          >
+            Newest First
+          </button>
+          <button
+            class="sortingBtn"
+            (click)="setActive('oldest')"
+            [class.activeButton]="activeSort === 'oldest'"
+          >
+            Oldest First
+          </button>
+          <button
+            class="sortingBtn"
+            (click)="setActive('lowToHigh')"
+            [class.activeButton]="activeSort === 'lowToHigh'"
+          >
+            Rent Low to High
+          </button>
+          <button
+            class="sortingBtn"
+            (click)="setActive('highToLow')"
+            [class.activeButton]="activeSort === 'highToLow'"
+          >
+            Rent High to Low
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

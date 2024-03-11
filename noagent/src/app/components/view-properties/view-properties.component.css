@@ -42,7 +42,7 @@ body {
   }
 
   main{
-    margin-top: 50px;
+    /* margin-top: 50px; */
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -57,7 +57,7 @@ body {
   .propertySection{
     height: 500px;
     width: 1000px;
-    background-color: blue;
+    background-color: wheat;
   }
 
 
@@ -124,45 +124,121 @@ body {
 }
 
 
-.bhkTypes{
-  margin-left: 10px;
-  height: 110px;
-  width: 380px;
-  background-color: red;
-  margin-right: 10px;
+
+.property{
+  height: 100%;
+  width: 100%;
+  background-color: white
 }
 
-.rentRange{
-  margin-left: 10px;
-  height: 60px;
-  width: 380px;
-  background-color: blue;
-  margin-right: 10px;
+.app-sort-filter{
+  position: sticky;
+}
+.propertySection{
+  position: relative;
 }
 
-.furnishing{
-  margin-left: 10px;
-  height: 60px;
-  width: 380px;
-  margin-right: 10px;
-  background-color: green;
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-.tennants{
-  margin-left: 10px;
-  height: 110px;
-  width: 380px;
-  margin-right: 10px;
-  background-color: orange;
+.propertySection {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px; 
+  padding-left: 10%;
+  background-color: transparent;
+
+} 
+
+.property {
+  height: 100%;
+  width: 90%;
+  margin-bottom: 20px; 
+  /* border: 2px solid red; */
 }
 
-.sortFunction {
-  margin-left: 10px;
-  height: 60px;
-  width: 380px;
+.property-header{
+  height: 70px;
+  width: auto;
+  font-size: 22px;
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  background-color: #292C44;
+  color: white;
+}
+
+.subHeader{
+  height: 80px;
+  width: auto;
+  background: #A9DFFF;
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+.subHeader {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.subHeader hr {
+  margin: 0 10px; /* Adjusts spacing around the horizontal line */
+  border: none; /* Removes default border */
+  border-right: 1px solid black; /* Adds vertical line effect */
+  height: auto; /* Ensures the line expands to fit available space */
+}
+p{
+  margin-top: 15px;
+  font-size: 22px;
+  margin-bottom: 8px;
+  line-height: 25px;
+}
+
+
+.property-body{
+  height: 80%;
+  width: auto;
   background-color: white;
-  margin-right: 10px;
-  display: flex; /* Use flexbox */
-  align-items: center; /* Align items at the top */
-  justify-content: flex-start; /* Display items from left to right */
+  display: flex;
+
+}
+
+.image-container{
+  height: 300px;
+  width: 350px;
+  background-color: peachpuff;
+  margin-left : 50px;
+  margin-top: 30px;
+}
+
+.property-details{
+  height: 150px;
+  width: 250px;
+  background: gray;
+  margin-left: 100px;
+  margin-top: 50px;
+  margin-bottom: 8px;
+}
+
+.property-right{
+  display: flex;
+  flex-direction: column;
+}
+
+.customButtons{
+  width: 200px;
+  height: 50px;
+  background-color: #292C44;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 125px;
+
 }

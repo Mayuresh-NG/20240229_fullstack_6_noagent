@@ -1,5 +1,6 @@
 *{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .sort-filter-layout {
@@ -10,14 +11,15 @@
   background-color: white;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
-  border: 0.5px solid grey;
+
+  /* border: 0.5px solid grey; */
 }
 .header {
   display: flex;
   height: 12%;
   background: transparent;
   width: auto;
-
+ 
  
 }
 .button {
@@ -69,6 +71,7 @@
 }
 
 .rentRange{
+  border-radius: 10px;
   margin-top: 2px;
   width: 100%;
   height: 100px;
@@ -88,7 +91,7 @@ mat-slider {
 
 
 .furnishing{
-
+  border-radius: 10px;
   width: 100%;
   height:100px;
   background-color: white ;
@@ -109,9 +112,6 @@ mat-slider {
 .checkbox-container input[type="checkbox"] {
   transform: scale(1.5);
   margin-right: 10px;
-
-  
-  
   /* Adjust the scale factor as needed */
 }
 
@@ -122,8 +122,49 @@ mat-slider {
 }
 
 .tenants{
+  border-radius: 10px;
   width: 100%;
-  height:100px;
+  height:120px;
   background-color: white ;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.tenants-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 7px;
+  
+}
+
+.tenants-container input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+  /* Adjust the scale factor as needed */
+}
+
+.sortings{
+  height: 300px;
+  width: 100%;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10;
+}
+
+.sortingBtn{
+  height: 50px;
+  width: 95%;
+  margin: 4px;
+  border-radius: 8px;
+  border: 0.5px solid gray;
+}
+
+.activeButton {
+  background-color: #dcedff;
+  color: #0F52BA;
+  border: 1px solid #0F52BA;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+

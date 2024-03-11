@@ -33,50 +33,39 @@
     </header>
 
     <main>
-      <div class="filterSection">
-        <div class="filterHeader">
-          <button class="customButtons active" id="filterButton" checked>Filters</button>
-          <button class="customButtons" id="sortButton">Sort</button>
-        </div>
-        <div class="contentContainer">
-          <div class="content active" id="filterContent">
-            
-            <div class="bhkTypes">
-            
-            </div>
-            <br>
-             <div class="rentRange">
-                
-            </div>
-            <br>
-            <div class="furnishing">
-
-            </div>
-            <br>
-            <div class="tennants">
-
-            </div>
+      
+      <app-sort-filter></app-sort-filter>
+      <div class="propertySection" #propertySection>
+        <div class="property" *ngFor="let property of propertyData">
+          <br>
+          
+          <div class="property-header">
+            1 BHK Flat In Dp Inn Homestay For Rent In Hi-Tech City
           </div>
-   <!-- Sort content goes here -->
-          <div class="content" id="sortContent">
-            <div class="sortFunction">
-                Posted On (Newest Feed)
+          <div class="subHeader">
+            <p>Rent<br>{{ property.rent }}</p>
+            <hr>
+            <p>Deposit<br>{{ property.deposit }}</p>
+            <hr>
+            <p>Builtup<br>{{ property.builtup }}</p>
+          </div>
+
+
+          <div class="property-body">
+            <div class="image-container"> 
             </div>
-            <br>
-            <div class="sortFunction">
-                Posted On (Oldest Feed)
-            </div><br>
-            <div class="sortFunction">
-                Rent Low to High
-            </div><br>
-            <div class="sortFunction">
-                Rent High to Low
+            <div class="property-right">
+            <div class="property-details">
             </div>
+            
+            <button class="customButtons"> Get Owner Details</button>
+            <button class="customButtons"> Wishlist </button>
+          </div>
           </div>
         </div>
       </div>
-      <div class="propertySection"></div>
+      
     </main>
-    <script src="script.js"></script>
+    
   </body>
 </html>
