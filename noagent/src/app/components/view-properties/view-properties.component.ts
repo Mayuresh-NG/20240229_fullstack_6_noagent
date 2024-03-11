@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { SortFilterComponent } from '../sort-filter/sort-filter.component';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-view-properties',
   standalone: true,
-  imports: [SortFilterComponent,CommonModule],
+  imports: [SortFilterComponent,CommonModule,ProfileComponent],
   templateUrl: './view-properties.component.html',
   styleUrl: './view-properties.component.css'
 })
