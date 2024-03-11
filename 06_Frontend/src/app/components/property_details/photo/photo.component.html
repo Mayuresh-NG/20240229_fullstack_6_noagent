@@ -1,0 +1,9 @@
+<div class="property-photo">
+    <div class="carousel-container">
+        <button (click)="prevImage()" class="arrow-button left-arrow">&#8249;</button>
+        <div class="carousel" [@slide]="currentSlide">
+            <img *ngFor="let image of images; let i = index" [src]="image" [class.active]="i === currentIndex" />
+        </div>
+        <button (click)="nextImage()" class="arrow-button right-arrow">&#8250;</button>
+    </div>
+</div>

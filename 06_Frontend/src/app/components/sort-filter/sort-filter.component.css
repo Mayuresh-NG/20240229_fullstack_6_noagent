@@ -1,0 +1,170 @@
+*{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.sort-filter-layout {
+  height: 80vh;
+  margin-top: 10px;
+  margin-left: 40px;
+  width: 25vw;
+  background-color: white;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+
+  /* border: 0.5px solid grey; */
+}
+.header {
+  display: flex;
+  height: 12%;
+  background: transparent;
+  width: auto;
+ 
+ 
+}
+.button {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.button.active {
+  background-color: #dcedff;
+  color: #0F52BA;
+  border: 1px solid #0F52BA;
+
+  } 
+.content {
+  flex: 1;
+  text-align: center;
+  width: 100%;
+
+}
+
+
+.bhkTypes{
+  
+  margin-top: 20px;
+  padding-top: 0px ;
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding-bottom: 40px;
+  /* border: 2px solid red; */
+}
+.bhkButton{
+  height: 40%;
+  width: 30%;
+  margin: 4px;
+  border-radius: 8px;
+  border: 0.5px solid gray;
+}
+
+.activeButton {
+  background-color: #dcedff;
+  color: #0F52BA;
+  border: 1px solid #0F52BA;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.rentRange{
+  border-radius: 10px;
+  margin-top: 2px;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+mat-slider {
+  border-radius: 15px;
+  width: 70%;
+  background-color: white;
+  color: #0F52BA;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.furnishing{
+  border-radius: 10px;
+  width: 100%;
+  height:100px;
+  background-color: white ;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.checkbox-container label {
+  margin-right: 40px; /* Adjust as needed */
+  margin-left: 20px;
+}
+/* Increase the size of the checkboxes */
+.checkbox-container input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+  /* Adjust the scale factor as needed */
+}
+
+/* Optional: Adjust the position to align checkboxes with text */
+.checkbox-container label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tenants{
+  border-radius: 10px;
+  width: 100%;
+  height:120px;
+  background-color: white ;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.tenants-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 7px;
+  
+}
+
+.tenants-container input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+  /* Adjust the scale factor as needed */
+}
+
+.sortings{
+  height: 300px;
+  width: 100%;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10;
+}
+
+.sortingBtn{
+  height: 50px;
+  width: 95%;
+  margin: 4px;
+  border-radius: 8px;
+  border: 0.5px solid gray;
+}
+
+.activeButton {
+  background-color: #dcedff;
+  color: #0F52BA;
+  border: 1px solid #0F52BA;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+

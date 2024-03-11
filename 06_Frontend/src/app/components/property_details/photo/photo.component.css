@@ -1,0 +1,71 @@
+.property-photo {
+    position: relative;
+    padding-top: 20px;
+    width: 935px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 5px;
+    
+}
+
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+}
+
+.carousel {
+    display: flex;
+    width: 300%; /* Adjust as needed based on the number of images */
+    transition: transform 0.2s ease-in-out;
+    height: 100%; /* Added height: 100% to ensure the carousel takes full height */
+    
+  }
+
+  .carousel img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    
+}
+
+.carousel img.active {
+    opacity: 1;
+}
+
+.arrow-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 70px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black; /* Adjust the color based on your design */
+    z-index: 5;
+    
+    transition: color 0.3s ease; /* Adding a transition for smooth color change */
+}
+
+.arrow-button:hover {
+    color: gray; /* Change the color on hover */
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
