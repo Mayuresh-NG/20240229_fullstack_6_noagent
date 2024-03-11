@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-popup',
@@ -17,7 +18,8 @@ export class LoginPopupComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginPopupComponent>, // Inject MatDialogRef for dialog functionality
     @Inject(MAT_DIALOG_DATA) public data: any, // Inject MAT_DIALOG_DATA for passing data to the dialog
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   // Close the dialog
@@ -37,6 +39,11 @@ export class LoginPopupComponent {
       // Log when the popup is closed
       console.log('The popup was closed'); 
     });
+  }
+
+  navigateToForgotPassword() {
+    this.router.navigate(['/forgotpassword']);
+    this.closePopup()
   }
 
   username: string = ''; // Initialize username variable

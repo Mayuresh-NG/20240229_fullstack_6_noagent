@@ -1,3 +1,4 @@
+import { DetailSingleComponent } from './components/detail-single/detail-single.component';
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyPropertiesComponent } from './components/my-properties/my-properties.component';
@@ -10,17 +11,29 @@ import { ViewPropertiesComponent } from './components/view-properties/view-prope
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PropertyDetailsMainScreenComponent } from './components/property_details/property-details-main-screen/property-details-main-screen.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { SellRentPageComponent } from './components/sell-rent-page/sell-rent-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-    {path:'',component:HomePageComponent},
-    {path:'propertydetails',component:PropertyDetailsMainScreenComponent},
-    {path:'properties',component:MyPropertiesComponent},
-    {path:'wishlist',component:MyWishlistComponent},
-    {path:'propertylist', component:PropertyListComponent},
-    {path:'rentyourproperty', component:RentYourPropertyComponent},
-    {path:'requestlist', component:RequestListComponent},
-    {path:'sellyourproperty', component:SellYourPropertyComponent},
-    {path:'viewproperty', component:ViewPropertiesComponent},
-    {path:'forgotpassword',component:ForgotPasswordComponent},
-    {path:'resetpassword',component:ResetPasswordComponent}
+  { path: '', component: HomePageComponent },
+  {
+    path: 'sell-rent',
+    component: SellRentPageComponent,
+    children: [
+      { path: 'sell', component: SellYourPropertyComponent },
+      { path: 'rent', component: RentYourPropertyComponent },
+    ],
+  },
+  { path: 'propertydetails', component: PropertyDetailsMainScreenComponent },
+  { path: 'properties', component: MyPropertiesComponent },
+  { path: 'wishlist', component: MyWishlistComponent },
+  { path: 'propertylist', component: PropertyListComponent },
+  { path: 'rentyourproperty', component: RentYourPropertyComponent },
+  { path: 'requestlist', component: RequestListComponent },
+  { path: 'sellyourproperty', component: SellYourPropertyComponent },
+  { path: 'viewproperty', component: ViewPropertiesComponent },
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
+  { path: 'singledetail', component: DetailSingleComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
