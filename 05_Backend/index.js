@@ -82,19 +82,17 @@ const connectToMongoDB = async () => {
  *   post:
  *     summary: User login
  *     description: Authenticates a user and returns a JWT token.
- *     parameters:
- *       - in: query
- *         name: username
- *         required: true
- *         schema:
- *           type: string
- *         description: The username of the user.
- *       - in: query
- *         name: password
- *         required: true
- *         schema:
- *           type: string
- *         description: The password of the user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Login successful.
@@ -159,7 +157,7 @@ const connectToMongoDB = async () => {
 
 /**
  * @swagger
- * /users/my_property:
+ * /users/my_properties:
  *   get:
  *     summary: Get user's properties
  *     description: Retrieves a list of properties associated with the user.
@@ -174,19 +172,17 @@ const connectToMongoDB = async () => {
 
 /**
  * @swagger
- * /users/addPropertyToWishlist:
+ * /users/add_to_wishlist:
  *   post:
  *     summary: Add a property to the user's wishlist
  *     description: Adds a specified property to the user's wishlist.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               propertyId:
- *                 type: string
+ *     parameters:
+ *       - in: query
+ *         name: propertyId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the property to add to the wishlist.
  *     responses:
  *       200:
  *         description: Property added to wishlist successfully.
@@ -198,19 +194,17 @@ const connectToMongoDB = async () => {
 
 /**
  * @swagger
- * /users/removePropertyFromWishlist:
+ * /users/remove_from_wishlist:
  *   delete:
  *     summary: Remove a property from the user's wishlist
  *     description: Removes a specified property from the user's wishlist.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               propertyId:
- *                 type: string
+ *     parameters:
+ *       - in: query
+ *         name: propertyId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the property to add to the wishlist.
  *     responses:
  *       200:
  *         description: Property removed from wishlist successfully.
@@ -241,7 +235,7 @@ app.use("/users", userRoutes);
 */
 /**
  * @swagger
- * /search:
+ * /properties/search:
  *   get:
  *     summary: Searches for properties based on type and locality
  *     description: Retrieves properties matching the specified type and locality.
@@ -269,10 +263,12 @@ app.use("/users", userRoutes);
 
 /**
  * @swagger
- * /rent_prop:
+ * /properties/rent:
  *   post:
  *     summary: Posts a new property for rent
  *     description: Allows users to post a new property available for rent.
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -288,30 +284,65 @@ app.use("/users", userRoutes);
  *                 type: string
  *               address:
  *                 type: object
+ *                 properties:
+ *                   street_name:
+ *                     type: string
+ *                   city:
+ *                     type: string
+ *                   Landmark:
+ *                     type: string
+ *                   pincode:
+ *                     type: number
  *               furnished:
- *                 type: boolean
+ *                 type: object
+ *                 properties:
+ *                   full:
+ *                     type: boolean
+ *                   semi:
+ *                     type: boolean
+ *                   none:
+ *                     type: boolean
  *               pref_tenants:
- *                 type: string
+ *                 type: object
+ *                 properties:
+ *                   family:
+ *                     type: boolean
+ *                   Company:
+ *                     type: boolean
+ *                   B_male:
+ *                     type: boolean
+ *                   B_female:
+ *                     type: boolean
  *               images:
  *                 type: array
  *                 items:
- *                   type: string
+ *                   type: object
+ *                   properties:
+ *                     url:
+ *                       type: string
  *               availability_date:
  *                 type: string
- *               format: date
+ *                 format: date
  *     responses:
  *       201:
  *         description: Property posted for rent successfully.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
  * @swagger
- * /sell_prop:
+ * /properties/sell:
  *   post:
  *     summary: Posts a new property for sale
  *     description: Allows users to post a new property available for sale.
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -327,15 +358,27 @@ app.use("/users", userRoutes);
  *                 type: string
  *               address:
  *                 type: object
+ *                 properties:
+ *                   street_name:
+ *                     type: string
+ *                   city:
+ *                     type: string
+ *                   Landmark:
+ *                     type: string
+ *                   pincode:
+ *                     type: number
  *               furnished:
  *                 type: boolean
  *               images:
  *                 type: array
  *                 items:
- *                   type: string
+ *                   type: object
+ *                   properties:
+ *                     url:
+ *                       type: string
  *               availability_date:
  *                 type: string
- *               format: date
+ *                 format: date
  *               deposit:
  *                 type: number
  *               property_type:
@@ -345,15 +388,20 @@ app.use("/users", userRoutes);
  *                 items:
  *                   type: string
  *     responses:
- *       201:
+ *       '201':
  *         description: Property posted for sale successfully.
- *       500:
+ *       '500':
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
  * @swagger
- * /modify_prop:
+ * /properties/modify_property:
  *   put:
  *     summary: Modifies an existing property
  *     description: Allows users to modify details of an existing property they own.
@@ -381,7 +429,7 @@ app.use("/users", userRoutes);
 
 /**
  * @swagger
- * /remove_my_prop:
+ * /properties/remove_property:
  *   delete:
  *     summary: Removes an existing property
  *     description: Allows users to remove an existing property they own.
@@ -403,7 +451,7 @@ app.use("/users", userRoutes);
 
 /**
  * @swagger
- * /get_details:
+ * /properties/get_owner_details:
  *   get:
  *     summary: Retrieves owner details for a property
  *     description: Fetches details of the owner for a specified property.
@@ -429,7 +477,7 @@ app.use("/properties", propertyRoutes);
 */
 /**
  * @swagger
- * /property/approval:
+ * /admin/admin_approval:
  *   put:
  *     summary: Approves a property
  *     description: Marks a property as approved. This action can only be performed by an admin.
@@ -451,7 +499,7 @@ app.use("/properties", propertyRoutes);
 
 /**
  * @swagger
- * /property/rejected:
+ * /admin/admin_rejection:
  *   delete:
  *     summary: Rejects and removes a property
  *     description: Removes a property from the database. This action can only be performed by an admin.
@@ -493,8 +541,23 @@ const swaggerDefinition = {
   },
   servers: [{
     url: "http://localhost:5200/"
-  }]
+  }],
+  components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "Bearer",
+        bearerFormat: "JWT", // Optional, but good to specify if using JWTs
+      },
+    },
+  },
+  security: [
+    {
+      BearerAuth: [],
+    },
+  ],
 };
+
 
 // Options for the swagger docs
 const options = {

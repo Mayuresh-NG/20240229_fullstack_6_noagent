@@ -5,7 +5,7 @@ const { verifyToken, isAdmin } = require('../middlewares/auth');
 
 // protected routes
 router.use(verifyToken,isAdmin)
-router.patch('/admin_approval',adminController.approval)
+router.put('/admin_approval',adminController.approval)
 router.delete('/admin_rejection',adminController.rejected)
 
 module.exports = router;

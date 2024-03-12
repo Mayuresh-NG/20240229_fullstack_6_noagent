@@ -11,8 +11,8 @@ const verifyToken = (req, res, next) => {
       message: 'Unauthorized: No token provided',
     });
   }
-
-  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+  const extractedToken = token.replace("Bearer ","")
+  jwt.verify(extractedToken, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
       console.error(err);
       // Handle unauthorized error
