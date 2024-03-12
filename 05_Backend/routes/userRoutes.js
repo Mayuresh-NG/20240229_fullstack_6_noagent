@@ -17,7 +17,7 @@ router.post('/reset_password',UserController.reset_password)
 router.use(verifyToken);
 router.get('/my_properties', UserController.my_property);
 router.post('/add_to_wishlist',UserController.addPropertyToWishlist)
-router.post('/remove_from_wishlist',UserController.removePropertyFromWishlist)
+router.delete('/remove_from_wishlist',UserController.removePropertyFromWishlist)
 router.get('/get_my_profile',UserController.get_my_profile)
 
 
