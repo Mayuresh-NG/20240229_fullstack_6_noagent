@@ -39,7 +39,7 @@ const connectToMongoDB = async () => {
 */
 
 /*
-? swagger comments for user APIs
+Routes
 */
 /**
  * @swagger
@@ -74,6 +74,11 @@ const connectToMongoDB = async () => {
  *         description: Validation error or user already exists.
  *       500:
  *         description: Internal server error.
+ *      securityDefinitions:
+ *        BearerAuth:
+ *          type: apiKey
+ *          in: header
+ *          name: Authorization
  */
 
 /**
@@ -102,6 +107,11 @@ const connectToMongoDB = async () => {
  *         description: User not found.
  *       500:
  *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -124,6 +134,11 @@ const connectToMongoDB = async () => {
  *         description: Check mail and reset password.
  *       400:
  *         description: Error occurred.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -153,6 +168,11 @@ const connectToMongoDB = async () => {
  *         description: Password reset successfully.
  *       400:
  *         description: Error occurred or link expired.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -168,6 +188,11 @@ const connectToMongoDB = async () => {
  *         description: No properties found.
  *       500:
  *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization 
  */
 
 /**
@@ -190,6 +215,11 @@ const connectToMongoDB = async () => {
  *         description: Error occurred or property already in wishlist.
  *       500:
  *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -212,6 +242,11 @@ const connectToMongoDB = async () => {
  *         description: Error occurred or property not in wishlist.
  *       500:
  *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -227,6 +262,11 @@ const connectToMongoDB = async () => {
  *         description: User not found.
  *       500:
  *         description: Internal server error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 app.use("/users", userRoutes);
 
@@ -259,6 +299,11 @@ app.use("/users", userRoutes);
  *         description: No properties found in the specified area.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -335,6 +380,7 @@ app.use("/users", userRoutes);
  *         name: Authorization
  */
 
+
 /**
  * @swagger
  * /properties/sell:
@@ -399,6 +445,7 @@ app.use("/users", userRoutes);
  *         name: Authorization
  */
 
+
 /**
  * @swagger
  * /properties/modify_property:
@@ -425,6 +472,11 @@ app.use("/users", userRoutes);
  *         description: You don't have permission to modify this property.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -447,6 +499,11 @@ app.use("/users", userRoutes);
  *         description: You don't have permission to remove this property.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -469,6 +526,11 @@ app.use("/users", userRoutes);
  *         description: Property or owner not found.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 app.use("/properties", propertyRoutes);
 
@@ -495,6 +557,11 @@ app.use("/properties", propertyRoutes);
  *         description: Property not found.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
@@ -515,6 +582,11 @@ app.use("/properties", propertyRoutes);
  *         description: Property removed successfully.
  *       500:
  *         description: Internal Server Error.
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 app.use("/admin", adminRoutes);
@@ -570,7 +642,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 // Serve swagger docs the way you like (Recommendation: swagger-ui-express)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)) 
 
 
 
