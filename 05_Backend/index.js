@@ -43,7 +43,7 @@ const connectToMongoDB = async () => {
 */
 /**
  * @swagger
- * /signup:
+ * /users/signup:
  *   post:
  *     summary: Register a new user
  *     description: Registers a new user with the provided details.
@@ -56,12 +56,17 @@ const connectToMongoDB = async () => {
  *             properties:
  *               username:
  *                 type: string
+ *               full_name:
+ *                  type: string
+ *               email:
+ *                  type: string
+ *               phone_number:
+ *                  type: number
  *               password:
  *                 type: string
- *               email:
+ *               user_type:
  *                 type: string
- *               phone_number:
- *                 type: string
+ *                
  *     responses:
  *       201:
  *         description: User signed up successfully.
@@ -73,21 +78,23 @@ const connectToMongoDB = async () => {
 
 /**
  * @swagger
- * /login:
+ * /users/login:
  *   post:
  *     summary: User login
  *     description: Authenticates a user and returns a JWT token.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
+ *     parameters:
+ *       - in: query
+ *         name: username
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The username of the user.
+ *       - in: query
+ *         name: password
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The password of the user.
  *     responses:
  *       200:
  *         description: Login successful.
@@ -477,15 +484,15 @@ const startServer = async () => {
 /*
 *creating swagger ui
 *@author Atharva
-*/ 
+*/
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-      title: 'Express API for JSONPlaceholder',
-      version: '1.0.0',
+    title: 'Express API for JSONPlaceholder',
+    version: '1.0.0',
   },
   servers: [{
-      url: "http://localhost:5200/"
+    url: "http://localhost:5200/"
   }]
 };
 
