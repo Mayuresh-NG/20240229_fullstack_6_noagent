@@ -11,6 +11,7 @@ import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RouterLink } from '@angular/router';
 import { SellRentPageComponent } from '../sell-rent-page/sell-rent-page.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 // Inject MatDialog in your component's constructor
 @Component({
@@ -23,7 +24,8 @@ import { SellRentPageComponent } from '../sell-rent-page/sell-rent-page.componen
     FormsModule,
     SignupPopupComponent,
     RouterLink,
-    SellRentPageComponent
+    SellRentPageComponent,
+    ProfileComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
