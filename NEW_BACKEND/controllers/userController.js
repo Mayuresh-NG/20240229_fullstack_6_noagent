@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 const nodemailer = require("nodemailer");
-const randomstring = require("randomstring");
+const randomstring = require("randomString");
 
 // internal imports
 const SECRET_KEY = process.env.SECRET_KEY;
