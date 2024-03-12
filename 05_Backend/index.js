@@ -74,11 +74,11 @@ Routes
  *         description: Validation error or user already exists.
  *       500:
  *         description: Internal server error.
- *      securityDefinitions:
- *        BearerAuth:
- *          type: apiKey
- *          in: header
- *          name: Authorization
+ *     securityDefinitions:
+ *       BearerAuth:
+ *         type: apiKey
+ *         in: header
+ *         name: Authorization
  */
 
 /**
