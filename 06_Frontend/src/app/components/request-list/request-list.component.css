@@ -7,8 +7,7 @@ body {
     min-height: 100vh;
   }
   
-  header,
-  footer {
+  header{
     color: #fff;
     text-align: center;
     display: flex;
@@ -49,7 +48,7 @@ body {
     padding: 30px;
     padding-left: 80px;
     padding-right: 80px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .main-box {
@@ -120,6 +119,12 @@ body {
     display: block; /* Display the dropdown content when the dropdown is open */
   }
 
+  footer {
+    height: 20px;
+    background-color: #a9dfff;
+    margin-top: auto; /* Push the footer to the bottom of the container */
+  }
+
   .dropdown-content button {
     display: block;
     width: 100%;
@@ -153,5 +158,10 @@ body {
     text-align: center;
     padding: 8px;
     border: 3px solid #dddddd;
+  }
+  
+  .dropdown-content button.active {
+    background-color: #4f80e1;
+    color: white;
   }
   

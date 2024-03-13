@@ -1,4 +1,4 @@
-<body>
+
   <app-profile></app-profile>
   <div class="container">
     <div class="headings">
@@ -13,9 +13,9 @@
         <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
           <!-- <button>Rent</button>
           <button>Sell</button> -->
-          <button (click)="selectTradeType('All')">All</button>
-          <button (click)="selectTradeType('Rent')">Rent</button>
-          <button (click)="selectTradeType('Sell')">Sell</button>
+          <button [class.active]="selectedTradeType === 'All'" (click)="selectTradeType('All')">All</button>
+          <button [class.active]="selectedTradeType === 'Rent'" (click)="selectTradeType('Rent')">Rent</button>
+          <button [class.active]="selectedTradeType === 'Sell'" (click)="selectTradeType('Sell')">Sell</button>
         </div>
       </div>
     </div>
@@ -65,8 +65,8 @@
     </table>
   </div>
 
-  <footer style="height: 20px; background-color: #a9dfff"></footer>
-</body>
+  <!-- <footer style="height: 20px ; bottom:0px ; background-color: #a9dfff; margin-top: auto"></footer> -->
+
 
 <!-- <body>
   <app-profile></app-profile>
