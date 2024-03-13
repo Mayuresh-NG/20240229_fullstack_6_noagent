@@ -43,7 +43,7 @@ const sendResetPasswordMail = async (name, email, token) => {
       html: `
         <p>Hi ${name},</p>
         <p>Please click the link below to reset your password:</p>
-        <a href="http://localhost:5200/users/reset_password?token=${token}">Reset password</a>
+        <a href=http://localhost:4200/resetpassword?token=${token}">Reset password</a>
       `
     };
 
