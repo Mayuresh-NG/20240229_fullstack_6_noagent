@@ -14,7 +14,7 @@
       Rent your Property
     </h2>
   </div>
-  <button class="shadow-button">Save and Post</button>
+  <button class="shadow-button" (click)="saveAndPost()">Save and Post</button>
 
   <main class="mainBody">
     <!-- LEFT SIDE -->
@@ -37,8 +37,10 @@
           (focus)="bhkTypeInputFocused = true"
         >
           <option value="" disabled selected>BHK Type</option>
-          <option value="type1">Type 1</option>
-          <option value="type2">Type 2</option>
+          <option value="type1">1BHK</option>
+          <option value="type2">2BHK</option>
+          <option value="type3">3BHK</option>
+          <option value="type4">4BHK</option>
         </select>
         <div
           *ngIf="
@@ -104,8 +106,10 @@
           (focus)="stateInputFocused = true"
         >
           <option value="" disabled selected>Select State</option>
-          <option value="state1">State 1</option>
-          <option value="state2">State 2</option>
+          <option value="state1">Hyderabad</option>
+          <option value="state2">Banglore</option>
+          <option value="state3">Maharashtra</option>
+          <option value="state4">Delhi</option>
         </select>
         <div
           *ngIf="
@@ -250,7 +254,7 @@
       </div>
 
       <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="rentPrice" name="rentPrice"
-                #rentPriceInput="ngModel" required pattern="[0-9]"
+                #rentPriceInput="ngModel" required pattern="[0-9]+"
                 (blur)="rentPriceInputFocused = false" (focus)="rentPriceInputFocused = true"
                 placeholder="Rent Price" />
         <div *ngIf="!rentPriceInputFocused && rentPriceInput.invalid && (rentPriceInput.dirty || rentPriceInput.touched)"

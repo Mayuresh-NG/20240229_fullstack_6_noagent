@@ -73,15 +73,17 @@ const rent_prop =(verifyToken,async (req, res) => {
       pref_tenants,
       images,
       availability_date,
+      deposit,
+      built_Up_area,
     } = req.body;
 
-    const cloudinaryImageUrls = await Promise.all(
-      images.map(async (imageData) => {
-        return await cloudinaryUtils.uploadToCloudinary(
-          `./assets/property-images/${imageData.url}`
-        );
-      })
-    );
+    // const cloudinaryImageUrls = await Promise.all(
+    //   images.map(async (imageData) => {
+    //     return await cloudinaryUtils.uploadToCloudinary(
+    //       `./assets/property-images/${imageData.url}`
+    //     );
+    //   })
+    // );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -94,8 +96,10 @@ const rent_prop =(verifyToken,async (req, res) => {
       Address: address,
       Furnished: furnished,
       preferred_tenents: pref_tenants,
-      images: cloudinaryImageUrls,
+      // images: cloudinaryImageUrls,
       availability_date,
+      deposit,
+      built_Up_area,
       posted_on: new Date(),
     });
 
@@ -137,15 +141,16 @@ const sell_prop =(verifyToken,async (req, res) => {
       deposit,
       property_type,
       amenities,
+      built_Up_area,
     } = req.body;
 
-    const cloudinaryImageUrls = await Promise.all(
-      images.map(async (imageData) => {
-        return await cloudinaryUtils.uploadToCloudinary(
-          `./assets/property-images/${imageData.url}`
-        );
-      })
-    );
+    // const cloudinaryImageUrls = await Promise.all(
+    //   images.map(async (imageData) => {
+    //     return await cloudinaryUtils.uploadToCloudinary(
+    //       `./assets/property-images/${imageData.url}`
+    //     );
+    //   })
+    // );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -157,11 +162,12 @@ const sell_prop =(verifyToken,async (req, res) => {
       state,
       Address: address,
       Furnished: furnished,
-      images: cloudinaryImageUrls,
+      // images: cloudinaryImageUrls,
       availability_date,
       property_type,
       deposit,
       amenities,
+      built_Up_area,
       posted_on: new Date(),
     });
 
