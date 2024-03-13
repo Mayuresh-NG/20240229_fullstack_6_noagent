@@ -1,55 +1,111 @@
-<!-- <body> -->
-<app-profile></app-profile>
-
-  <div class="container">
-    <div class="headings">
-      <h3
-        style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto"
-      >
-        Properties
-      </h3>
-      <div class="dropdown-container" (click)="toggleDropdown()">
-        <button class="dropdown-button">
-          Trade Type
-          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
-        </button>
-        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
-          <!-- <button>Rent</button>
-          <button>Sell</button> -->
-          <button (click)="selectTradeType('All')">All</button>
-          <button (click)="selectTradeType('Rent')">Rent</button>
-          <button (click)="selectTradeType('Sell')">Sell</button>
+<body>
+  <app-profile></app-profile>
+    <div class="container">
+      <div class="headings">
+        <div style="font-size: xx-large; font-weight: 550">Your Properties</div>
+      </div>
+      <div class="main-box">
+        <div class="column-1">
+          <div class="row">
+            <div class="element">
+              <div class="section1">
+                <div class="text-rows">
+                  <div style="margin-bottom: -53px">Text Row 1</div>
+                  <div style="margin-bottom: -53px">Text Row 2</div>
+                  <div style="margin-bottom: -24px">Text Row 3</div>
+                </div>
+                <div class="get-details-button">
+                  <button class="modify">Modify</button>
+                  <button class="delete">Delete</button>
+                </div>
+              </div>
+              <div class="section2">
+                <div class="photo"></div>
+                <div class="like-container">
+                  <span class="heart-symbol"
+                    ><i class="fa-regular fa-heart"></i
+                  ></span>
+                  <span class="like-count">100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="element">
+              <div class="section1">
+                <div class="text-rows">
+                  <div style="margin-bottom: -53px">Text Row 1</div>
+                  <div style="margin-bottom: -53px">Text Row 2</div>
+                  <div style="margin-bottom: -24px">Text Row 3</div>
+                </div>
+                <div class="get-details-button">
+                  <button class="modify">Modify</button>
+                  <button class="delete">Delete</button>
+                </div>
+              </div>
+              <div class="section2">
+                <div class="photo"></div>
+                <div class="like-container">
+                  <span class="heart-symbol"
+                    ><i class="fa-regular fa-heart"></i
+                  ></span>
+                  <span class="like-count">100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column-2">
+          <div class="row">
+            <div class="element">
+              <div class="section1">
+                <div class="text-rows">
+                  <div style="margin-bottom: -53px">Text Row 1</div>
+                  <div style="margin-bottom: -53px">Text Row 2</div>
+                  <div style="margin-bottom: -24px">Text Row 3</div>
+                </div>
+                <div class="get-details-button">
+                  <button class="modify">Modify</button>
+                  <button class="delete">Delete</button>
+                </div>
+              </div>
+              <div class="section2">
+                <div class="photo"></div>
+                <div class="like-container">
+                  <span class="heart-symbol"
+                    ><i class="fa-regular fa-heart"></i
+                  ></span>
+                  <span class="like-count">100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="element">
+              <div class="section1">
+                <div class="text-rows">
+                  <div style="margin-bottom: -53px">Text Row 1</div>
+                  <div style="margin-bottom: -53px">Text Row 2</div>
+                  <div style="margin-bottom: -24px">Text Row 3</div>
+                </div>
+                <div class="get-details-button">
+                  <button class="modify">Modify</button>
+                  <button class="delete">Delete</button>
+                </div>
+              </div>
+              <div class="section2">
+                <div class="photo"></div>
+                <div class="like-container">
+                  <span class="heart-symbol"
+                    ><i class="fa-regular fa-heart"></i
+                  ></span>
+                  <span class="like-count">100</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-  <div>
-    <table>
-      <tr class="hed">
-        <td class="item">Address</td>
-        <td>Price</td>
-        <td>Owner Name</td>
-        <td>Property Type</td>
-      </tr>
-      <tr *ngFor="let property of properties; let i = index">
-        <td>
-          <a routerLink="../singledetail">
-            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
-            {{ property.Address.city }} {{ property.Address.pincode }}
-          </a>
-        </td>
-        <td>
-          {{ property.rent_price || property.prop_price }}
-        </td>
-        <td>
-          <div>{{ property.owner_user_name }}</div>
-        </td>
-        <td>
-          <div>{{property.property_type || 'NA'}}</div>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- <footer style="height: 20px; background-color: #a9dfff"></footer> -->
-<!-- </body> -->
+    <footer style="height: 20px; background-color: #a9dfff"></footer>
+  </body>

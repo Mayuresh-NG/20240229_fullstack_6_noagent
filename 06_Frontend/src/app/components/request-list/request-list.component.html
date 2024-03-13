@@ -1,55 +1,24 @@
-<app-profile></app-profile>
-<div class="container">
-  <div class="headings">
-    <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
-      Requests
-    </h3>
-    <div class="dropdown-container" (click)="toggleDropdown()">
-      <button class="dropdown-button">
-        Trade Type
-        <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px"
-          [class.rotate]="dropdownOpen"></i>
-      </button>
-      <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
-        <!-- <button>Rent</button>
+<body>
+  <app-profile></app-profile>
+  <div class="container">
+    <div class="headings">
+      <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
+        Requests
+      </h3>
+      <div class="dropdown-container" (click)="toggleDropdown()">
+        <button class="dropdown-button">
+          Trade Type
+          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
+        </button>
+        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
+          <!-- <button>Rent</button>
           <button>Sell</button> -->
-        <button [class.active]="selectedTradeType === 'All'" (click)="selectTradeType('All')">All</button>
-        <button [class.active]="selectedTradeType === 'Rent'" (click)="selectTradeType('Rent')">Rent</button>
-        <button [class.active]="selectedTradeType === 'Sell'" (click)="selectTradeType('Sell')">Sell</button>
+          <button (click)="selectTradeType('All')">All</button>
+          <button (click)="selectTradeType('Rent')">Rent</button>
+          <button (click)="selectTradeType('Sell')">Sell</button>
+        </div>
       </div>
     </div>
-<<<<<<< HEAD
-  </div>
-
-  <table>
-    <tr class="hed">
-      <td class="item">Address</td>
-      <td> Price</td>
-      <td>Owner Name</td>
-      <td>Property Type</td>
-    </tr>
-    <tr *ngFor="let property of filteredProperties; let i = index">
-      <td>
-        <a routerLink="../singledetail">
-          {{ property.Address.street_name }}, {{ property.Address.Landmark }},
-          {{ property.Address.city }} {{ property.Address.pincode }}
-        </a>
-      </td>
-      <td>
-        {{ property.rent_price || property.prop_price }}
-      </td>
-      <td>
-        <div>{{ property.owner_user_name }}</div>
-
-      </td>
-      <td>
-        <div>{{ property.property_type}}</div>
-
-      </td>
-    </tr>
-  </table>
-</div>
-=======
 
     <table>
       <tr class="hed">
@@ -79,6 +48,3 @@
   </div>
 
 </body>
-
-
->>>>>>> 32087417691beeec390e3cb378cd3586835d3b77
