@@ -116,6 +116,10 @@ header .admin {
   border: 1px solid #ccc; /* Border color */
 }
 
+.dropdown-content.show {
+  display: block; /* Display the dropdown content when the dropdown is open */
+}
+
 .dropdown-content button {
   display: block;
   width: 100%;

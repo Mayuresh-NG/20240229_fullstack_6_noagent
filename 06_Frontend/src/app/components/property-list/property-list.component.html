@@ -8,17 +8,17 @@
       >
         Properties
       </h3>
-      <div class="dropdown-container" onclick="toggleDropdown()">
+      <div class="dropdown-container" (click)="toggleDropdown()">
         <button class="dropdown-button">
-          Property Type
-          <i
-            class="fa-solid fa-sort-down"
-            style="margin-left: 12px; padding-bottom: 2px"
-          ></i>
+          Trade Type
+          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
         </button>
-        <div id="dropdownContent" class="dropdown-content">
-          <button onclick="selectPropertyType('Rent')">Rent</button>
-          <button onclick="selectPropertyType('Sell')">Sell</button>
+        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
+          <!-- <button>Rent</button>
+          <button>Sell</button> -->
+          <button (click)="selectTradeType('All')">All</button>
+          <button (click)="selectTradeType('Rent')">Rent</button>
+          <button (click)="selectTradeType('Sell')">Sell</button>
         </div>
       </div>
     </div>
