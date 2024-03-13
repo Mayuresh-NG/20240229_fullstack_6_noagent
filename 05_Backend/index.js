@@ -3,6 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cors = require("cors")
+
+
 
 //imports for swagger ui
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -14,6 +17,8 @@ dotenv.config();
 
 // Create an Express app
 const app = express();
+
+app.use(cors())
 
 // Parse JSON requests
 app.use(bodyParser.json());
