@@ -6,16 +6,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HomePageComponent } from '../home-page/home-page.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup-popup',
   standalone: true,
-  imports: [FormsModule, CommonModule, HomePageComponent, LoginPopupComponent],
+  imports: [FormsModule, CommonModule, HomePageComponent, LoginPopupComponent,HttpClientModule],
   templateUrl: './signup-popup.component.html',
   styleUrl: './signup-popup.component.css',
 })
 export class SignupPopupComponent {
   constructor(
+    private http: HttpClient,
     // Dialog reference for popup
     public dialogRef: MatDialogRef<SignupPopupComponent>,
     // Injecting data into the dialog
@@ -43,6 +45,8 @@ export class SignupPopupComponent {
   }
 
   // Initializing variables and form controls for user inputs
+  username: string = '';
+  usernameInputFocused: boolean = false;
   fullName: string = '';
   fullNameFormControl = new FormControl('', [
     Validators.required,
@@ -56,4 +60,24 @@ export class SignupPopupComponent {
   email: string = '';
   phoneNumber: string = '';
   password: string = '';
+
+
+  onContinueClick(): void {
+
+    this.http.post('http://localhost:5200/users/signup', { username:this.username,full_name: this.fullName, email: this.email,phone_number:this.phoneNumber, password:this.password })
+    .subscribe(
+      (response) => {
+        // Handle the response from the backend
+        console.log('Response:', response);
+        this.showLoginPopup();
+      },
+      (error) => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+      }
+    );
+  }
+
+
+
 }

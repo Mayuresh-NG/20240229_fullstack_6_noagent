@@ -24,4 +24,9 @@ export class ForgotPasswordComponent {
   
   // String variable to store the user's email
   email: string = '';
+
+  //when button it clicked 
+  showSpinner():void{
+    
+  }
 }

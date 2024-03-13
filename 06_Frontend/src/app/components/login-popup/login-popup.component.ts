@@ -6,16 +6,20 @@ import { CommonModule } from '@angular/common';
 import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login-popup',
   standalone: true,
-  imports: [FormsModule, CommonModule, SignupPopupComponent], 
+  imports: [FormsModule, CommonModule, SignupPopupComponent, HttpClientModule], 
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.css'],
 })
 export class LoginPopupComponent {
+
   constructor(
+    private http: HttpClient,
     public dialogRef: MatDialogRef<LoginPopupComponent>, // Inject MatDialogRef for dialog functionality
     @Inject(MAT_DIALOG_DATA) public data: any, // Inject MAT_DIALOG_DATA for passing data to the dialog
     public dialog: MatDialog,
@@ -51,8 +55,23 @@ export class LoginPopupComponent {
   passwordInputFocused: boolean = false; // Track if password input is focused
   password: string = ''; // Initialize password variable
 
+  @Output() loginStateChange = new EventEmitter<boolean>();
+
   onContinueClick(): void {
-    console.log('Username:', this.username); // Log username when "Continue" button is clicked
-    console.log('Password:', this.password); // Log password when "Continue" button is clicked
+    this.http.post('http://localhost:5200/users/login', { 
+      username: this.username, 
+      password: this.password 
+    })
+    .subscribe(
+      (response) => {
+        console.log('Response:', response);
+        this.loginStateChange.emit(true); // Emit true on success
+        this.closePopup(); // Close the popup on successful login
+      },
+      (error) => {
+        console.error('Error:', error);
+        this.loginStateChange.emit(false); // Emit false on error
+      }
+    );
   }
 }

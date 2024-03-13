@@ -27,6 +27,19 @@
       <!-- Text prompting user to enter details -->
       <p class="enter-phone-text">Enter details to sign up</p>
 
+      <div class="input-container">
+        <input type="text" placeholder="Username" [(ngModel)]="username" name="username"
+               #usernameInput="ngModel" minlength="3" maxlength="20" required
+               (blur)="usernameInputFocused = false" (focus)="usernameInputFocused = true" />
+        <!-- Error messages for Username -->
+        <div *ngIf="!usernameInputFocused && usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)"
+             class="error-message">
+          <div *ngIf="usernameInput.errors?.['required']">Username is required</div>
+          <div *ngIf="usernameInput.errors?.['minlength']">Username must be at least 3 characters</div>
+          <div *ngIf="usernameInput.errors?.['maxlength']">Username cannot exceed 20 characters</div>
+        </div>
+      </div>
+
       <!-- Full Name input field -->
       <div class="input-container">
         <input type="text" placeholder="Full Name" [(ngModel)]="fullName" name="fullName"
@@ -81,7 +94,7 @@
       </div>
 
       <!-- Continue button -->
-      <button class="continue-button" [disabled]="!fullNameInput.valid || !emailInput.valid || !phoneNumberInput.valid || !passwordInput.valid" [ngClass]="{'disabled-button': !fullNameInput.valid || !emailInput.valid || !phoneNumberInput.valid || !passwordInput.valid}">Continue</button>
+      <button class="continue-button" [disabled]="!fullNameInput.valid || !emailInput.valid || !phoneNumberInput.valid || !passwordInput.valid" [ngClass]="{'disabled-button': !fullNameInput.valid || !emailInput.valid || !phoneNumberInput.valid || !passwordInput.valid}" (click)="onContinueClick()">Continue</button>
 
       <!-- Already a user section with login button -->
       <div class="already-user">
