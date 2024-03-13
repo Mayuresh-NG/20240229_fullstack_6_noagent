@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Property } from '../interface/request';
+import { Property } from './interface/request';
 import { Observable } from 'rxjs';
 
 
