@@ -132,6 +132,24 @@ a {
   color: inherit;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hed {
+  background-color: #709db7;
+}
+
+.item {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  padding: 8px;
+  border: 3px solid #dddddd;
+}
 
 
 
