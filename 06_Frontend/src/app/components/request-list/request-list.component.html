@@ -7,14 +7,15 @@
       </h3>
       <div class="dropdown-container" (click)="toggleDropdown()">
         <button class="dropdown-button">
-          Property Type
+          Trade Type
           <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
         </button>
         <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
-          <button>Rent</button>
-          <button>Sell</button>
-          <!-- <button (click)="selectPropertyType('Rent')">Rent</button>
-          <button (click)="selectPropertyType('Sell')">Sell</button> -->
+          <!-- <button>Rent</button>
+          <button>Sell</button> -->
+          <button (click)="selectTradeType('All')">All</button>
+          <button (click)="selectTradeType('Rent')">Rent</button>
+          <button (click)="selectTradeType('Sell')">Sell</button>
         </div>
       </div>
     </div>
@@ -40,6 +41,7 @@
         <td class="item">Address</td>
         <td> Price</td>
         <td>Owner Name</td>
+        <td>Property Type</td>
       </tr>
       <tr *ngFor="let property of filteredProperties; let i = index">
         <td >
@@ -53,7 +55,11 @@
         </td>
         <td >
           <div>{{ property.owner_user_name }}</div>
-          <div>{{ property.posted_on }}</div>
+          <!-- <div>{{ property.posted_on }}</div> -->
+        </td>
+        <td >
+          <div>{{ property.property_type}}</div>
+          <!-- <div>{{ property.posted_on }}</div> -->
         </td>
       </tr>
     </table>
