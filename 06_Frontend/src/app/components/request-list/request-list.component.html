@@ -2,18 +2,13 @@
   <app-profile></app-profile>
   <div class="container">
     <div class="headings">
-      <h3
-        style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto"
-      >
+      <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
         Requests
       </h3>
       <div class="dropdown-container" onclick="toggleDropdown()">
         <button class="dropdown-button">
           Property Type
-          <i
-            class="fa-solid fa-sort-down"
-            style="margin-left: 12px; padding-bottom: 2px"
-          ></i>
+          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px"></i>
         </button>
         <div id="dropdownContent" class="dropdown-content">
           <button onclick="selectPropertyType('Rent')">Rent</button>
@@ -23,45 +18,18 @@
     </div>
     <div class="main-box">
       <div class="column">
-        <a routerLink="../singledetail" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-      </div>
-      <div class="column">
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-      </div>
-      <div class="column">
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
+        <div class="row" *ngFor="let property of filteredProperties; let i = index">
+          <a routerLink="../singledetail" class="rectangle clickable-address">
+            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
+            {{ property.Address.city }} {{ property.Address.pincode }}
+          </a>
+          <div class="rectangle" style="justify-content: center">
+            {{ property.rent_price || property.prop_price }}
+          </div>
+          <div class="rectangle owner-phone-container">
+            <div>{{ property.owner_user_name }}</div>
+            <div>{{ property.posted_on }}</div>
+          </div>
         </div>
       </div>
     </div>
