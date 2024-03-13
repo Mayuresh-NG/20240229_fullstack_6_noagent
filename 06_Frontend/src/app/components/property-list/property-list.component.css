@@ -116,6 +116,10 @@ header .admin {
   border: 1px solid #ccc; /* Border color */
 }
 
+.dropdown-content.show {
+  display: block; /* Display the dropdown content when the dropdown is open */
+}
+
 .dropdown-content button {
   display: block;
   width: 100%;
@@ -132,6 +136,24 @@ a {
   color: inherit;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hed {
+  background-color: #709db7;
+}
+
+.item {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  padding: 8px;
+  border: 3px solid #dddddd;
+}
 
 
 

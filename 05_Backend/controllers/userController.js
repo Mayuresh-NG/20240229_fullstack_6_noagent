@@ -19,49 +19,7 @@ const { verifyToken } = require("../middlewares/auth");
 
 
 
-// Function for sending a reset password email
-const sendResetPasswordMail = async (name, email, token) => {
-  try {
-    // Creating a transporter for sending emails using Gmail SMTP
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: config.emailUser,  // Your Gmail username
-        pass: config.emailPassword,  // Your Gmail password
-      },
-    });
 
-    // Mail options for the reset password email
-    const mailOptions = {
-      from: config.emailUser,  // Sender's email address
-      to: email,  // Recipient's email address
-      subject: "For reset password",  // Email subject
-      // Email body in HTML format
-      html: `
-        <p>Hi ${name},</p>
-        <p>Please click the link below to reset your password:</p>
-        <a href=http://localhost:4200/resetpassword?token=${token}">Reset password</a>
-      `
-    };
-
-    // Sending the email
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        // Log an error if sending the email fails
-        console.log(error);
-      } else {
-        // Log a success message if the email is sent successfully
-        console.log("Mail Has been sent:-", info.response);
-      }
-    });
-  } catch (error) {
-    // Handling errors and sending an error response if an exception occurs
-    res.status(400).send({ success: false, msg: error.message });
-  }
-};
 
 
 const signup = async (req, res) => {
@@ -331,6 +289,8 @@ const forget_password = async (req, res) => {
         { $set: { token: randomString } }
       );
 
+    
+
       // Sending the reset password email
       sendResetPasswordMail(userData.username, userData.email, randomString);
 
@@ -346,18 +306,64 @@ const forget_password = async (req, res) => {
   }
 };
 
-// Function to reset the user's password based on the provided token
+// Function for sending a reset password email
+const sendResetPasswordMail = async (name, email, token) => {
+  try {
+    // Creating a transporter for sending emails using Gmail SMTP
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: config.emailUser,  // Your Gmail username
+        pass: config.emailPassword,  // Your Gmail password
+      },
+    });
+
+    // Mail options for the reset password email
+    const mailOptions = {
+      from: config.emailUser,  // Sender's email address
+      to: email,  // Recipient's email address
+      subject: "For reset password",  // Email subject
+      // Email body in HTML format
+      html: `
+        <p>Hi ${name},</p>
+        <p>Please click the link below to reset your password:</p>
+        <a href=http://localhost:4200/resetpassword?token=${token}>Reset password</a>
+      `
+    };
+
+    // Sending the email
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        // Log an error if sending the email fails
+        console.log(error);
+      } else {
+        // Log a success message if the email is sent successfully
+        console.log("Mail Has been sent:-", info.response);
+      }
+    });
+  } catch (error) {
+    // Handling errors and sending an error response if an exception occurs
+    res.status(400).send({ success: false, msg: error.message });
+  }
+};
+
 const reset_password = async (req, res) => {
   try {
     // Extracting the token from the query parameters
     const token = req.query.token;
+    console.log(token);
+    
     
     // Finding user data based on the provided token
     const tokenData = await User.findOne({ token: token });
+    console.log(tokenData);
 
-    // If token data is found
-    if (tokenData) {
-      // Extracting the new password from the request body
+    // If token data is found and it's not expired
+    if (tokenData && !isTokenExpired(tokenData.tokenTimestamp)) {
+      // Extracting the new password from the request body  
       const password = req.body.password;
       
       // Hashing the new password using bcrypt
@@ -377,14 +383,22 @@ const reset_password = async (req, res) => {
         data: userdata,
       });
     } else {
-      // Sending a success response if the link has expired
-      res.status(200).send({ success: true, msg: "Link Expired!" });
+      // Sending a success response if the link has expired or the token is invalid
+      res.status(200).send({ success: true, msg: "Link Expired or Invalid Token!" });
     }
   } catch (error) {
     // Handling errors and sending an error response if an exception occurs
     res.status(400).send({ success: false, msg: error.message });
   }
 };
+
+// Function to check if the token is expired
+const isTokenExpired = (timestamp) => {
+  const expirationTime = 86400000; 
+  const currentTime = new Date().getTime();
+  return (currentTime - timestamp) > expirationTime;
+};
+
 
 
 module.exports = {

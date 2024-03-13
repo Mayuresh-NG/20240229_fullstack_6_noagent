@@ -1,4 +1,4 @@
-<body>
+<!-- <body> -->
 <app-profile></app-profile>
 
   <div class="container">
@@ -8,65 +8,48 @@
       >
         Properties
       </h3>
-      <div class="dropdown-container" onclick="toggleDropdown()">
+      <div class="dropdown-container" (click)="toggleDropdown()">
         <button class="dropdown-button">
-          Property Type
-          <i
-            class="fa-solid fa-sort-down"
-            style="margin-left: 12px; padding-bottom: 2px"
-          ></i>
+          Trade Type
+          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
         </button>
-        <div id="dropdownContent" class="dropdown-content">
-          <button onclick="selectPropertyType('Rent')">Rent</button>
-          <button onclick="selectPropertyType('Sell')">Sell</button>
+        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
+          <!-- <button>Rent</button>
+          <button>Sell</button> -->
+          <button (click)="selectTradeType('All')">All</button>
+          <button (click)="selectTradeType('Rent')">Rent</button>
+          <button (click)="selectTradeType('Sell')">Sell</button>
         </div>
       </div>
     </div>
-    <div class="main-box">
-      <div class="column">
-        <a routerLink="../propertydetails" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-        <a href="#" class="rectangle clickable-address">Address</a>
-      </div>
-      <div class="column">
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-        <div class="rectangle" style="justify-content: center">Price/Rent</div>
-      </div>
-      <div class="column">
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-        <div class="rectangle owner-phone-container">
-          <div>Owner</div>
-          <div>Phone</div>
-        </div>
-      </div>
-    </div>
+
+  <div>
+    <table>
+      <tr class="hed">
+        <td class="item">Address</td>
+        <td>Price</td>
+        <td>Owner Name</td>
+        <td>Property Type</td>
+      </tr>
+      <tr *ngFor="let property of properties; let i = index">
+        <td>
+          <a routerLink="../singledetail">
+            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
+            {{ property.Address.city }} {{ property.Address.pincode }}
+          </a>
+        </td>
+        <td>
+          {{ property.rent_price || property.prop_price }}
+        </td>
+        <td>
+          <div>{{ property.owner_user_name }}</div>
+        </td>
+        <td>
+          <div>{{property.property_type || 'NA'}}</div>
+        </td>
+      </tr>
+    </table>
   </div>
 
-  <footer style="height: 20px; background-color: #a9dfff"></footer>
-</body>
+  <!-- <footer style="height: 20px; background-color: #a9dfff"></footer> -->
+<!-- </body> -->
