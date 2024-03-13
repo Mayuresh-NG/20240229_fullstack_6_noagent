@@ -1,109 +1,50 @@
-
-  <app-profile></app-profile>
-  <div class="container">
-    <div class="headings">
-      <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
-        Requests
-      </h3>
-      <div class="dropdown-container" (click)="toggleDropdown()">
-        <button class="dropdown-button">
-          Trade Type
-          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
-        </button>
-        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
-          <!-- <button>Rent</button>
+<app-profile></app-profile>
+<div class="container">
+  <div class="headings">
+    <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
+      Requests
+    </h3>
+    <div class="dropdown-container" (click)="toggleDropdown()">
+      <button class="dropdown-button">
+        Trade Type
+        <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px"
+          [class.rotate]="dropdownOpen"></i>
+      </button>
+      <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
+        <!-- <button>Rent</button>
           <button>Sell</button> -->
-          <button [class.active]="selectedTradeType === 'All'" (click)="selectTradeType('All')">All</button>
-          <button [class.active]="selectedTradeType === 'Rent'" (click)="selectTradeType('Rent')">Rent</button>
-          <button [class.active]="selectedTradeType === 'Sell'" (click)="selectTradeType('Sell')">Sell</button>
-        </div>
+        <button [class.active]="selectedTradeType === 'All'" (click)="selectTradeType('All')">All</button>
+        <button [class.active]="selectedTradeType === 'Rent'" (click)="selectTradeType('Rent')">Rent</button>
+        <button [class.active]="selectedTradeType === 'Sell'" (click)="selectTradeType('Sell')">Sell</button>
       </div>
     </div>
-    <!-- <div class="main-box">
-      <div class="column">
-        <div class="row" *ngFor="let property of filteredProperties; let i = index">
-          <a routerLink="../singledetail" class="rectangle clickable-address">
-            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
-            {{ property.Address.city }} {{ property.Address.pincode }}
-          </a>
-          <div class="rectangle" style="justify-content: center">
-            {{ property.rent_price || property.prop_price }}
-          </div>
-          <div class="rectangle owner-phone-container">
-            <div>{{ property.owner_user_name }}</div>
-            <div>{{ property.posted_on }}</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <table>
-      <tr class="hed">
-        <td class="item">Address</td>
-        <td> Price</td>
-        <td>Owner Name</td>
-        <td>Property Type</td>
-      </tr>
-      <tr *ngFor="let property of filteredProperties; let i = index">
-        <td >
-          <a routerLink="../singledetail">
-            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
-            {{ property.Address.city }} {{ property.Address.pincode }}
-          </a>
-        </td>
-        <td >
-          {{ property.rent_price || property.prop_price }}
-        </td>
-        <td >
-          <div>{{ property.owner_user_name }}</div>
-          <!-- <div>{{ property.posted_on }}</div> -->
-        </td>
-        <td >
-          <div>{{ property.property_type}}</div>
-          <!-- <div>{{ property.posted_on }}</div> -->
-        </td>
-      </tr>
-    </table>
   </div>
 
-  <!-- <footer style="height: 20px ; bottom:0px ; background-color: #a9dfff; margin-top: auto"></footer> -->
+  <table>
+    <tr class="hed">
+      <td class="item">Address</td>
+      <td> Price</td>
+      <td>Owner Name</td>
+      <td>Property Type</td>
+    </tr>
+    <tr *ngFor="let property of filteredProperties; let i = index">
+      <td>
+        <a routerLink="../singledetail">
+          {{ property.Address.street_name }}, {{ property.Address.Landmark }},
+          {{ property.Address.city }} {{ property.Address.pincode }}
+        </a>
+      </td>
+      <td>
+        {{ property.rent_price || property.prop_price }}
+      </td>
+      <td>
+        <div>{{ property.owner_user_name }}</div>
 
+      </td>
+      <td>
+        <div>{{ property.property_type}}</div>
 
-<!-- <body>
-  <app-profile></app-profile>
-  <div class="container">
-    <div class="headings">
-      <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
-        Requests
-      </h3>
-      <div class="dropdown-container" (click)="toggleDropdown()">
-        <button class="dropdown-button">
-          Property Type
-          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px"></i>
-        </button>
-        <div id="dropdownContent" class="dropdown-content">
-          <button (click)="selectPropertyType('Rent')">Rent</button>
-          <button (click)="selectPropertyType('Sell')">Sell</button>
-        </div>
-      </div>
-    </div>
-    <table class="main-box">
-      <tr *ngFor="let property of filteredProperties; let i = index">
-        <td class="rectangle clickable-address">
-          <a routerLink="../singledetail">
-            {{ property.Address.street_name }}, {{ property.Address.Landmark }},
-            {{ property.Address.city }} {{ property.Address.pincode }}
-          </a>
-        </td>
-        <td class="rectangle" style="justify-content: center">
-          {{ property.rent_price || property.prop_price }}
-        </td>
-        <td class="rectangle owner-phone-container">
-          <div>{{ property.owner_user_name }}</div>
-          <div>{{ property.posted_on }}</div>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <footer style="height: 20px; background-color: #a9dfff"></footer>
-</body> -->
+      </td>
+    </tr>
+  </table>
+</div>
