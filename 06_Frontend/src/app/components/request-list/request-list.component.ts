@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Property } from '../../interface/request';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { log } from 'console';
 
 
 
@@ -31,6 +32,14 @@ export class RequestListComponent implements OnInit{
     // console.log('RequestListComponent initialized');
     this.fetchFilteredProperties();
     // console.log('RequestListComponent ok');
+  }
+
+  dropdownOpen = false;
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+    console.log(this.dropdownOpen);
+    
   }
 
   fetchFilteredProperties(): void {

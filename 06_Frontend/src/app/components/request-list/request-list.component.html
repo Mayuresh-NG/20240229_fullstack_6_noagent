@@ -5,14 +5,16 @@
       <h3 style="color: #292c44; font-size: 28px; font-weight: 600; padding: auto">
         Requests
       </h3>
-      <div class="dropdown-container" onclick="toggleDropdown()">
+      <div class="dropdown-container" (click)="toggleDropdown()">
         <button class="dropdown-button">
           Property Type
-          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px"></i>
+          <i class="fa-solid fa-sort-down" style="margin-left: 12px; padding-bottom: 2px" [class.rotate]="dropdownOpen"></i>
         </button>
-        <div id="dropdownContent" class="dropdown-content">
-          <button onclick="selectPropertyType('Rent')">Rent</button>
-          <button onclick="selectPropertyType('Sell')">Sell</button>
+        <div id="dropdownContent" class="dropdown-content" [class.show]="dropdownOpen">
+          <button>Rent</button>
+          <button>Sell</button>
+          <!-- <button (click)="selectPropertyType('Rent')">Rent</button>
+          <button (click)="selectPropertyType('Sell')">Sell</button> -->
         </div>
       </div>
     </div>
