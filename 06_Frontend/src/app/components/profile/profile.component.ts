@@ -23,7 +23,8 @@ export class ProfileComponent {
   fetchUserDetails(): void {
     // Retrieve the token from local storage
     const authToken = localStorage.getItem('authToken');
-  
+    // console.log(authToken);
+    
     // Check if the token exists
     if (!authToken) {
       console.error('Authentication token not found');
