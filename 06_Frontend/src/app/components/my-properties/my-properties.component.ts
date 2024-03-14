@@ -42,6 +42,7 @@ export class MyPropertiesComponent implements OnInit {
         if (response.hasOwnProperty('properties')) {
           // Assign the properties to the 'properties' array
           this.Properties = response.properties
+          console.log(this.Properties)
           // this.properties = response.properties;
         } else {
           console.log('No properties found in the response.');
