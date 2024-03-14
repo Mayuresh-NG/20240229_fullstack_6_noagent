@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 import { SellRentPageComponent } from '../sell-rent-page/sell-rent-page.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
 
 // Inject MatDialog in your component's constructor
 @Component({
@@ -33,7 +34,8 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
-  constructor(public dialog: MatDialog,private router: Router, private http: HttpClient) {}
+  constructor(public dialog: MatDialog,private router: Router, private http: HttpClient,
+    private dataService: DataService) {}
 
   // Function to open the popup
   openPopup(): void {
@@ -89,17 +91,21 @@ export class HomePageComponent {
     const type = this.buyActive ? 'buy' : 'rent';
     console.log(type);
     this.http.get<any[]>(`http://localhost:5200/properties/search?locality=${encodeURIComponent(this.selectedCity)}&type=${encodeURIComponent(type)}`)
+    // console.log(this.selectedCity);
     // Updated to use `locality` as per the original API endpoint and included the base URL
     .subscribe({
       next: (data) => {
-
         console.log(this.selectedCity);
+        console.log(data);
+        this.dataService.setPropertyData(data);
+        this.router.navigate(['/viewproperty']);
         // Assuming you have a service or a method to pass data to the ViewPropertiesComponent
         // For example, using a shared service or Angular's state management
         // Here, we'll directly navigate and assume the component fetches its own data
         // this.router.navigate(['/viewproperty']); // Make sure the route matches your configuration
       },
       error: (error) => {
+        // console.log(this.selectedCity);
         console.error('Error fetching property details:', error);
       }
     });

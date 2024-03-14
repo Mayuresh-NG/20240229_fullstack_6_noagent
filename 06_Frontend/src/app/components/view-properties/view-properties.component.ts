@@ -3,6 +3,7 @@ import { SortFilterComponent } from '../sort-filter/sort-filter.component';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from '../profile/profile.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-view-properties',
   standalone: true,
@@ -13,10 +14,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class ViewPropertiesComponent implements OnInit {
   propertyData: any[] = []; // Adjust the type according to your data structure
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private dataService:DataService) { }
 
   ngOnInit(): void {
-    this.fetchPropertyDetails();
+    this.propertyData = this.dataService.getPropertyData();
   }
 
   fetchPropertyDetails(): void {
