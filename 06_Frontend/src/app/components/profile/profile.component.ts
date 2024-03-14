@@ -3,7 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
+import { RouterLink,Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -17,13 +17,14 @@ export class ProfileComponent {
   adminName: string = '';
   userRole: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   //Backend connection to display the name of logged in user 
   fetchUserDetails(): void {
     // Retrieve the token from local storage
     const authToken = localStorage.getItem('authToken');
-  
+    // console.log(authToken);
+    
     // Check if the token exists
     if (!authToken) {
       console.error('Authentication token not found');
@@ -44,4 +45,13 @@ export class ProfileComponent {
         }
       });
   }
+  logout() {
+    // Perform any cleanup needed (e.g., clearing local storage, calling a logout API)
+    localStorage.removeItem('authToken'); // Example of clearing a token from localStorage
+    // sessionStorage.clear(); // If you're using sessionStorage
+
+    // Redirect to the homepage
+    this.router.navigate(['/']); // Adjust the path as necessary for your homepage route
+  }
 }
+

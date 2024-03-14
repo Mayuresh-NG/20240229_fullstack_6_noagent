@@ -124,3 +124,31 @@ body {
   background-color: #3a3e5f; /* Darken the background color on hover */
   transform: scale(1.1);
 }
+
+.amenity-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.amenity-row {
+  width: 100%;
+}
+
+.amenity {
+  width: calc(50% - 10px); /* Adjust width as needed */
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.amenity.pair-start {
+  clear: both;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.amenity.pair-end {
+  margin-right: 0;
+  margin-top: 10px;
+}

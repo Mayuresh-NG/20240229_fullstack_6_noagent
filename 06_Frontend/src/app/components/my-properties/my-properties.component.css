@@ -88,9 +88,11 @@ body {
   .element {
     background-color: white;
     display: flex;
-    width: 405px;
+    width: 80%;
     height: 211px;
     border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
   }
   
@@ -133,8 +135,8 @@ body {
   }
   
   .photo {
-    height: 103px;
-    width: 128px;
+    height:60%;
+    width: 50%;
     background-image: url("../../../assets/images/room1.jpg");
     background-size: cover;
     background-position: center;

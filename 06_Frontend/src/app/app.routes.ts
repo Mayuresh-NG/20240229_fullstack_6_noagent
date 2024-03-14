@@ -36,7 +36,7 @@ export const routes: Routes = [
   { path: 'viewproperty', component: ViewPropertiesComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-  { path: 'singledetail', component: DetailSingleComponent },
+  { path: 'singledetail/:id', component: DetailSingleComponent },
   { path: '**', component: PageNotFoundComponent },
 
 ];

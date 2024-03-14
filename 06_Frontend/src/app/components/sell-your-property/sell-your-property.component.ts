@@ -1,12 +1,14 @@
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
+import { log } from 'console';
 
 @Component({
   selector: 'app-sell-your-property',
   standalone: true,
-  imports: [NavbarComponent,FormsModule,CommonModule],
+  imports: [NavbarComponent,FormsModule,CommonModule,HttpClientModule],
   templateUrl: './sell-your-property.component.html',
   styleUrl: './sell-your-property.component.css'
 })
@@ -34,7 +36,8 @@ export class SellYourPropertyComponent {
   pincodeInputFocused: boolean = false;
 
   // Furnishing
-  furnishing: string = '';
+  furnishing: boolean=false;
+
 
   // Property Price
   propertyPrice: string = '';
@@ -44,25 +47,62 @@ export class SellYourPropertyComponent {
   propertyType: string = '';
   propertyTypeInputFocused: boolean = false;
 
+  depositePrice: string = '';
+  depositePriceInputFocused: boolean = false;
+
   // Amenities
   amenities: string = '';
   amenitiesInputFocused: boolean = false;
 
+ authToken:string|null = ''
+
   // ... (other form variables)
+  constructor(private http: HttpClient) {
+    this.authToken = localStorage.getItem('authToken');
+    
+  }
 
   saveAndPost(): void {
-    console.log('BHK Type:', this.bhkType);
-    console.log('Built up Area:', this.builtUpArea);
-    console.log('State:', this.state);
-    console.log('Street:', this.streetName);
-    console.log('City:', this.city);
-    console.log('Landmark:', this.landmark);
-    console.log('Pincode:', this.pincode);
-    // ... (log other form values)
+    const propertyData = {
+      prop_price: parseInt(this.propertyPrice, 10), // Assuming propertyPrice is a string
+      bhk_type: this.bhkType,
+      built_Up_area: this.builtUpArea,
+      state: this.state,
+      street_name: this.streetName,
+      city: this.city,
+      Landmark: this.landmark,
+      pincode: this.pincode,
+      Furnished: this.furnishing,
+      // images: this.images,
+      deposit: parseInt(this.depositePrice, 10), // Assuming depositePrice is a string
+      property_type: this.propertyType,
+      amenities: this.amenities
+    };
 
-    console.log('Furnishing:', this.furnishing);
-    console.log('Property Price:', this.propertyPrice);
-    console.log('Property Type:', this.propertyType);
-    console.log('Amenities:', this.amenities);
+    if (this.authToken) {
+      // Prepare the headers
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.authToken}` // Use the token here
+        })
+      };
+
+      this.http.post('http://localhost:5200/properties/sell', propertyData, httpOptions)
+        .subscribe({
+          next: (response) => {
+            console.log('Property posted successfully', response);
+            // Handle success response
+            window.alert("Your property posted successfully!!");
+          },
+          error: (error) => {
+            console.error('Error posting property', error);
+            // Handle error
+          }
+        });
+    } else {
+      console.error('No auth token found');
+      // Handle the case where the token is not available
+    }
   }
 }

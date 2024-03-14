@@ -5,6 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   height: auto;
+  
 }
 
 .propertyForm {
@@ -71,6 +72,19 @@ body {
   border-radius: 8px;
   border: none;
   margin-top: 10px;
+}
+
+.depositeInputField {
+  width: 310px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: black;
+  padding-left: 10px;
+  margin-top: 25px;
 }
 
 .dropdown {
@@ -183,6 +197,7 @@ body {
   font-size: 40px;
   text-align: center;
   margin: 0; /* Remove default margin to ensure proper centering */
+  cursor: pointer;
 }
 
 .textInput {
@@ -231,7 +246,7 @@ body {
 
 /* Style for radio button appearance */
 .radio-container input[type="radio"] {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   width: 20px;
   height: 20px;
   border-radius: 50%;
