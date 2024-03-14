@@ -134,7 +134,7 @@ const my_property =
 
       // Query properties with the matching owner_id
       const myProperties = await Property.find({ owner });
-
+      console.log(myProperties)
       res.status(200).json({
         success: true,
         message: "My properties retrieved successfully!",

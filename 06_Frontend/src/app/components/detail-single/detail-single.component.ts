@@ -36,10 +36,8 @@ export class DetailSingleComponent {
       console.error('Authentication token not found');
       return;
     }
-  
     // Include the token in the request headers
     this.headers = { 'Authorization': `Bearer ${authToken}` };
-    console.log(this.headers)
 
     this.route.params.subscribe(params => {
       const propertyId = params['id']; // Fetch property ID from URL parameters
