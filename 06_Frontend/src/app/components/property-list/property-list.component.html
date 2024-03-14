@@ -31,7 +31,7 @@
         </tr>
         <tr *ngFor="let property of properties; let i = index">
           <td>
-            <a [routerLink]="['../singledetail', property._id]">
+            <a [routerLink]="['/propertydetails']">
               {{ property.Address.street_name }}, {{ property.Address.Landmark }},
               {{ property.Address.city }} {{ property.Address.pincode }}
             </a>
