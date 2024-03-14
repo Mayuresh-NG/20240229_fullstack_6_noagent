@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { AuthService } from '../../services/auth.service';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -65,7 +65,7 @@ export class HomePageComponent {
   selectedButton: string = ''; // To store the selected button
 
   isActive = false;
-
+  loggedIn = false;
   buyActive = false;
   rentActive = false;
 
