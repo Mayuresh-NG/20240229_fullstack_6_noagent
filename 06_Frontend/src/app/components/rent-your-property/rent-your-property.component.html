@@ -14,7 +14,7 @@
       Rent your Property
     </h2>
   </div>
-  <button class="shadow-button">Save and Post</button>
+  <button class="shadow-button" (click)="saveAndPost()">Save and Post</button>
 
   <main class="mainBody">
     <!-- LEFT SIDE -->
@@ -26,31 +26,18 @@
       </h3>
 
       <!-- BHK Type Dropdown -->
-      <div class="input-container">
-        <select
-          class="dropdown"
-          [(ngModel)]="bhkType"
-          name="bhkType"
-          #bhkTypeInput="ngModel"
-          required
-          (blur)="bhkTypeInputFocused = false"
-          (focus)="bhkTypeInputFocused = true"
-        >
-          <option value="" disabled selected>BHK Type</option>
-          <option value="type1">Type 1</option>
-          <option value="type2">Type 2</option>
-        </select>
-        <div
-          *ngIf="
-            !bhkTypeInputFocused &&
-            bhkTypeInput.invalid &&
-            (bhkTypeInput.dirty || bhkTypeInput.touched)
-          "
-          class="error-message"
-        >
-          Please select BHK Type
-        </div>
-      </div>
+      <select class="dropdown" [(ngModel)]="bhkType" name="bhkType" #bhkTypeInput="ngModel" required
+      (blur)="bhkTypeInputFocused = false" (focus)="bhkTypeInputFocused = true">
+      <option value="" disabled selected>BHK Type</option>
+      <option value="1BHK">1BHK</option>
+      <option value="2BHK">2BHK</option>
+      <option value="3BHK">3BHK</option>
+      <option value="4BHK">4BHK</option>
+    </select>
+    <div *ngIf="!bhkTypeInputFocused && bhkTypeInput.invalid && (bhkTypeInput.dirty || bhkTypeInput.touched)"
+      class="error-message">
+      Please select BHK Type
+    </div>
 
       <!-- Built up Area Input -->
       <div class="input-container">
@@ -61,7 +48,7 @@
           name="builtUpArea"
           #builtUpAreaInput="ngModel"
           required
-          pattern="[0-9]"
+          pattern="[0-9]+"
           (blur)="builtUpAreaInputFocused = false"
           (focus)="builtUpAreaInputFocused = true"
           placeholder="Built up Area"
@@ -104,8 +91,10 @@
           (focus)="stateInputFocused = true"
         >
           <option value="" disabled selected>Select State</option>
-          <option value="state1">State 1</option>
-          <option value="state2">State 2</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Delhi">Delhi</option>
         </select>
         <div
           *ngIf="
@@ -250,7 +239,7 @@
       </div>
 
       <input style="padding-left: 10px" type="text" class="customInputField" [(ngModel)]="rentPrice" name="rentPrice"
-                #rentPriceInput="ngModel" required pattern="[0-9]"
+                #rentPriceInput="ngModel" required pattern="[0-9]+"
                 (blur)="rentPriceInputFocused = false" (focus)="rentPriceInputFocused = true"
                 placeholder="Rent Price" />
         <div *ngIf="!rentPriceInputFocused && rentPriceInput.invalid && (rentPriceInput.dirty || rentPriceInput.touched)"

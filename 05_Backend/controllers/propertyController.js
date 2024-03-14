@@ -68,20 +68,25 @@ const rent_prop =(verifyToken,async (req, res) => {
       rent_price,
       bhk_type,
       state,
-      address,
+      street_name,
+      city,
+      Landmark,
+      pincode,
       furnished,
       pref_tenants,
-      images,
-      availability_date,
+      // images,
+      availableFrom,
+      deposit,
+      built_Up_area,
     } = req.body;
 
-    const cloudinaryImageUrls = await Promise.all(
-      images.map(async (imageData) => {
-        return await cloudinaryUtils.uploadToCloudinary(
-          `./assets/property-images/${imageData.url}`
-        );
-      })
-    );
+    // const cloudinaryImageUrls = await Promise.all(
+    //   images.map(async (imageData) => {
+    //     return await cloudinaryUtils.uploadToCloudinary(
+    //       `./assets/property-images/${imageData.url}`
+    //     );
+    //   })
+    // );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -91,11 +96,16 @@ const rent_prop =(verifyToken,async (req, res) => {
       rent_price,
       bhk_type,
       state,
-      Address: address,
+      street_name,
+      city,
+      Landmark,
+      pincode,
       Furnished: furnished,
       preferred_tenents: pref_tenants,
-      images: cloudinaryImageUrls,
-      availability_date,
+      // images: cloudinaryImageUrls,
+      availableFrom,
+      deposit,
+      built_Up_area,
       posted_on: new Date(),
     });
 
@@ -130,22 +140,26 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      address,
-      furnished,
-      images,
-      availability_date,
+      street_name,
+      city,
+      Landmark,
+      pincode,
+      Furnished,
+      // images,
+      availableFrom,
       deposit,
       property_type,
       amenities,
+      built_Up_area,
     } = req.body;
 
-    const cloudinaryImageUrls = await Promise.all(
-      images.map(async (imageData) => {
-        return await cloudinaryUtils.uploadToCloudinary(
-          `./assets/property-images/${imageData.url}`
-        );
-      })
-    );
+    // const cloudinaryImageUrls = await Promise.all(
+    //   images.map(async (imageData) => {
+    //     return await cloudinaryUtils.uploadToCloudinary(
+    //       `./assets/property-images/${imageData.url}`
+    //     );
+    //   })
+    // );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -155,13 +169,17 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      Address: address,
-      Furnished: furnished,
-      images: cloudinaryImageUrls,
-      availability_date,
+      street_name,
+      city,
+      Landmark,
+      pincode,
+      Furnished,
+      // images: cloudinaryImageUrls,
+      availableFrom,
       property_type,
       deposit,
       amenities,
+      built_Up_area,
       posted_on: new Date(),
     });
 

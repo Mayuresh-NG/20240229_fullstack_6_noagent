@@ -1,11 +1,11 @@
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { HttpClientModule,HttpHeaders,HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-rent-your-property',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,HttpClientModule],
   templateUrl: './rent-your-property.component.html',
   styleUrl: './rent-your-property.component.css'
 })
@@ -36,4 +36,56 @@ export class RentYourPropertyComponent {
   rentPriceInputFocused: boolean = false;
   availableFromInputFocused: boolean = false;
   depositInputFocused: boolean = false;
+  authToken:string|null=''
+
+  constructor(private http: HttpClient) {
+    this.authToken = localStorage.getItem('authToken');
+    
+  }
+
+  saveAndPost(): void {
+    const propertyData = {
+      rent_price: parseInt(this.rentPrice, 10), // Assuming propertyPrice is a string
+      bhk_type: this.bhkType,
+      built_Up_area: this.builtUpArea,
+      state: this.state,
+      street_name: this.streetName,
+      city: this.city,
+      Landmark: this.landmark,
+      pincode: this.pincode,
+      Furnished: this.furnishing,
+      // images: this.images,
+      availableFrom:this.availableFrom,
+      deposit: parseInt(this.deposit, 10), // Assuming depositePrice is a string
+      
+    };
+
+    if (this.authToken) {
+      // Prepare the headers
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.authToken}` // Use the token here
+        })
+      };
+
+      this.http.post('http://localhost:5200/properties/rent', propertyData, httpOptions)
+        .subscribe({
+          next: (response) => {
+            console.log('Property posted successfully', response);
+            // Handle success response
+            window.alert("Your property posted successfully!!");
+          },
+          error: (error) => {
+            console.error('Error posting property', error);
+            // Handle error
+          }
+        });
+    } else {
+      console.error('No auth token found');
+      // Handle the case where the token is not available
+    }
+  }
 }
+
+
