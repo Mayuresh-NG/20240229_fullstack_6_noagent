@@ -82,11 +82,19 @@ export class HomePageComponent {
     this.rentActive = !this.rentActive;
     this.buyActive = false; // Set the other button to false
   }
-  // constructor(private authService: AuthService) {}
+  
+  postAd(): void {
+    // Check if authToken exists in localStorage
+    if (localStorage.getItem('authToken')) {
+      // User is logged in, navigate to the posting page
+      this.router.navigate(['/sell-rent']); // Adjust the path as necessary
+    } else {
+      // User is not logged in, show the login popup
+      this.showLoginPopup();
+    }
+  }
 
-  // isUserLoggedIn(): boolean {
-  //   return this.authService.isLoggedIn();  // Use the injected authService
-  // }
+
   searchProperties(): void {
     const type = this.buyActive ? 'buy' : 'rent';
     console.log(type);
