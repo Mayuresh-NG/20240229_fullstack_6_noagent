@@ -26,33 +26,18 @@
       </h3>
 
       <!-- BHK Type Dropdown -->
-      <div class="input-container">
-        <select
-          class="dropdown"
-          [(ngModel)]="bhkType"
-          name="bhkType"
-          #bhkTypeInput="ngModel"
-          required
-          (blur)="bhkTypeInputFocused = false"
-          (focus)="bhkTypeInputFocused = true"
-        >
-          <option value="" disabled selected>BHK Type</option>
-          <option value="type1">1BHK</option>
-          <option value="type2">2BHK</option>
-          <option value="type3">3BHK</option>
-          <option value="type4">4BHK</option>
-        </select>
-        <div
-          *ngIf="
-            !bhkTypeInputFocused &&
-            bhkTypeInput.invalid &&
-            (bhkTypeInput.dirty || bhkTypeInput.touched)
-          "
-          class="error-message"
-        >
-          Please select BHK Type
-        </div>
-      </div>
+      <select class="dropdown" [(ngModel)]="bhkType" name="bhkType" #bhkTypeInput="ngModel" required
+      (blur)="bhkTypeInputFocused = false" (focus)="bhkTypeInputFocused = true">
+      <option value="" disabled selected>BHK Type</option>
+      <option value="1BHK">1BHK</option>
+      <option value="2BHK">2BHK</option>
+      <option value="3BHK">3BHK</option>
+      <option value="4BHK">4BHK</option>
+    </select>
+    <div *ngIf="!bhkTypeInputFocused && bhkTypeInput.invalid && (bhkTypeInput.dirty || bhkTypeInput.touched)"
+      class="error-message">
+      Please select BHK Type
+    </div>
 
       <!-- Built up Area Input -->
       <div class="input-container">
@@ -63,7 +48,7 @@
           name="builtUpArea"
           #builtUpAreaInput="ngModel"
           required
-          pattern="[0-9]"
+          pattern="[0-9]+"
           (blur)="builtUpAreaInputFocused = false"
           (focus)="builtUpAreaInputFocused = true"
           placeholder="Built up Area"
@@ -106,10 +91,10 @@
           (focus)="stateInputFocused = true"
         >
           <option value="" disabled selected>Select State</option>
-          <option value="state1">Hyderabad</option>
-          <option value="state2">Banglore</option>
-          <option value="state3">Maharashtra</option>
-          <option value="state4">Delhi</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Delhi">Delhi</option>
         </select>
         <div
           *ngIf="

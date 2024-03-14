@@ -24,10 +24,10 @@
       <select class="dropdown" [(ngModel)]="bhkType" name="bhkType" #bhkTypeInput="ngModel" required
         (blur)="bhkTypeInputFocused = false" (focus)="bhkTypeInputFocused = true">
         <option value="" disabled selected>BHK Type</option>
-        <option value="type1">1BHK</option>
-        <option value="type2">2BHK</option>
-        <option value="type3">3BHK</option>
-        <option value="type4">4BHK</option>
+        <option value="1BHK">1BHK</option>
+        <option value="2BHK">2BHK</option>
+        <option value="3BHK">3BHK</option>
+        <option value="4BHK">4BHK</option>
       </select>
       <div *ngIf="!bhkTypeInputFocused && bhkTypeInput.invalid && (bhkTypeInput.dirty || bhkTypeInput.touched)"
         class="error-message">
@@ -36,7 +36,7 @@
 
       <!-- Built up Area Input -->
       <input type="text" class="customInputField" [(ngModel)]="builtUpArea" name="builtUpArea"
-        #builtUpAreaInput="ngModel" required pattern="[0-9]" (blur)="builtUpAreaInputFocused = false"
+        #builtUpAreaInput="ngModel" required pattern="[0-9]+" (blur)="builtUpAreaInputFocused = false"
         (focus)="builtUpAreaInputFocused = true" placeholder="Built up Area" />
       <div
         *ngIf="!builtUpAreaInputFocused && builtUpAreaInput.invalid && (builtUpAreaInput.dirty || builtUpAreaInput.touched)"
@@ -58,10 +58,10 @@
       <select class="dropdown" [(ngModel)]="state" name="state" #stateInput="ngModel" required
         (blur)="stateInputFocused = false" (focus)="stateInputFocused = true">
         <option value="" disabled selected>Select State</option>
-        <option value="state1">Hyderabad</option>
-        <option value="state2">Banglore</option>
-        <option value="state3">Maharashtra</option>
-        <option value="state4">Delhi</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Delhi">Delhi</option>
       </select>
       <div *ngIf="!stateInputFocused && stateInput.invalid && (stateInput.dirty || stateInput.touched)"
         class="error-message">
@@ -141,10 +141,10 @@
       <select class="dropdown" [(ngModel)]="propertyType" name="propertyType" #propertyTypeInput="ngModel" required
         (blur)="propertyTypeInputFocused = false" (focus)="propertyTypeInputFocused = true">
         <option value="" disabled selected>Property Type</option>
-        <option value="type1">Apartment</option>
-        <option value="type2">Bungalow</option>
-        <option value="type3">House</option>
-        <option value="type4">Farm House</option>
+        <option value="Apartment">Apartment</option>
+        <option value="Bunglow">Bungalow</option>
+        <option value="House">House</option>
+        <option value="Farm House">Farm House</option>
       </select>
       <div
         *ngIf="!propertyTypeInputFocused && propertyTypeInput.invalid && (propertyTypeInput.dirty || propertyTypeInput.touched)"
@@ -156,9 +156,9 @@
       <select class="dropdown" [(ngModel)]="amenities" name="amenities" #amenitiesInput="ngModel" required
         (blur)="amenitiesInputFocused = false" (focus)="amenitiesInputFocused = true">
         <option value="" disabled selected>Amenities</option>
-        <option value="type1">Garden</option>
-        <option value="type2">Playground</option>
-        <option value="type3">Swimming Pool</option>
+        <option value="Garden">Garden</option>
+        <option value="PLayground">Playground</option>
+        <option value="Swimming Pool">Swimming Pool</option>
       </select>
       <div *ngIf="!amenitiesInputFocused && amenitiesInput.invalid && (amenitiesInput.dirty || amenitiesInput.touched)"
         class="error-message">

@@ -36,7 +36,8 @@ export class SellYourPropertyComponent {
   pincodeInputFocused: boolean = false;
 
   // Furnishing
-  furnishing: string = '';
+  furnishing: boolean=false;
+
 
   // Property Price
   propertyPrice: string = '';
@@ -67,12 +68,10 @@ export class SellYourPropertyComponent {
       bhk_type: this.bhkType,
       built_Up_area: this.builtUpArea,
       state: this.state,
-      Address: {
-        street_name: this.streetName,
-        city: this.city,
-        Landmark: this.landmark,
-        pincode: this.pincode
-      },
+      street_name: this.streetName,
+      city: this.city,
+      Landmark: this.landmark,
+      pincode: this.pincode,
       Furnished: this.furnishing,
       // images: this.images,
       deposit: parseInt(this.depositePrice, 10), // Assuming depositePrice is a string
@@ -94,6 +93,7 @@ export class SellYourPropertyComponent {
           next: (response) => {
             console.log('Property posted successfully', response);
             // Handle success response
+            window.alert("Your property posted successfully!!");
           },
           error: (error) => {
             console.error('Error posting property', error);

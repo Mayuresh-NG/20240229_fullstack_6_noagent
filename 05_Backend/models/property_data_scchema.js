@@ -3,13 +3,13 @@ const propSchema = new mongoose.Schema({
   trade_type: {
     type: String,
     required: true,
-    enum: ["rent", "sell"], 
+    enum: ["rent", "sell"],
   },
-  owner_user_name:String,
-  owner:{
+  owner_user_name: String,
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required:true
+    required: true,
   },
   rent_price: {
     type: Number,
@@ -25,13 +25,11 @@ const propSchema = new mongoose.Schema({
   },
   built_Up_area: String,
   state: String,
-  Address: {
-    street_name: String,
-    city: String,
-    Landmark: String,
-    pincode: {
-      type: Number,
-    },
+  street_name: String,
+  city: String,
+  Landmark: String,
+  pincode: {
+    type: Number,
   },
   Furnished: {
     full: Boolean,
@@ -54,7 +52,7 @@ const propSchema = new mongoose.Schema({
       },
     },
   ],
-  Availability_data: Date,
+  availableFrom: String,
   deposit: {
     type: Number,
     min: [0, "Deposit must be a non-negative value"],
@@ -70,14 +68,13 @@ const propSchema = new mongoose.Schema({
   status: {
     type: String,
     default: "pending",
-    enum: ["pending", "approved"], 
+    enum: ["pending", "approved"],
   },
   likes: {
     type: Number,
     default: 0,
   },
 });
-
 
 const Property = mongoose.model("property_datas", propSchema);
 
