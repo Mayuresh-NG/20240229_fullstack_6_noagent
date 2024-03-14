@@ -34,8 +34,15 @@ import { DataService } from '../../services/data.service';
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
-  constructor(public dialog: MatDialog,private router: Router, private http: HttpClient,
-    private dataService: DataService) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router, 
+    private http: HttpClient,
+    private dataService: DataService
+  ) {
+    // Check if the authToken exists in localStorage to set the loggedIn state
+    this.loggedIn = !!localStorage.getItem('authToken');
+  }
 
   // Function to open the popup
   openPopup(): void {
@@ -50,16 +57,22 @@ export class HomePageComponent {
   }
 
   // Function to open the popup
-  showLoginPopup(): void {
-    const dialogRef = this.dialog.open(LoginPopupComponent, {
-      width: '300px', // Adjust the width based on your design
-    });
+// In HomePageComponent
+showLoginPopup(): void {
+  const dialogRef = this.dialog.open(LoginPopupComponent, {
+    width: '300px', // Adjust the width based on your design
+  });
 
-    // Handle the popup closure
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The popup was closed');
-    });
-  }
+  // Listen to the loginStateChange event
+  const sub = dialogRef.componentInstance.loginStateChange.subscribe((isLoggedIn: boolean) => {
+    this.loggedIn = isLoggedIn; // Update the loggedIn property based on the event
+    sub.unsubscribe(); // Unsubscribe to avoid memory leaks
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    console.log('The popup was closed');
+  });
+}
 
   selectedState: string = ''; // To store the selected city
 
