@@ -1,9 +1,11 @@
-<app-navbar>
-  <div buttonsContent>
+<app-navbar  buttonsContent *ngIf="!loggedIn">
+  <div buttonsContent *ngIf="!loggedIn">
     <button class="shadow-button" (click)="openPopup()">Sign up</button>
     <button class="shadow-button" (click)="showLoginPopup()">Login</button>
   </div>
 </app-navbar>
+<app-profile *ngIf="loggedIn"></app-profile>
+
 
 <body>
   <div class="container">
