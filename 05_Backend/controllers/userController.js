@@ -395,6 +395,28 @@ const isTokenExpired = (timestamp) => {
 };
 
 
+// // Import the Wishlist model
+// const Wishlist = require('../models/wishlistModel'); // Adjust the path as necessary
+
+// // Define the controller object
+// const WishlistController = {};
+
+// // Method to fetch all wishlists with user and property details
+// WishlistController.getAllWishlists
+const wishlist = (verifyToken,async (req, res) => {
+  try {
+
+    const user = await User.findOne({ username : req.decoded.username })
+    const wishlists = await wish.find({userId : user._id})
+    res.status(200).json(wishlists);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('An error occurred while fetching wishlists.');
+  }
+});
+
+
+
 
 module.exports = {
   signup,
@@ -405,4 +427,5 @@ module.exports = {
   addPropertyToWishlist,
   removePropertyFromWishlist,
   get_my_profile,
+  wishlist
 };
