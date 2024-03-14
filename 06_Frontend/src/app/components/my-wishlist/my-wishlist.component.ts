@@ -79,5 +79,8 @@ export class MyWishlistComponent implements OnInit {
         console.error('Failed to fetch properties:', error);
       });
   }
+  toggleOwnerDetails(property: Property): void {
+    property.showOwnerDetails = !property.showOwnerDetails;
+  }
 };
 

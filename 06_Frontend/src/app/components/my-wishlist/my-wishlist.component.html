@@ -100,7 +100,11 @@
                 <div style="margin-bottom: -53px">BHK:- {{property.bhk_type}}</div>
                 <!-- Add more property details here as needed -->
               </div>
-              <div class="get-details-button">Get Owner Details</div>
+              <div class="get-details-button" (click)="toggleOwnerDetails(property)">Get Owner Details</div>
+              <div class="owner-details" *ngIf="property.showOwnerDetails">
+                <div>Owner Name: {{property.owner}}</div>
+                <div>Contact Number: +91-XXXXXXXXXX</div>
+              </div>
             </div>
             <div class="section2">
               <div class="close-button">×</div>
