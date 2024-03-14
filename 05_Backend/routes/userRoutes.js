@@ -19,6 +19,7 @@ router.get('/my_properties', UserController.my_property);
 router.post('/add_to_wishlist',UserController.addPropertyToWishlist)
 router.delete('/remove_from_wishlist',UserController.removePropertyFromWishlist)
 router.get('/get_my_profile',UserController.get_my_profile)
+router.get('/wishlist', UserController.wishlist);
 
 
 module.exports = router;
