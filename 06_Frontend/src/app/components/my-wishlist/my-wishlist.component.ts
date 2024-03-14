@@ -21,7 +21,7 @@ export class MyWishlistComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -82,5 +82,6 @@ export class MyWishlistComponent implements OnInit {
   toggleOwnerDetails(property: Property): void {
     property.showOwnerDetails = !property.showOwnerDetails;
   }
+  
 };
 
