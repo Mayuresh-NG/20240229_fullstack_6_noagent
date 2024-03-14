@@ -57,10 +57,10 @@ export class HomePageComponent {
     });
   }
 
-  selectedCity: string = ''; // To store the selected city
+  selectedState: string = ''; // To store the selected city
 
   // List of cities
-  cities: string[] = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai'];
+  states: string[] = ['Delhi', 'Maharashtra', 'Karnataka', 'Telangana'];
 
   selectedButton: string = ''; // To store the selected button
 

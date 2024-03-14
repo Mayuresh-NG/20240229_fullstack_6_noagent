@@ -30,9 +30,9 @@
       <div class="search-bar">
         <!-- app.component.html -->
         <div class="dropdown">
-          <select id="cityDropdown" [(ngModel)]="selectedCity">
-            <option value="" disabled>Select a city</option>
-            <option *ngFor="let city of cities" [value]="city">
+          <select id="cityDropdown" [(ngModel)]="selectedState">
+            <option value="" disabled>Select State</option>
+            <option *ngFor="let city of states" [value]="city">
               {{ city }}
             </option>
           </select>
@@ -41,7 +41,7 @@
         <input
           type="text"
           class="locality-textarea"
-          placeholder="Enter Locality"
+          placeholder="Enter locality"
         />
         <button class="search-button" routerLink="viewproperty">Search</button>
       </div>
