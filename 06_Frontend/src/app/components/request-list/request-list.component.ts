@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { RouterLink } from '@angular/router';
-// import { RequestService } from '../../request.service';
 import { ActivatedRoute } from '@angular/router';
 import { Property } from '../../interface/request';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
 
 
 
