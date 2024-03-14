@@ -90,12 +90,12 @@ export class HomePageComponent {
   searchProperties(): void {
     const type = this.buyActive ? 'buy' : 'rent';
     console.log(type);
-    this.http.get<any[]>(`http://localhost:5200/properties/search?locality=${encodeURIComponent(this.selectedCity)}&type=${encodeURIComponent(type)}`)
+    this.http.get<any[]>(`http://localhost:5200/properties/search?locality=${encodeURIComponent(this.selectedState)}&type=${encodeURIComponent(type)}`)
     // console.log(this.selectedCity);
     // Updated to use `locality` as per the original API endpoint and included the base URL
     .subscribe({
       next: (data) => {
-        console.log(this.selectedCity);
+        console.log(this.selectedState);
         console.log(data);
         this.dataService.setPropertyData(data);
         this.router.navigate(['/viewproperty']);
