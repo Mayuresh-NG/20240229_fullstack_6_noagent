@@ -11,7 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-signup-popup',
   standalone: true,
-  imports: [FormsModule, CommonModule, HomePageComponent, LoginPopupComponent,HttpClientModule],
+  imports: [FormsModule, CommonModule, LoginPopupComponent,HttpClientModule],
   templateUrl: './signup-popup.component.html',
   styleUrl: './signup-popup.component.css',
 })

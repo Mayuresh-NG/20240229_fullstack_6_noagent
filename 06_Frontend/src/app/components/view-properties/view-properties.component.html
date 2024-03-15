@@ -2,32 +2,40 @@
   <app-profile> </app-profile>
 
   <main>
-
-    <app-sort-filter></app-sort-filter>
+    
+    <!-- <app-sort-filter></app-sort-filter> -->
     <div class="propertySection" #propertySection>
       <div class="property" *ngFor="let property of propertyData">
         <br>
-
-        <h2>{{ property.name }}</h2> <!-- Adjust according to your data structure -->
-        <p>Rent: {{ property.rent }}</p>
-        <p>Deposit: {{ property.deposit }}</p>
-        <p>Built-up Area: {{ property.builtUpArea }}</p>
+        
+        <div class="property-header">
+          3 BHK Flat For Rent On Ring Road
+        </div>
+        <div class="subHeader">
+          <p>Rent<br>{{ property.rent }}</p>
+          <hr>
+          <p>Deposit<br>{{ property.deposit }}</p>
+          <hr>
+          <p>Builtup<br>{{ property.builtup }}</p>
+        </div>
 
 
         <div class="property-body">
-          <div class="image-container">
+          <div class="image-container"> 
+          </div>
+          <div class="image-container"> 
           </div>
           <div class="property-right">
-            <div class="property-details">
-            </div>
-
-            <button class="customButtons"> Get Owner Details</button>
-            <button class="customButtons"> Wishlist </button>
+          <div class="property-details">
           </div>
+          
+          <button class="customButtons"> Get Owner Details</button>
+          <button class="customButtons"> Wishlist </button>
+        </div>
         </div>
       </div>
     </div>
-
+    
   </main>
-
+  
 </body>
