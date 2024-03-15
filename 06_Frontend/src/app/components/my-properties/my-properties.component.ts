@@ -3,6 +3,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Property } from '../../interface/request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-properties',
@@ -16,7 +17,10 @@ export class MyPropertiesComponent implements OnInit {
   Properties: Property[] = [];
   headers = {}
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router : Router
+    ) { }
 
   ngOnInit() {
     const authToken = localStorage.getItem('authToken');
@@ -53,6 +57,11 @@ export class MyPropertiesComponent implements OnInit {
         console.error('Error fetching user properties:', error);
       }
     );
+  }
+
+  editProperty(propertyId: string | undefined) {
+    console.log("Modify clicked.")
+    this.router.navigate(['/edit-property', propertyId]);
   }
 
   deleteProperty(propertyId: string | undefined): void {

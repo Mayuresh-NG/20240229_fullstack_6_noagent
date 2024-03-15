@@ -1,24 +1,33 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-// import { AuthService } from '../../services/auth.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
-// Import MatDialog and your PopupComponent
 import { MatDialog } from '@angular/material/dialog';
 import { SignupPopupComponent } from '../signup-popup/signup-popup.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { SellRentPageComponent } from '../sell-rent-page/sell-rent-page.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
-import { DataService } from '../../services/data.service';
 
-// Inject MatDialog in your component's constructor
+interface PropertyData {
+  success: boolean;
+  message: string;
+  properties: Array<{
+    Address: string;
+    deposit: number;
+    rent_price: number;
+    built_Up_area: number;
+    // Add more properties if needed
+  }>;
+}
+
 @Component({
   selector: 'app-home-page',
   standalone: true,
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.css'],
   imports: [
     NavbarComponent,
     ReactiveFormsModule,
@@ -30,105 +39,100 @@ import { DataService } from '../../services/data.service';
     ProfileComponent,
     HttpClientModule
   ],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
+  loggedIn: boolean = false;
+  buyActive: boolean = false;
+  rentActive: boolean = false;
+  selectedState: string = '';
+  states: string[] = ['Delhi', 'Maharashtra', 'Karnataka', 'Telangana'];
+
   constructor(
     public dialog: MatDialog,
-    private router: Router, 
+    private router: Router,
     private http: HttpClient,
     private dataService: DataService
   ) {
-    // Check if the authToken exists in localStorage to set the loggedIn state
     this.loggedIn = !!localStorage.getItem('authToken');
   }
 
-  // Function to open the popup
   openPopup(): void {
     const dialogRef = this.dialog.open(SignupPopupComponent, {
-      width: '300px', // Adjust the width based on your design
+      width: '300px',
     });
 
-    // Handle the popup closure
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The popup was closed');
     });
   }
 
-  // Function to open the popup
-// In HomePageComponent
-showLoginPopup(): void {
-  const dialogRef = this.dialog.open(LoginPopupComponent, {
-    width: '300px', // Adjust the width based on your design
-  });
+  showLoginPopup(): void {
+    const dialogRef = this.dialog.open(LoginPopupComponent, {
+      width: '300px',
+    });
 
-  // Listen to the loginStateChange event
-  const sub = dialogRef.componentInstance.loginStateChange.subscribe((isLoggedIn: boolean) => {
-    this.loggedIn = isLoggedIn; // Update the loggedIn property based on the event
-    sub.unsubscribe(); // Unsubscribe to avoid memory leaks
-  });
+    const sub = dialogRef.componentInstance.loginStateChange.subscribe((isLoggedIn: boolean) => {
+      this.loggedIn = isLoggedIn;
+      sub.unsubscribe();
+    });
 
-  dialogRef.afterClosed().subscribe((result) => {
-    console.log('The popup was closed');
-  });
-}
-
-  selectedState: string = ''; // To store the selected city
-
-  // List of cities
-  states: string[] = ['Delhi', 'Maharashtra', 'Karnataka', 'Telangana'];
-
-  selectedButton: string = ''; // To store the selected button
-
-  isActive = false;
-  loggedIn = false;
-  buyActive = false;
-  rentActive = false;
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The popup was closed');
+    });
+  }
 
   toggleBuyActive(): void {
     this.buyActive = !this.buyActive;
-    this.rentActive = false; // Set the other button to false
+    this.rentActive = false;
   }
 
   toggleRentActive(): void {
     this.rentActive = !this.rentActive;
-    this.buyActive = false; // Set the other button to false
+    this.buyActive = false;
   }
   
   postAd(): void {
-    // Check if authToken exists in localStorage
     if (localStorage.getItem('authToken')) {
-      // User is logged in, navigate to the posting page
-      this.router.navigate(['/sell-rent']); // Adjust the path as necessary
+      this.router.navigate(['/sell-rent']);
     } else {
-      // User is not logged in, show the login popup
       this.showLoginPopup();
     }
   }
 
-
   searchProperties(): void {
     const type = this.buyActive ? 'buy' : 'rent';
     console.log(type);
-    this.http.get<any[]>(`http://localhost:5200/properties/search?locality=${encodeURIComponent(this.selectedState)}&type=${encodeURIComponent(type)}`)
-    // console.log(this.selectedCity);
-    // Updated to use `locality` as per the original API endpoint and included the base URL
-    .subscribe({
-      next: (data) => {
-        console.log(this.selectedState);
-        console.log(data);
-        this.dataService.setPropertyData(data);
-        this.router.navigate(['/viewproperty']);
-        // Assuming you have a service or a method to pass data to the ViewPropertiesComponent
-        // For example, using a shared service or Angular's state management
-        // Here, we'll directly navigate and assume the component fetches its own data
-        // this.router.navigate(['/viewproperty']); // Make sure the route matches your configuration
-      },
-      error: (error) => {
-        // console.log(this.selectedCity);
-        console.error('Error fetching property details:', error);
-      }
-    });
+
+    const url = `http://localhost:5200/properties/search?locality=${encodeURIComponent(this.selectedState)}&type=${encodeURIComponent(type)}`;
+
+    this.http.get<PropertyData>(url)
+      .subscribe({
+        next: (data) => {
+          console.log(this.selectedState);
+          console.log(data);
+
+          if (data && Array.isArray(data.properties) && data.properties.length > 0) {
+            const properties = data.properties;
+            const firstProperty = properties[0];
+            const address = firstProperty.Address;
+            const deposit = firstProperty.deposit;
+            const rent = firstProperty.rent_price;
+            const builtupArea = firstProperty.built_Up_area;
+
+            // console.log('Address:', address);
+            // console.log('Deposit:', deposit);
+            // console.log('Rent:', rent);
+            // console.log('Builtup Area:', builtupArea);
+
+            this.dataService.setPropertyData(data);
+            this.router.navigate(['/viewproperty']);
+          } else {
+            console.error('Properties array not found in data object.');
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching property details:', error);
+        }
+      });
   }
 }
