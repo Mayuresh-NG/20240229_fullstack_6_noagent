@@ -25,11 +25,13 @@ const propSchema = new mongoose.Schema({
   },
   built_Up_area: String,
   state: String,
-  street_name: String,
-  city: String,
-  Landmark: String,
-  pincode: {
-    type: Number,
+  Address: {
+    street_name: String,
+    city: String,
+    Landmark: String,
+    pincode: {
+      type: Number,
+    },
   },
   Furnished: {
     full: Boolean,

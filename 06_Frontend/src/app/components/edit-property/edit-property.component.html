@@ -1,20 +1,22 @@
+<app-navbar></app-navbar>
 
 <body>
   <div style="text-align: center; margin-top: 20px">
     <h2 style="
-        color: #292c44;
-        font-size: 24px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 8px;
-        word-spacing: 10px;
-        margin-bottom: 5px;
-      ">
-      Sell your Property
+            color: #292c44;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            word-spacing: 10px;
+            margin-bottom: 5px;
+          ">
+      Edit Property
     </h2>
   </div>
-  <button class="shadow-button" (click)="saveAndPost()">Save and Post</button>
+
   <main class="mainBody">
+
     <!-- LEFT SIDE -->
     <div class="propertyForm">
       <h3 style="color: #292c44; font-size: 20px; font-weight: 600; padding: auto">
@@ -47,12 +49,12 @@
       </div>
 
       <h3 style="
-          color: #292c44;
-          font-size: 20px;
-          font-weight: 600;
-          padding-top: 10px;
-          padding-bottom: 0px;
-        ">
+              color: #292c44;
+              font-size: 20px;
+              font-weight: 600;
+              padding-top: 10px;
+              padding-bottom: 0px;
+            ">
         Locality Details
       </h3>
       <!-- State Dropdown -->
@@ -107,12 +109,12 @@
     <!-- Right SIDE -->
     <div class="propertyForm">
       <h3 style="
-          color: #292c44;
-          font-size: 20px;
-          font-weight: 600;
-          padding-top: 10px;
-          padding-bottom: 0px;
-        ">
+              color: #292c44;
+              font-size: 20px;
+              font-weight: 600;
+              padding-top: 10px;
+              padding-bottom: 0px;
+            ">
         More Details
       </h3>
 
@@ -120,9 +122,9 @@
       <div class="furnishingBox">
         <p>Furnishing</p>
         <div class="radio-container">
-          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="full" /> Full</label>
-          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="semi" /> Semi</label>
-          <label><input type="radio" name="furnishing" [(ngModel)]="furnishing" value="none" /> None</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishingFull" [value]="true" /> Full</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishingSemi" [value]="true" /> Semi</label>
+          <label><input type="radio" name="furnishing" [(ngModel)]="furnishingNone" [value]="true" /> None</label>
         </div>
       </div>
 
@@ -139,14 +141,13 @@
       </div>
       <br />
       <!-- Property Type Dropdown -->
-      <select class="dropdown" [(ngModel)]="propertyType" name="propertyType" #propertyTypeInput="ngModel" required
+      <select class="dropdown" [(ngModel)]="tradeType" name="trade" #propertyTypeInput="ngModel" required
         (blur)="propertyTypeInputFocused = false" (focus)="propertyTypeInputFocused = true">
-        <option value="" disabled selected>Property Type</option>
-        <option value="Apartment">Apartment</option>
-        <option value="Bunglow">Bungalow</option>
-        <option value="House">House</option>
-        <option value="Farm House">Farm House</option>
+        <option value="" disabled>Sell/Rent</option>
+        <option value="sell">Sell</option>
+        <option value="rent">Rent</option>
       </select>
+
       <div
         *ngIf="!propertyTypeInputFocused && propertyTypeInput.invalid && (propertyTypeInput.dirty || propertyTypeInput.touched)"
         class="error-message">
@@ -154,13 +155,14 @@
       </div>
       <br />
       <!-- Amenities Dropdown -->
-      <select class="dropdown" [(ngModel)]="amenities" name="amenities" #amenitiesInput="ngModel" required
+      <select class="dropdown" [(ngModel)]="selectedAmenities" name="amenities" #amenitiesInput="ngModel" required
         (blur)="amenitiesInputFocused = false" (focus)="amenitiesInputFocused = true">
         <option value="" disabled selected>Amenities</option>
         <option value="Garden">Garden</option>
-        <option value="PLayground">Playground</option>
+        <option value="Playground">Playground</option>
         <option value="Swimming Pool">Swimming Pool</option>
       </select>
+
       <div *ngIf="!amenitiesInputFocused && amenitiesInput.invalid && (amenitiesInput.dirty || amenitiesInput.touched)"
         class="error-message">
         Please select Amenities
@@ -175,20 +177,9 @@
         <div *ngIf="depositePriceInput.errors?.['required']">Deposit Price is required</div>
         <div *ngIf="depositePriceInput.errors?.['pattern']">Invalid Deposit price</div>
       </div>
-      <h3 style="
-          color: #292c44;
-          font-size: 20px;
-          font-weight: 600;
-          padding-top: 20px;
-        ">
-        Gallery
-      </h3>
 
-      <div class="image-container">
-        <p class="plus-sign">+</p>
-      </div>
-
-   
+      <button class="shadow-button" (click)="updateAndPost()">Update and Post</button>
     </div>
+
   </main>
 </body>

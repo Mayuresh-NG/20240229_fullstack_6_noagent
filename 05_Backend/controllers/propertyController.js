@@ -68,10 +68,7 @@ const rent_prop =(verifyToken,async (req, res) => {
       rent_price,
       bhk_type,
       state,
-      street_name,
-      city,
-      Landmark,
-      pincode,
+      address,
       furnished,
       pref_tenants,
       // images,
@@ -96,10 +93,7 @@ const rent_prop =(verifyToken,async (req, res) => {
       rent_price,
       bhk_type,
       state,
-      street_name,
-      city,
-      Landmark,
-      pincode,
+      Address: address,
       Furnished: furnished,
       preferred_tenents: pref_tenants,
       // images: cloudinaryImageUrls,
@@ -140,10 +134,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      street_name,
-      city,
-      Landmark,
-      pincode,
+      address,
       Furnished,
       // images,
       availableFrom,
@@ -169,10 +160,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      street_name,
-      city,
-      Landmark,
-      pincode,
+      Address: address,
       Furnished,
       // images: cloudinaryImageUrls,
       availableFrom,
@@ -210,7 +198,7 @@ const modify_prop =(verifyToken,async (req, res) => {
     const propertyId = req.query.propertyId;
     const userData = req.decoded;
     const updatedFields = req.body; // Fields to be updated
-
+    console.log(propertyId,userData,updatedFields)
     // Find the property by ID
     const property = await Property.findById(propertyId);
     // Check if the user is the owner of the property
