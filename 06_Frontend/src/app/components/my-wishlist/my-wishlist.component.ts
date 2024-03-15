@@ -21,7 +21,7 @@ export class MyWishlistComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -79,5 +79,9 @@ export class MyWishlistComponent implements OnInit {
         console.error('Failed to fetch properties:', error);
       });
   }
+  toggleOwnerDetails(property: Property): void {
+    property.showOwnerDetails = !property.showOwnerDetails;
+  }
+  
 };
 

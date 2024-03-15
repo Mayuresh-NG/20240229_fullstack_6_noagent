@@ -120,6 +120,8 @@ body {
     padding: 34px;
     padding-top: 0;
     padding-bottom: 0;
+    font-weight: bold;
+    margin-bottom: 25px;
   }
   
   .get-details-button {
@@ -145,4 +147,15 @@ body {
     margin-top: 20px;
     margin-left: 3px;
   }
+
+  .owner-details {
+    background-color: #3f51b5; /* Grey background color */
+    padding: 10px; /* Add padding for better visibility */
+    margin-top: 10px; /* Add margin for spacing */
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+  }
+
+  
   

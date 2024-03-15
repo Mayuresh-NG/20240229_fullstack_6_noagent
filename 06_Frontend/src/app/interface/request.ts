@@ -8,6 +8,8 @@ interface Property {
     bhk_type: string;
     built_Up_area?: string;
     state?: string;
+    // Add this property to track visibility of owner details
+    showOwnerDetails: boolean;
     Address: {
         street_name: string;
         city: string;

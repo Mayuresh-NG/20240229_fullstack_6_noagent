@@ -119,10 +119,10 @@ export class HomePageComponent {
             const rent = firstProperty.rent_price;
             const builtupArea = firstProperty.built_Up_area;
 
-            // console.log('Address:', address);
-            // console.log('Deposit:', deposit);
-            // console.log('Rent:', rent);
-            // console.log('Builtup Area:', builtupArea);
+            console.log('Address:', address);
+            console.log('Deposit:', deposit);
+            console.log('Rent:', rent);
+            console.log('Builtup Area:', builtupArea);
 
             this.dataService.setPropertyData(data);
             this.router.navigate(['/viewproperty']);

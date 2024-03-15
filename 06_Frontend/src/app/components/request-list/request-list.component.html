@@ -30,8 +30,7 @@
       <tr *ngFor="let property of filteredProperties; let i = index">
         <td >
           <a [routerLink]="['../singledetail', property._id]">
-            {{ property.Address.street_name || "" }}, {{ property.Address.Landmark }},
-            {{ property.Address.city }} {{ property.Address.pincode }}
+            {{ property.state|| "" }}
           </a>
         </td>
         <td >
