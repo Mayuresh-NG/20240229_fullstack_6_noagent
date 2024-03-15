@@ -134,7 +134,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      address,
+      Address,
       Furnished,
       // images,
       availableFrom,
@@ -160,7 +160,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      Address: address,
+      Address,
       Furnished,
       // images: cloudinaryImageUrls,
       availableFrom,
@@ -198,7 +198,7 @@ const modify_prop =(verifyToken,async (req, res) => {
     const propertyId = req.query.propertyId;
     const userData = req.decoded;
     const updatedFields = req.body; // Fields to be updated
-
+    console.log(propertyId,userData,updatedFields)
     // Find the property by ID
     const property = await Property.findById(propertyId);
     // Check if the user is the owner of the property

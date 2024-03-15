@@ -8,11 +8,13 @@
       <!-- <div class="menu-header">{{ userRole }}</div> -->
       <div class="admin-name">{{ adminName }}</div>
       <hr />
+
       <button mat-menu-item routerLink="../wishlist">My Wishlist</button>
       <button mat-menu-item routerLink="../properties">My Property</button>
       <button mat-menu-item routerLink="../requestlist">Requests</button>
       <button mat-menu-item routerLink="../propertylist">All Properties</button>
       <button mat-menu-item routerLink="../sell-rent">Post property Ad</button>
+
       <button mat-menu-item (click)="logout()" >Log Out</button>
     </mat-menu>
   </div>

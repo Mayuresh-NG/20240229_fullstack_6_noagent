@@ -135,13 +135,15 @@ body {
   }
   
   .photo {
-    height:60%;
-    width: 50%;
+    height:80%;
+    width: 80%;
     background-image: url("../../../assets/images/room1.jpg");
     background-size: cover;
     background-position: center;
-    margin-top: 31px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 3px;
+    /* margin-right: 0px; */
   }
   
   .modify,

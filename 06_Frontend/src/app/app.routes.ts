@@ -15,6 +15,7 @@ import { PropertyDetailsMainScreenComponent } from './components/property_detail
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SellRentPageComponent } from './components/sell-rent-page/sell-rent-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EditPropertyComponent } from './components/edit-property/edit-property.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'singledetail/:id', component: DetailSingleComponent },
+  { path : 'edit-property/:id', component : EditPropertyComponent},
   { path: '**', component: PageNotFoundComponent },
 
 ];
