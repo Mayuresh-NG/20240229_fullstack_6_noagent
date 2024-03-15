@@ -24,6 +24,7 @@ export class PropertyListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchProperties()
+    console.log(this.properties)
   }
 
   dropdownOpen = false;
