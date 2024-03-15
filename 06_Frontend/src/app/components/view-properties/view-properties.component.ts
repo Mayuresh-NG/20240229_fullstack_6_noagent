@@ -12,7 +12,8 @@ import { DataService } from '../../services/data.service';
   styleUrl: './view-properties.component.css'
 })
 export class ViewPropertiesComponent implements OnInit {
-  propertyData: any[] = []; // Adjust the type according to your data structure
+  propertyData: any[] = [];
+  searchQuery: string = ''; // Adjust the type according to your data structure
 
   constructor(private http: HttpClient,private dataService:DataService) { }
 
@@ -21,7 +22,8 @@ export class ViewPropertiesComponent implements OnInit {
   }
 
   fetchPropertyDetails(): void {
-    this.http.get<any[]>('http://localhost:5200/properties/search').subscribe({
+    const queryParams = this.searchQuery ? `?locality=${this.searchQuery}` : '';
+    this.http.get<any[]>(`http://localhost:5200/properties/search${queryParams}`).subscribe({
       next: (data) => {
         this.propertyData = data;
       },
