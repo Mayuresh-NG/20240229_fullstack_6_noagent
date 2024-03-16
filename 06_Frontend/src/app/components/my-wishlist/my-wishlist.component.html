@@ -80,7 +80,7 @@
 
 
 
-  <body>
+<body>
   <app-profile></app-profile>
   <div class="container">
     <div class="headings">
@@ -95,14 +95,16 @@
             <div class="section1">
               <div class="text-rows">
                 <!-- Display property details. Adjust 'title', 'description', etc. according to your Property interface -->
-                <div style="margin-bottom: -53px">{{ property.trade_type === 'sell' ? 'Sell' : 'Rent' }} price:- {{property.prop_price}} RS</div>
-                <div style="margin-bottom: -53px">Address:- {{property.Address.street_name}} , {{property.Address.city}} , {{property.Address.pincode}}</div>
+                <div style="margin-bottom: -53px">{{ property.trade_type === 'sell' ? 'Sell' : 'Rent' }} price:-
+                  {{property.prop_price}} RS</div>
+                <div style="margin-bottom: -53px">Address:- {{property.Address.street_name}} , {{property.Address.city}}
+                  , {{property.Address.pincode}}</div>
                 <div style="margin-bottom: -53px">BHK:- {{property.bhk_type}}</div>
                 <!-- Add more property details here as needed -->
               </div>
               <div class="get-details-button" (click)="toggleOwnerDetails(property)">Get Owner Details</div>
               <div class="owner-details" *ngIf="property.showOwnerDetails">
-                <div>Owner Name: {{property.owner_user_name}}</div>
+                <div>Owner Name: </div>
                 <div>No: +91-XXXXXXXXXX</div>
               </div>
             </div>
