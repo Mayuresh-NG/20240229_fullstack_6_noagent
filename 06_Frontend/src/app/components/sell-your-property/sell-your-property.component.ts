@@ -3,7 +3,6 @@ import { Component,inject } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
-import { log } from 'console';
 
 @Component({
   selector: 'app-sell-your-property',
@@ -26,6 +25,7 @@ export class SellYourPropertyComponent {
   stateInputFocused: boolean = false;
 
   // Address
+  Address:string ='';
   streetName: string = '';
   streetNameInputFocused: boolean = false;
   city: string = '';
@@ -68,10 +68,7 @@ export class SellYourPropertyComponent {
       bhk_type: this.bhkType,
       built_Up_area: this.builtUpArea,
       state: this.state,
-      street_name: this.streetName,
-      city: this.city,
-      Landmark: this.landmark,
-      pincode: this.pincode,
+      Address:this.Address,
       Furnished: this.furnishing,
       // images: this.images,
       deposit: parseInt(this.depositePrice, 10), // Assuming depositePrice is a string

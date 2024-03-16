@@ -80,7 +80,9 @@ export class EditPropertyComponent implements OnInit {
     // Include the token in the request headers
     this.headers = { 'Authorization': `Bearer ${authToken}` };
 
+
     this.propertyId = this.route.snapshot.paramMap.get('id');
+    console.log(this.propertyId)
     this.getPropertyDetails();
   }
 
@@ -101,13 +103,12 @@ export class EditPropertyComponent implements OnInit {
           this.city = this.propertyDetails.Address.city;
           this.landmark = this.propertyDetails.Address.Landmark;
           this.pincode = this.propertyDetails.Address.pincode;
-          // Check each furnishing option and set this.furnishing accordingly
           // Set furnishing options
-          this.furnishingFull = this.propertyDetails.Furnished.full;
-          this.furnishingSemi = this.propertyDetails.Furnished.semi;
-          this.furnishingNone = this.propertyDetails.Furnished.none;
-
-          console.log(this.furnishingFull, this.furnishingSemi, this.furnishingNone)
+          if (this.propertyDetails.Furnished) {
+            this.furnishingFull = this.propertyDetails.Furnished.full;
+            this.furnishingSemi = this.propertyDetails.Furnished.semi;
+            this.furnishingNone = this.propertyDetails.Furnished.none;
+          }
           this.propertyPrice = this.propertyDetails.rent_price
           this.depositePrice = this.propertyDetails.deposit.toString();
           this.tradeType = this.propertyDetails.trade_type;
@@ -162,10 +163,9 @@ export class EditPropertyComponent implements OnInit {
       // Add more fields as needed
     };
     console.log("New are", modifiedFields)
+    console.log(this.headers)
 
-    const url = `http://localost:5200/properties/modify_property?propertyId=${this.propertyId}`;
-
-    this.http.put(url, modifiedFields).subscribe(
+    this.http.put(`http://localhost:5200/properties/modify_property?propertyId=${this.propertyId}`, modifiedFields, { headers: this.headers }).subscribe(
       (response: any) => {
         console.log('Property modified successfully:', response);
         // Optionally, you can show a success message or redirect the user

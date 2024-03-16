@@ -67,7 +67,7 @@ export class MyWishlistComponent implements OnInit {
         // Filter properties based on property IDs
         for (const propertyId of propertyIds) {
           const filteredProperty = properties.filter(property => property._id === propertyId);
-          
+          console.log("yeh hi",filteredProperty)
           if (filteredProperty.length > 0) {
             // Push the filtered property to the fetchedProperties array
             this.fetchedProperties.push(filteredProperty[0]); // Assuming property IDs are unique
