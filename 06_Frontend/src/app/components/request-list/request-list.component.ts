@@ -57,7 +57,8 @@ export class RequestListComponent implements OnInit {
 
         // Filter properties by status
         const filteredProperties = properties.filter(property => property.status === state);
-
+        console.log(filteredProperties);
+        
         // Assign filtered properties to this.filteredProperties if any
         if (filteredProperties.length > 0) {
 
