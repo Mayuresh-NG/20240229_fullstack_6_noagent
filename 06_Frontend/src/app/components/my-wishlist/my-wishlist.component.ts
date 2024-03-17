@@ -17,7 +17,7 @@ import { Property } from '../../interface/request';
 })
 export class MyWishlistComponent implements OnInit {
   wishlistItems: Wishlist[] = [];
-  fetchedProperties: Property[] = []
+  fetchedProperties: Property[] = [];
 
   constructor(
     private http: HttpClient,
@@ -25,11 +25,17 @@ export class MyWishlistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fetchWishlistItems();
+    this.route.queryParams.subscribe(params => {
+      const propertyId = params['propertyId']; // Get the property ID from query params
+      if (propertyId) {
+        this.fetchWishlistItems(propertyId);
+      } else {
+        console.error('No property ID provided in query parameters');
+      }
+    });
   }
 
-  fetchWishlistItems(): void {
-
+  fetchWishlistItems(propertyId: string): void {
     // Obtain JWT token from wherever it's stored (e.g., localStorage)
     const token = localStorage.getItem('authToken');
 
@@ -38,7 +44,7 @@ export class MyWishlistComponent implements OnInit {
       // Set the Authorization header with the token
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-      this.http.get<any>('http://localhost:5200/users/wishlist', { headers: headers })
+      this.http.get<any>(`http://localhost:5200/users/wishlist?propertyId=${propertyId}`, { headers: headers })
         .subscribe((items: any) => {
           console.log('All wishlist items fetched:', items);
           this.wishlistItems = items;
@@ -50,7 +56,6 @@ export class MyWishlistComponent implements OnInit {
       console.error('No token provided');
     }
   }
-  
 
   processWishlistItems(): void {
     // Extract property IDs from wishlist items
