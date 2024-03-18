@@ -78,6 +78,13 @@ export class MyWishlistComponent implements OnInit {
       }, error => {
         console.error('Failed to fetch properties:', error);
       });
+  } 
+
+  removewishlist(propertyId: string): void {
+    // Implement logic to remove property from wishlist
+    // This method will be called when the remove button is clicked
+    console.log('Removing property from wishlist:', propertyId);
+    // Call your API to remove the property from the wishlist
   }
   toggleOwnerDetails(property: Property): void {
     property.showOwnerDetails = !property.showOwnerDetails;

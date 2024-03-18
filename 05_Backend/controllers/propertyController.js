@@ -71,19 +71,19 @@ const rent_prop =(verifyToken,async (req, res) => {
       address,
       furnished,
       pref_tenants,
-      // images,
+      images,
       availableFrom,
       deposit,
       built_Up_area,
     } = req.body;
 
-    // const cloudinaryImageUrls = await Promise.all(
-    //   images.map(async (imageData) => {
-    //     return await cloudinaryUtils.uploadToCloudinary(
-    //       `./assets/property-images/${imageData.url}`
-    //     );
-    //   })
-    // );
+    const cloudinaryImageUrls = await Promise.all(
+      images.map(async (imageData) => {
+        return await cloudinaryUtils.uploadToCloudinary(
+          `./assets/property-images/${imageData.url}`
+        );
+      })
+    );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -96,7 +96,7 @@ const rent_prop =(verifyToken,async (req, res) => {
       Address: address,
       Furnished: furnished,
       preferred_tenents: pref_tenants,
-      // images: cloudinaryImageUrls,
+      images: cloudinaryImageUrls,
       availableFrom,
       deposit,
       built_Up_area,
@@ -136,7 +136,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       state,
       Address,
       Furnished,
-      // images,
+       images,
       availableFrom,
       deposit,
       property_type,
@@ -144,13 +144,13 @@ const sell_prop =(verifyToken,async (req, res) => {
       built_Up_area,
     } = req.body;
 
-    // const cloudinaryImageUrls = await Promise.all(
-    //   images.map(async (imageData) => {
-    //     return await cloudinaryUtils.uploadToCloudinary(
-    //       `./assets/property-images/${imageData.url}`
-    //     );
-    //   })
-    // );
+    const cloudinaryImageUrls = await Promise.all(
+      images.map(async (imageData) => {
+        return await cloudinaryUtils.uploadToCloudinary(
+          `./assets/property-images/${imageData.url}`
+        );
+      })
+    );
 
     // Create a new property using the Property model
     const newProperty = new Property({
@@ -162,7 +162,7 @@ const sell_prop =(verifyToken,async (req, res) => {
       state,
       Address,
       Furnished,
-      // images: cloudinaryImageUrls,
+      images: cloudinaryImageUrls,
       availableFrom,
       property_type,
       deposit,
