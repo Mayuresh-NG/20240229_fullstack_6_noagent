@@ -65,6 +65,8 @@ export class MyPropertiesComponent implements OnInit {
   }
 
   deleteProperty(propertyId: string | undefined): void {
+    console.log("delete:"+propertyId);
+    
     this.http.delete<any>(`http://localhost:5200/properties/remove_property?propertyId=${propertyId}`, { headers: this.headers })
       .subscribe(
         response => {

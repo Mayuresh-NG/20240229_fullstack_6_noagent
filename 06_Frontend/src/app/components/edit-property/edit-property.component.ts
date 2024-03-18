@@ -99,10 +99,10 @@ export class EditPropertyComponent implements OnInit {
           this.bhkType = this.propertyDetails.bhk_type;
           this.builtUpArea = this.propertyDetails.built_Up_area
           this.state = this.propertyDetails.state;
-          this.streetName = this.propertyDetails.Address.street_name;
-          this.city = this.propertyDetails.Address.city;
-          this.landmark = this.propertyDetails.Address.Landmark;
-          this.pincode = this.propertyDetails.Address.pincode;
+          this.streetName = this.propertyDetails.address.street_name;
+          this.city = this.propertyDetails.address.city;
+          this.landmark = this.propertyDetails.address.landmark;
+          this.pincode = this.propertyDetails.address.pincode;
           // Set furnishing options
           if (this.propertyDetails.Furnished) {
             this.furnishingFull = this.propertyDetails.Furnished.full;

@@ -127,27 +127,29 @@ const login = async (req, res) => {
 
 const my_property =
   (verifyToken,
-  async (req, res) => {
-    try {
-      const userData = req.decoded;
-      const owner = userData.userId;
+    async (req, res) => {
+      try {
+        const userData = req.decoded;
+        const ownerId = userData.userId;
 
-      // Query properties with the matching owner_id
-      const myProperties = await Property.find({ owner });
-      console.log(myProperties)
-      res.status(200).json({
-        success: true,
-        message: "My properties retrieved successfully!",
-        properties: myProperties,
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        success: false,
-        message: "Internal Server Error",
-      });
-    }
-  });
+        console.log("id=" + ownerId);
+        // console.log("user data:=" + userData._id);
+        // Query properties with the matching owner_id
+        const myProperties = await Property.find({  owner: ownerId  });
+        console.log(myProperties)
+        res.status(200).json({
+          success: true,
+          message: "My properties retrieved successfully!",
+          properties: myProperties,
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({
+          success: false,
+          message: "Internal Server Error",
+        });
+      }
+    });
 
 const addPropertyToWishlist = async (req, res) => {
   try {
@@ -227,49 +229,49 @@ const removePropertyFromWishlist = async (req, res) => {
 
 const get_my_profile =
   (verifyToken,
-  async (req, res) => {
-    try {
-      const userData = req.decoded;
+    async (req, res) => {
+      try {
+        const userData = req.decoded;
 
-      // Find the user by ID
-      const user = await User.findById(userData.userId);
+        // Find the user by ID
+        const user = await User.findById(userData.userId);
 
-      if (!user) {
-        return res.status(404).json({
+        if (!user) {
+          return res.status(404).json({
+            success: false,
+            message: "User not found",
+          });
+        }
+
+        // Extract user details
+        const userDetails = {
+          username: user.username,
+          full_name: user.full_name,
+          email: user.email,
+          phone_number: user.phone_number,
+          // Add other user details as needed
+        };
+
+        res.status(200).json({
+          success: true,
+          message: "User profile retrieved successfully!",
+          user: userDetails,
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({
           success: false,
-          message: "User not found",
+          message: "Internal Server Error",
         });
       }
-
-      // Extract user details
-      const userDetails = {
-        username: user.username,
-        full_name: user.full_name,
-        email: user.email,
-        phone_number: user.phone_number,
-        // Add other user details as needed
-      };
-
-      res.status(200).json({
-        success: true,
-        message: "User profile retrieved successfully!",
-        user: userDetails,
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        success: false,
-        message: "Internal Server Error",
-      });
-    }
-  });
+    });
 
 // Function to initiate the password reset process
 const forget_password = async (req, res) => {
   try {
     // Extracting the email from the request body
     const email = req.body.email;
-    
+
     // Finding user data based on the provided email
     const userData = await User.findOne({ email: email }, { username: 1, email: 1 });
 
@@ -277,14 +279,14 @@ const forget_password = async (req, res) => {
     if (userData) {
       // Generating a random string
       const randomString = randomstring.generate();
-      
+
       // Updating the user's record with the generated token
       const data = await User.updateOne(
         { email: email },
         { $set: { token: randomString } }
       );
 
-    
+
 
       // Sending the reset password email
       sendResetPasswordMail(userData.username, userData.email, randomString);
@@ -350,8 +352,8 @@ const reset_password = async (req, res) => {
     // Extracting the token from the query parameters
     const token = req.query.token;
     console.log(token);
-    
-    
+
+
     // Finding user data based on the provided token
     const tokenData = await User.findOne({ token: token });
     console.log(tokenData);
@@ -360,7 +362,7 @@ const reset_password = async (req, res) => {
     if (tokenData && !isTokenExpired(tokenData.tokenTimestamp)) {
       // Extracting the new password from the request body  
       const password = req.body.password;
-      
+
       // Hashing the new password using bcrypt
       const newPass = await bcrypt.hash(password, 10);
 
@@ -389,7 +391,7 @@ const reset_password = async (req, res) => {
 
 // Function to check if the token is expired
 const isTokenExpired = (timestamp) => {
-  const expirationTime = 86400000; 
+  const expirationTime = 86400000;
   const currentTime = new Date().getTime();
   return (currentTime - timestamp) > expirationTime;
 };
@@ -403,11 +405,11 @@ const isTokenExpired = (timestamp) => {
 
 // // Method to fetch all wishlists with user and property details
 // WishlistController.getAllWishlists
-const wishlist = (verifyToken,async (req, res) => {
+const wishlist = (verifyToken, async (req, res) => {
   try {
 
-    const user = await User.findOne({ username : req.decoded.username })
-    const wishlists = await wish.find({userId : user._id})
+    const user = await User.findOne({ username: req.decoded.username })
+    const wishlists = await wish.find({ userId: user._id })
     res.status(200).json(wishlists);
   } catch (err) {
     console.error(err);
