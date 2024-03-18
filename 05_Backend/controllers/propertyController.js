@@ -5,6 +5,7 @@ const wish = require('../models/wishlist')
 
 const cloudinaryUtils = require("../utils/cloudinary");
 
+
 /**Searches for properties based on type and locality.
  * @param {Object} req - The request object containing query parameters.
  * @param {Object} res - The response object used to return data or messages.
@@ -12,10 +13,11 @@ const cloudinaryUtils = require("../utils/cloudinary");
 const search = async (req, res) => {
   try {
     const type = req.query.type;
-    const searchQuery = req.query.locality; // Extract the address query parameter
+    const state = req.query.state; // Extract the address query parameter
+    const city = req.query.city;
 
     // If no search query is provided, return an error
-    if (!searchQuery) {
+    if (!state && !city) {
       return res.status(400).json({
         success: false,
         message: "Please provide an address for the search.",
@@ -25,11 +27,7 @@ const search = async (req, res) => {
     // Fetch properties based on the address query (including both city and state)
     const matchingProperties = await Property.find({
       trade_type: type,
-      status: "approved", //TODO : Add this back when properties are approved
-      $or: [
-        { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
-        { state: { $regex: new RegExp(searchQuery, "i") } },
-      ],
+
     });
 
     // If no matching properties are found, return a message
@@ -52,7 +50,11 @@ const search = async (req, res) => {
       message: "Internal Server Error",
     });
   }
+
+
 };
+
+
 
 
 //current work

@@ -1,8 +1,9 @@
 <app-navbar>
 
-  
-  
+
+
   <div adminContent>
+    <p>{{adminName}}</p>
     <button mat-icon-button [matMenuTriggerFor]="adminMenu" class="round-icon" (click)="fetchUserDetails()">
       <mat-icon class="account-icon">account_circle</mat-icon>
     </button>
