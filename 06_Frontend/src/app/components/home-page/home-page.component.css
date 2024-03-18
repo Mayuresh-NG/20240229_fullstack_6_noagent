@@ -6,12 +6,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
-  height: auto;
 }
 
 header img {
   width: 50px;
   height: auto;
+  max-width: 100%;
+  /* Ensuring the logo image scales properly */
 }
 
 header h1 {
@@ -30,14 +31,11 @@ header h1 {
   font-size: 18px;
   font-weight: 400;
   margin-left: 10px;
-  width: 80px;
   height: 32px;
-  padding: 5px;
 }
 
 .shadow-button:hover {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-
   background-color: white;
   color: black;
 }
@@ -52,7 +50,8 @@ header h1 {
 }
 
 .locality-textarea {
-  width: 526px;
+  width: 100%;
+  /* Ensuring the input field stretches to full width */
   height: 50px;
   border: none;
   font-family: "Karla", sans-serif;
@@ -64,7 +63,10 @@ header h1 {
 }
 
 .search-button {
-  width: 170px;
+  width: calc(30% - 10px);
+  /* Setting a calculated width for the button */
+  max-width: 170px;
+  /* Limiting the maximum width */
   height: 50px;
   background-color: #2980b9;
   color: white;
@@ -76,21 +78,28 @@ header h1 {
   border-top-right-radius: 5px;
   border: none;
 }
+
 .search-button:hover {
-  animation: bounce 0.8s ease infinite; /* Apply the bounce animation */
+  animation: bounce 0.8s ease infinite;
   background-color: darkblue;
-  color: white;
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0); /* Bounce at the original position */
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
   }
+
   40% {
-    transform: translateY(-5px); /* Bounce upward */
+    transform: translateY(-5px);
   }
+
   60% {
-    transform: translateY(-5px); /* Bounce downward */
+    transform: translateY(-5px);
   }
 }
 
@@ -134,8 +143,8 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 20;
 }
+
 .hr-container {
   display: flex;
   align-items: center;
@@ -143,6 +152,7 @@ footer {
   margin: 20px 0;
   width: fit-content;
 }
+
 hr {
   flex: 1;
   border: 0;
@@ -151,6 +161,7 @@ hr {
   margin: 0 10px;
   max-width: 114px;
 }
+
 p {
   text-align: center;
   font-size: 18px;
@@ -189,7 +200,7 @@ p {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2; /* Increase the z-index value */
+  z-index: 2;
 }
 
 .popup {
@@ -201,7 +212,7 @@ p {
   background-color: #fff;
   width: 670px;
   height: 552px;
-  z-index: 3; /* Increase the z-index value */
+  z-index: 3;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -217,6 +228,7 @@ p {
   border-right: solid white 0.5px;
   background-color: #a9dfff;
 }
+
 .right-section {
   flex: 1;
   background-color: #c7e6f8;
@@ -267,12 +279,10 @@ p {
   cursor: pointer;
 }
 
-/* Enter phone text style */
 .enter-phone-text {
   font-size: 25px;
 }
 
-/* Input field style */
 .input-container input {
   width: 357px;
   height: 37px;
@@ -281,7 +291,6 @@ p {
   margin-bottom: 12px;
 }
 
-/* Continue button style */
 .continue-button {
   width: 357px;
   height: 37px;
@@ -289,6 +298,7 @@ p {
   color: white;
   cursor: pointer;
 }
+
 .already-user {
   display: flex;
   flex-direction: column;
@@ -304,7 +314,6 @@ p {
   cursor: pointer;
 }
 
-/* joined button of buy and rent */
 .joined-buttons {
   display: flex;
   justify-content: flex-start;
@@ -334,21 +343,76 @@ p {
   background-color: #2980b9;
   color: white;
 }
+
 .jbutton.active {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   background-color: #2980b9;
   color: white;
 }
 
-/* Style for the dropdown container */
 .dropdown {
   display: inline-block;
   border-right: 4px solid #2980b9;
 }
 
-/* Style for the dropdown select */
 select {
   padding: 15.5px;
   font-size: 16px;
   border: none;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  header img {
+    width: 40px;
+    /* Adjusting the logo size for smaller screens */
+  }
+
+  .locality-textarea {
+    width: 100%;
+    /* Ensuring full width for smaller screens */
+  }
+
+  .search-button {
+    width: 100%;
+    /* Making search button full width for smaller screens */
+    max-width: none;
+    /* Removing max-width */
+    border-radius: 5px;
+    /* Restoring border-radius */
+    border-top-right-radius: 5px;
+    /* Restoring border-radius */
+  }
+
+  .center-container {
+    padding: 30px;
+    /* Adjusting padding for smaller screens */
+  }
+
+  .container {
+    height: auto;
+    /* Adjusting container height for smaller screens */
+    padding: 20px;
+    /* Adding padding for smaller screens */
+  }
+
+  .post-ad-button {
+    font-size: 12px;
+    /* Adjusting font size for smaller screens */
+    padding: 8px 16px;
+    /* Adjusting padding for smaller screens */
+  }
+
+  .joined-buttons {
+    margin-top: 10px;
+    /* Adjusting margin-top for smaller screens */
+  }
+
+  .jbutton {
+    width: 100%;
+    /* Making buttons full width for smaller screens */
+    margin-bottom: 10px;
+    /* Adding margin bottom for smaller screens */
+  }
 }

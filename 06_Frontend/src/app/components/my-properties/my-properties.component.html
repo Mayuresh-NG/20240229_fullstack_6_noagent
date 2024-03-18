@@ -1,31 +1,29 @@
-
 <app-profile></app-profile>
-  <div class="container">
-    <div class="headings">
-      <div style="font-size: xx-large; font-weight: 550">Your Properties</div>
-    </div>
-    <div class="main-box">
-      <div class="column-1">
-        <div class="row" *ngFor="let property of Properties">
-          <div class="element">
-            <div class="section1">
-              <div class="text-rows">
-                <div style="margin-bottom: -53px;"><b>For : {{property.trade_type}}</b></div>
-                <div style="margin-bottom: -53px"><b>Property Type : {{property.bhk_type}}</b>></div>
-                <div style="margin-bottom: -24px"><b>Area : {{property.built_Up_area}} sq m</b></div>
-              </div>
-              <div class="get-details-button">
-                <button class="modify" (click)="editProperty(property._id)">Modify</button>
-                <button class="delete" (click)="deleteProperty(property._id)">Delete</button>
-              </div>
+<div class="container">
+  <div class="headings">
+    <div style="font-size: xx-large; font-weight: 550">Your Properties</div>
+  </div>
+  <div class="main-box">
+    <div class="column-1">
+      <div class="row" *ngFor="let property of Properties">
+        <div class="element">
+          <div class="section1">
+            <div class="text-rows">
+              <div style="margin-bottom: -53px;"><b>For : {{property.trade_type}}</b></div>
+              <div style="margin-bottom: -53px"><b>Property Type : {{property.bhk_type}}</b>></div>
+              <div style="margin-bottom: -24px"><b>Area : {{property.deposit}} sq m</b></div>
             </div>
-            <div class="section2">
-              <div class="photo"></div>
+            <div class="get-details-button">
+              <button class="modify" (click)="editProperty(property._id)">Modify</button>
+              <button class="delete" (click)="deleteProperty(property._id)">Delete</button>
             </div>
+          </div>
+          <div class="section2">
+            <div class="photo"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <footer style="height: 20px; background-color: #a9dfff"></footer>
-
+</div>
+<footer style="height: 20px; background-color: #a9dfff"></footer>

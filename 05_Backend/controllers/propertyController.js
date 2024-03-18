@@ -25,7 +25,7 @@ const search = async (req, res) => {
     // Fetch properties based on the address query (including both city and state)
     const matchingProperties = await Property.find({
       trade_type: type,
-        status: "approved", //TODO : Add this back when properties are approved
+      status: "approved", //TODO : Add this back when properties are approved
       $or: [
         { "Address.city": { $regex: new RegExp(searchQuery, "i") } },
         { state: { $regex: new RegExp(searchQuery, "i") } },
@@ -54,12 +54,15 @@ const search = async (req, res) => {
   }
 };
 
+
+//current work
+
 /**Posts a new property for rent.
  * @param {Function} verifyToken - Middleware to verify user token.
  * @param {Object} req - The request object containing property details.
  * @param {Object} res - The response object used to return data or messages.
  */
-const rent_prop =(verifyToken,async (req, res) => {
+const rent_prop = (verifyToken, async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
 
@@ -74,8 +77,12 @@ const rent_prop =(verifyToken,async (req, res) => {
       // images,
       availableFrom,
       deposit,
-      built_Up_area,
+      built_up_area,
+
     } = req.body;
+
+
+    console.log("Body:" + built_up_area);
 
     // const cloudinaryImageUrls = await Promise.all(
     //   images.map(async (imageData) => {
@@ -90,16 +97,16 @@ const rent_prop =(verifyToken,async (req, res) => {
       trade_type: "rent",
       owner: userData.userId, // Owner is the username of the verified user
       owner_user_name: userData.username,
-      rent_price,
-      bhk_type,
-      state,
-      Address: address,
+      rent_price: rent_price,
+      bhk_type: bhk_type,
+      state: state,
+      address: address,
       Furnished: furnished,
       preferred_tenents: pref_tenants,
-      // images: cloudinaryImageUrls,
-      availableFrom,
-      deposit,
-      built_Up_area,
+      images,
+      availableFrom: availableFrom,
+      deposit: deposit,
+      built_up_area,
       posted_on: new Date(),
     });
 
@@ -120,12 +127,25 @@ const rent_prop =(verifyToken,async (req, res) => {
   }
 });
 
+//fixed done
+
+
+
+
+
+
+
+
+
+
+
+
 /**Posts a new property for sale.
  * @param {Function} verifyToken - Middleware to verify user token.
  * @param {Object} req - The request object containing property details.
  * @param {Object} res - The response object used to return data or messages.
  */
-const sell_prop =(verifyToken,async (req, res) => {
+const sell_prop = (verifyToken, async (req, res) => {
   try {
     const userData = req.decoded; // Decoded user information from the token
 
@@ -134,15 +154,16 @@ const sell_prop =(verifyToken,async (req, res) => {
       prop_price,
       bhk_type,
       state,
-      Address,
+      address,
       Furnished,
-      // images,
+      images,
       availableFrom,
       deposit,
       property_type,
       amenities,
-      built_Up_area,
+      built_up_area,
     } = req.body;
+
 
     // const cloudinaryImageUrls = await Promise.all(
     //   images.map(async (imageData) => {
@@ -153,23 +174,49 @@ const sell_prop =(verifyToken,async (req, res) => {
     // );
 
     // Create a new property using the Property model
+    // const newProperty = new Property({
+    //   trade_type: "sell",
+    //   owner: userData.userId,
+    //   owner_user_name: userData.username,
+    //   prop_price,
+    //   bhk_type,
+    //   state,
+    //   Address,
+    //   Furnished,
+    //   // images: cloudinaryImageUrls,
+    //   availableFrom,
+    //   property_type,
+    //   deposit,
+    //   amenities,
+    //   built_Up_area,
+    //   posted_on: new Date(),
+    // });
+
+
     const newProperty = new Property({
       trade_type: "sell",
       owner: userData.userId,
       owner_user_name: userData.username,
-      prop_price,
-      bhk_type,
-      state,
-      Address,
-      Furnished,
-      // images: cloudinaryImageUrls,
-      availableFrom,
+      prop_price: prop_price,
+      bhk_type: bhk_type,
+      state: state,
+      address: {
+        city: address.city,
+        landmark: address.landmark,
+        pincode: address.pincode
+      },
+      furnished: Furnished,
+      available_from: availableFrom,
       property_type,
-      deposit,
-      amenities,
-      built_Up_area,
+      deposit: deposit,
+      amenities: amenities,
+      built_up_area: built_up_area,
       posted_on: new Date(),
+      images
     });
+
+
+    console.log("property:" + newProperty);
 
     // Save the property to the database
     const savedProperty = await newProperty.save();
@@ -193,12 +240,12 @@ const sell_prop =(verifyToken,async (req, res) => {
  * @param {Object} req - The request object containing updated property details.
  * @param {Object} res - The response object used to return data or messages.
  */
-const modify_prop =(verifyToken,async (req, res) => {
+const modify_prop = (verifyToken, async (req, res) => {
   try {
     const propertyId = req.query.propertyId;
     const userData = req.decoded;
     const updatedFields = req.body; // Fields to be updated
-    console.log(propertyId,userData,updatedFields)
+    console.log(propertyId, userData, updatedFields)
     // Find the property by ID
     const property = await Property.findById(propertyId);
     // Check if the user is the owner of the property
@@ -318,4 +365,4 @@ const get_details = async (req, res) => {
   }
 };
 
-module.exports = { search, rent_prop, sell_prop, modify_prop, remove_my_prop,get_details };
+module.exports = { search, rent_prop, sell_prop, modify_prop, remove_my_prop, get_details };

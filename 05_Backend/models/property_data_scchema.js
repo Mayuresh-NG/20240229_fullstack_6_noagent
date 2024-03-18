@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
+
 const propSchema = new mongoose.Schema({
   trade_type: {
     type: String,
     required: true,
     enum: ["rent", "sell"],
   },
-  owner_user_name: String,
+  owner_user_name: {
+    type: String,
+    required: true,
+    minlength: [2, "Owner username must be at least 2 characters long"],
+    maxlength: [50, "Owner username cannot exceed 50 characters"],
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -18,48 +24,66 @@ const propSchema = new mongoose.Schema({
   prop_price: {
     type: Number,
     min: [0, "Property price must be a non-negative value"],
+
   },
   bhk_type: {
     type: String,
     required: true,
+    enum: ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "5+ BHK"],
+    required: true,
   },
-  built_Up_area: String,
+  built_up_area: {
+    type: String,
+    validate: {
+      validator: function (v) {
+        // Custom validator example: checks if built_up_area is in valid format
+        return /^[0-9]+(.[0-9]+)? (sq\.m|sq\.ft)$/.test(v);
+      },
+      message: "Built up area must be in valid format (e.g., '1000 sq.m' or '1200 sq.ft')",
+    },
+    required: true,
+  },
   state: String,
-  Address: {
+  address: {
     street_name: String,
     city: String,
-    Landmark: String,
+    landmark: String,
     pincode: {
       type: Number,
+      minlength: [6, "Pincode must be 6 digits long"],
+      maxlength: [6, "Pincode must be 6 digits long"],
     },
   },
-  Furnished: {
-    full: Boolean,
-    semi: Boolean,
-    none: Boolean,
+  furnished: {
+    type: String,
+    enum: ["full", "semi", "none"],
   },
-  preferred_tenents: {
+  preferred_tenants: {
     family: Boolean,
-    Company: Boolean,
-    B_male: Boolean,
-    B_female: Boolean,
+    company: Boolean,
+    b_male: Boolean,
+    b_female: Boolean,
   },
   images: [
     {
-      url: {
-        type: String,
-      },
+      url: String,
       format: {
         type: String,
+        enum: ["jpg", "png", "gif"],
       },
     },
   ],
-  availableFrom: String,
+  available_from: String,
   deposit: {
     type: Number,
     min: [0, "Deposit must be a non-negative value"],
+    required: true,
   },
-  property_type: String,
+  property_type: {
+    type: String,
+    enum: ["apartment", "house", "villa", "commercial"],
+ 
+  },
   amenities: {
     type: [String],
   },
@@ -71,6 +95,7 @@ const propSchema = new mongoose.Schema({
     type: String,
     default: "pending",
     enum: ["pending", "approved"],
+    required: true,
   },
   likes: {
     type: Number,
