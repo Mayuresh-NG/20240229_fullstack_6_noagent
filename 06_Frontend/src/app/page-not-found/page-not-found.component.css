@@ -26,3 +26,15 @@
     color: #777;
   }
   
+
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+  .not-found-title {
+    font-size: 2em; /* Adjust font size for smaller screens */
+  }
+
+  .not-found-description {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
+}

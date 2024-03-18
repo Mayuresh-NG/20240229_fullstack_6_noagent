@@ -18,7 +18,8 @@ export class ProfileComponent {
   adminName: string = '';
   userRole: string = '';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { } 
+  handleClick(): void{}
 
   //Backend connection to display the name of logged in user 
   fetchUserDetails(): void {
