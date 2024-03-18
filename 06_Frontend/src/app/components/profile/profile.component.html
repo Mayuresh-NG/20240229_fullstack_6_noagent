@@ -13,11 +13,13 @@
       <div class="admin-name">{{ adminName }}</div>
       <hr />
 
-      <button mat-menu-item routerLink="../wishlist">My Wishlist</button>
-      <button mat-menu-item routerLink="../properties">My Property</button>
-      <button mat-menu-item routerLink="../requestlist">Requests</button>
-      <button mat-menu-item routerLink="../propertylist">All Properties</button>
-      <button mat-menu-item routerLink="../sell-rent">Post property Ad</button>
+      <button mat-menu-item routerLink="/wishlist" (click)="handleClick()">My Wishlist</button>
+      <button mat-menu-item routerLink="/properties" (click)="handleClick()">My Property</button>
+      <button mat-menu-item routerLink="/requestlist" (click)="handleClick()">Requests</button>
+      <button mat-menu-item routerLink="/propertylist" (click)="handleClick()">All Properties</button>
+      <button mat-menu-item routerLink="/sell-rent" (click)="handleClick()">Post property Ad</button>
+      
+      
 
       <button mat-menu-item (click)="logout()">Log Out</button>
     </mat-menu>

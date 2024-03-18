@@ -166,3 +166,47 @@ p {
   cursor: not-allowed;
   transform: none;
 }
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .popup {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .popup-content {
+    flex-direction: column;
+  }
+
+  .left-section {
+    width: 100%;
+    border-right: none;
+  }
+
+  .right-section {
+    width: 100%;
+  }
+
+  .close-button {
+    margin-left: auto;
+  }
+
+  .input-container input,
+  .continue-button,
+  .forgot-password,
+  .already-user {
+    width: 80%;
+  }
+
+  .error-message {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popup {
+    width: 90%;
+    max-width: 300px;
+  }
+}

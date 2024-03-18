@@ -28,7 +28,7 @@ export const routes: Routes = [
     ],
   },
   { path: 'propertydetails', component: PropertyDetailsMainScreenComponent },
-  { path: 'properties', component: MyPropertiesComponent },
+  { path: 'properties',component: MyPropertiesComponent },
   { path: 'wishlist', component: MyWishlistComponent },
   { path: 'propertylist', component: PropertyListComponent },
   { path: 'rentyourproperty', component: RentYourPropertyComponent },

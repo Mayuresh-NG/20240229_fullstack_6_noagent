@@ -76,7 +76,7 @@ const rent_prop = (verifyToken, async (req, res) => {
       address,
       furnished,
       pref_tenants,
-      // images,
+      images,
       availableFrom,
       deposit,
       built_up_area,
@@ -86,13 +86,13 @@ const rent_prop = (verifyToken, async (req, res) => {
 
     console.log("Body:" + built_up_area);
 
-    // const cloudinaryImageUrls = await Promise.all(
-    //   images.map(async (imageData) => {
-    //     return await cloudinaryUtils.uploadToCloudinary(
-    //       `./assets/property-images/${imageData.url}`
-    //     );
-    //   })
-    // );
+    const cloudinaryImageUrls = await Promise.all(
+      images.map(async (imageData) => {
+        return await cloudinaryUtils.uploadToCloudinary(
+          `./assets/property-images/${imageData.url}`
+        );
+      })
+    );
 
     // Create a new property using the Property model
     const newProperty = new Property({

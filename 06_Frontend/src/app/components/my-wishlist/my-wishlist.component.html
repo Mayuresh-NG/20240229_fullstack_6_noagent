@@ -1,4 +1,4 @@
-<!-- <body>
+ <body>
   <app-profile></app-profile>
   <div class="container">
     <div class="headings">
@@ -76,46 +76,7 @@
     </div>
   </div>
   <footer style="height: 20px; background-color: #a9dfff"></footer>
-</body> -->
+</body> 
 
 
 
-  <body>
-  <app-profile></app-profile>
-  <div class="container">
-    <div class="headings">
-      <div style="font-size: xx-large; font-weight: 550">Your Wishlist</div>
-    </div>
-    <div class="main-box">
-
-      <div class="column-1"> <!-- Keeping the original column structure -->
-        <!-- Loop through each fetched property and display its details -->
-        <div class="row" *ngFor="let property of fetchedProperties">
-          <div class="element">
-            <div class="section1">
-              <div class="text-rows">
-                <!-- Display property details. Adjust 'title', 'description', etc. according to your Property interface -->
-                <div style="margin-bottom: -53px">{{ property.trade_type === 'sell' ? 'Sell' : 'Rent' }} price:- {{property.prop_price}} RS</div>
-                <div style="margin-bottom: -53px">Address:- {{property.Address.street_name}} , {{property.Address.city}} , {{property.Address.pincode}}</div>
-                <div style="margin-bottom: -53px">BHK:- {{property.bhk_type}}</div>
-                <!-- Add more property details here as needed -->
-              </div>
-              <div class="get-details-button" (click)="toggleOwnerDetails(property)">Get Owner Details</div>
-              <div class="owner-details" *ngIf="property.showOwnerDetails">
-                <div>Owner Name: {{property.owner_user_name}}</div>
-                <div>No: +91-XXXXXXXXXX</div>
-              </div>
-            </div>
-            <div class="section2">
-              <div class="close-button">×</div>
-              <!-- Display property image. Adjust 'imageUrl' according to your Property interface -->
-              <div class="photo" style="background-image: url('{{property.images[0].url}}')"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Second column with wishlist items, maintaining the original structure -->
-    </div>
-  </div>
-  <footer style="height: 20px; background-color: #a9dfff"></footer>
-</body>
