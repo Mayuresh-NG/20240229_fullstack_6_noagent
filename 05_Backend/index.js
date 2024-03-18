@@ -278,38 +278,94 @@ app.use("/users", userRoutes);
 /*
 ? swagger comments for Property APIs
 */
+
+
 /**
  * @swagger
  * /properties/search:
  *   get:
- *     summary: Searches for properties based on type and locality
- *     description: Retrieves properties matching the specified type and locality.
+ *     summary: Search for properties based on type, state, and city.
+ *     description: |
+ *       This endpoint allows users to search for properties based on their trade type, state, and city.
  *     parameters:
  *       - in: query
  *         name: type
+ *         required: true
  *         schema:
  *           type: string
- *         description: The type of the property (e.g., rent, sell).
+ *         description: The type of trade for the property (e.g., 'buy', 'rent', 'sell').
  *       - in: query
- *         name: locality
+ *         name: state
+ *         required: true
  *         schema:
  *           type: string
- *         description: The locality to search for properties.
+ *         description: The state in which the property is located.
+ *       - in: query
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The city in which the property is located.
  *     responses:
- *       200:
- *         description: Properties matching the search query retrieved successfully.
- *       400:
- *         description: Please provide an address for the search.
- *       404:
- *         description: No properties found in the specified area.
- *       500:
- *         description: Internal Server Error.
- *     securityDefinitions:
- *       BearerAuth:
- *         type: apiKey
- *         in: header
- *         name: Authorization
+ *       '200':
+ *         description: Successful response with properties matching the search criteria.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates whether the request was successful.
+ *                 message:
+ *                   type: string
+ *                   description: A message describing the result of the operation.
+ *                 properties:
+ *                   type: array
+ *                   description: An array of properties matching the search criteria.
+ *                   items:
+ *                     $ref: '#/components/schemas/Property'
+ *       '400':
+ *         description: Bad request response when required parameters are missing.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates whether the request was successful.
+ *                 message:
+ *                   type: string
+ *                   description: A message describing the reason for the error.
+ *       '404':
+ *         description: Not found response when no properties match the search criteria.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates whether the request was successful.
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating that no properties were found.
+ *       '500':
+ *         description: Internal server error response.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates whether the request was successful.
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating the internal server error.
  */
+
 
 /**
  * @swagger
@@ -647,7 +703,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 // Serve swagger docs the way you like (Recommendation: swagger-ui-express)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)) 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 
 
