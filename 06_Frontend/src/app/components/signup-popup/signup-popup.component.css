@@ -1,3 +1,4 @@
+/* General styles */
 p {
   text-align: center;
   font-size: 18px;
@@ -31,6 +32,7 @@ p {
   border-right: solid white 0.5px;
   background-color: #a9dfff;
 }
+
 .right-section {
   flex: 1;
   background-color: #c7e6f8;
@@ -122,6 +124,7 @@ p {
   align-items: center;
   margin-top: 49px;
 }
+
 .login-button {
   margin-top: 5px;
   background-color: transparent;
@@ -140,4 +143,47 @@ p {
 .disabled-button {
   background-color: gray;
   cursor: not-allowed;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .popup {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .popup-content {
+    flex-direction: column;
+  }
+
+  .left-section {
+    width: 100%;
+    border-right: none;
+  }
+
+  .right-section {
+    width: 100%;
+  }
+
+  .close-button {
+    margin-left: auto;
+  }
+
+  .input-container input,
+  .continue-button,
+  .already-user {
+    width: 80%;
+  }
+
+  .error-message {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popup {
+    width: 90%;
+    max-width: 300px;
+  }
 }

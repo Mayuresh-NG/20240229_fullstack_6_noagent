@@ -153,4 +153,23 @@ td {
   text-align: center;
   padding: 8px;
   border: 3px solid #dddddd;
+}  
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .dropdown-button {
+    width: 120px; /* Adjust dropdown button width */
+  }
+
+  .dropdown-content {
+    min-width: 120px; /* Adjust dropdown content width */
+  }
+
+  .column:first-child {
+    flex-basis: 100%; /* Full width for the first column on smaller screens */
+  }
 }

@@ -352,3 +352,50 @@ select {
   font-size: 16px;
   border: none;
 }
+
+/* Media query for screens smaller than 768px (tablets) */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Adjust container width for smaller screens */
+  }
+
+  .center-container {
+    padding: 30px; /* Adjust padding for smaller screens */
+  }
+
+  .locality-textarea {
+    width: 100%; /* Make input field full width for smaller screens */
+  }
+
+  .search-bar {
+    flex-direction: column; /* Change flex direction for smaller screens */
+    align-items: center; /* Align items to center for smaller screens */
+  }
+
+  .joined-buttons {
+    flex-direction: column; /* Change flex direction for smaller screens */
+    align-items: center; /* Align items to center for smaller screens */
+    margin-top: 10px; /* Adjust margin for smaller screens */
+  }
+}
+
+/* Media query for screens smaller than 576px (phones) */
+@media (max-width: 576px) {
+  .center-container h2 {
+    font-size: 30px; /* Reduce font size for smaller screens */
+  }
+
+  .locality-textarea {
+    font-size: 16px; /* Reduce font size for smaller screens */
+  }
+
+  .search-button {
+    width: 100%; /* Make search button full width for smaller screens */
+    margin-top: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .joined-buttons .jbutton {
+    width: 100%; /* Make buttons full width for smaller screens */
+    margin-bottom: 10px; /* Adjust margin for smaller screens */
+  }
+}

@@ -156,6 +156,70 @@ body {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     font-weight: bold;
   }
+ 
 
+/* Media query for screens smaller than 1200px */
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 50px; /* Adjust padding for smaller screens */
+    padding-right: 50px; /* Adjust padding for smaller screens */
+  }
+  
+  .main-box {
+    width: auto; /* Set width to auto for smaller screens */
+    height: auto; /* Set height to auto for smaller screens */
+  }
+
+  .element {
+    width: 90%; /* Adjust width for smaller screens */
+    margin: 10px; /* Add margin for spacing */
+  }
+
+  .section1,
+  .section2 {
+    width: 100%; /* Set width to 100% for smaller screens */
+  }
+
+  .close-button {
+    margin-left: 30px; /* Adjust margin for smaller screens */
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .get-details-button {
+    width: 150px; /* Adjust width for smaller screens */
+    margin-left: 20px; /* Adjust margin for smaller screens */
+  }
+
+  .photo {
+    width: 100px; /* Adjust width for smaller screens */
+    height: 80px; /* Adjust height for smaller screens */
+  }
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 30px; /* Adjust padding for even smaller screens */
+    padding-right: 30px; /* Adjust padding for even smaller screens */
+  }
+
+  .text-rows {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .close-button {
+    font-size: 18px; /* Further adjust font size for smaller screens */
+  }
+
+  .get-details-button {
+    width: 120px; /* Further adjust width for smaller screens */
+    margin-left: 10px; /* Further adjust margin for smaller screens */
+  }
+
+  .photo {
+    width: 80px; /* Further adjust width for smaller screens */
+    height: 60px; /* Further adjust height for smaller screens */
+  }
+}
   
   

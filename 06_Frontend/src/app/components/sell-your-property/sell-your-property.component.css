@@ -1,3 +1,4 @@
+/* Common styles */
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +6,6 @@ body {
   display: flex;
   flex-direction: column;
   height: auto;
-  
 }
 
 .propertyForm {
@@ -33,7 +33,7 @@ body {
 .topBar {
   height: 80px;
   display: flex;
-  flex-direction: rcow;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   width: 100vw;
@@ -259,4 +259,20 @@ body {
 .radio-container input[type="radio"]:checked {
   background-color: #007bff; /* Background color when the radio button is checked */
   border: 2px solid #007bff; /* Border color when the radio button is checked */
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .propertyForm {
+    width: 95%;
+    margin: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .dropdown,
+  .customInputField,
+  .depositeInputField,
+  .addressInput {
+    width: 100%; /* Full width for smaller screens */
+    margin: 8px 0; /* Adjust margin for smaller screens */
+  }
 }

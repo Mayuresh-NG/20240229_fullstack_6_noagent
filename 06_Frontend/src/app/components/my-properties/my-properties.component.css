@@ -173,5 +173,22 @@ body {
   .like-count {
     font-size: 16px;
     font-weight: bold;
+  } 
+
+
+  /* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+  .container {
+      padding-left: 20px;
+      padding-right: 20px;
   }
+
+  .main-box {
+      width: calc(100% - 40px);
+  }
+
+  .element {
+      width: calc(100% - 40px);
+  }
+}
   
